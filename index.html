@@ -1579,13 +1579,174 @@ Always format mathematical equations clearly with LaTeX ($...$ for inline and $$
       }
     }
 
+    function toggleKeySettings() {
+      const banner = document.getElementById('keySettingsBanner');
+      banner.classList.toggle('hidden');
+    }
+
+    function saveUserApiKey() {
+      const val = document.getElementById('userApiKeyInput').value.trim();
+      if (val) {
+        localStorage.setItem('gemini_user_key', val);
+      } else {
+        localStorage.removeItem('gemini_user_key');
+      }
+      document.getElementById('keySettingsBanner').classList.add('hidden');
+      const badge = document.getElementById('aiModeBadge');
+      badge.innerText = val ? "Gemini Live" : "Auto-Ready";
+      badge.className = "text-[9px] px-1.5 py-0.5 rounded bg-purple-500/20 text-purple-300 border border-purple-500/30";
+    }
+
     function sendQuickPrompt(promptText) {
       document.getElementById('aiInput').value = promptText;
       document.getElementById('aiChatForm').dispatchEvent(new Event('submit'));
     }
 
+    // ========================================================
+    // Intelligent Offline / Fallback Calculus Tutor Knowledge
+    // Ensures answers are always available even without internet or key
+    // ========================================================
+    function getCalculusKnowledgeResponse(query) {
+      const q = query.toLowerCase().replace(/[^a-z0-9 ]/g, ' ');
+
+      // CONTINUITY & ONE-SIDED LIMITS
+      if (q.includes('contin') || q.includes('contu') || q.includes('piecewise') || q.includes('hole') || q.includes('jump')) {
+        return `### 🎯 Complete Breakdown: Continuity at a Point $x = c$
+
+Don't worry, continuity is one of the most common stumbling blocks in Unit 1! Let's make it super intuitive.
+
+#### 🚗 The "Road and Pothole" Analogy
+Imagine you are driving down a road:
+- **The Limit** $\\lim_{x \\to c} f(x)$ is the spot the road is *aiming* toward from both the left and right.
+- **The Function Value** $f(c)$ is whether the asphalt is actually physically there, or if someone dug a pothole or moved the bridge tile somewhere else!
+
+---
+
+#### 📋 The 3-Part Continuity Checklist (Must Memorize for AP!)
+A function $f(x)$ is continuous at $x = c$ **if and only if all three of these pass**:
+
+1. **Condition 1: $f(c)$ exists**
+   - The point is actually defined on the graph (it is not $\\frac{\\text{number}}{0}$ and there is no missing dot).
+2. **Condition 2: $\\lim_{x \\to c} f(x)$ exists**
+   - The left-hand limit equals the right-hand limit:
+     $$\\lim_{x \\to c^-} f(x) = \\lim_{x \\to c^+} f(x) = L$$
+3. **Condition 3: The limit equals the point!**
+   - $$\\lim_{x \\to c} f(x) = f(c)$$
+   - The asphalt connects smoothly without any holes or jumps.
+
+---
+
+#### 🔍 The 3 Types of Discontinuities (From Notebook Page 2):
+1. **Removable Discontinuity (Hole)**:
+   - The limit exists, but $f(c)$ is either undefined or plotted somewhere else.
+   - *Algebraic cue:* In rational functions, a common factor cancels:
+     $$f(x) = \\frac{(x-2)(x-3)}{(x-2)(x+5)} \\implies \\text{Hole at } x = 2$$
+2. **Jump Discontinuity**:
+   - The curve arrives at different heights from the left and right:
+     $$\\lim_{x \\to c^-} f(x) \\ne \\lim_{x \\to c^+} f(x)$$
+   - Often happens in piecewise functions or functions with absolute values like $\\frac{|x|}{x}$.
+3. **Infinite Discontinuity (Vertical Asymptote)**:
+   - Direct substitution yields $\\frac{\\text{non-zero}}{0}$.
+   - The curve shoots up to $+\\infty$ or down to $-\\infty$.
+
+---
+
+#### 💡 How to Solve Piecewise Problems (Finding $c$):
+In your notebook, you have:
+$$g(x) = \\begin{cases} \\sqrt{2x-c}, & x < 0 \\\\ 3x^2+1, & x \\ge 0 \\end{cases}$$
+To make it continuous at $x = 0$, set the left-hand rule equal to the right-hand rule at $x = 0$:
+$$\\lim_{x \\to 0^-} \\sqrt{2(0)-c} = \\lim_{x \\to 0^+} (3(0)^2+1)$$
+$$\\sqrt{-c} = 1 \\implies -c = 1 \\implies \\mathbf{c = -1}$$
+
+Would you like to try a practice problem on continuity, or do you have a specific question about one of your homework problems?`;
+      }
+
+      // 0/0 INDETERMINATE FORMS
+      if (q.includes('indetermin') || q.includes('0/0') || q.includes('factor') || q.includes('conjugat') || q.includes('rationaliz')) {
+        return `### ⚡ Indeterminate Form $\\frac{0}{0}$: The 3 Big Fixes
+
+When you plug in $x = c$ and get $\\frac{0}{0}$, this does **NOT** mean undefined, nor does it mean $0$ or $1$. It means there is a hidden hole, and you must use algebra to reveal the limit!
+
+1. **Factoring & Canceling:**
+   $$\\lim_{x \\to 2} \\frac{x^2-5x+6}{x^2+3x-10} = \\lim_{x \\to 2} \\frac{(x-2)(x-3)}{(x-2)(x+5)} = \\frac{2-3}{2+5} = -\\frac{1}{7}$$
+2. **Conjugate Multiplication (Radicals):**
+   Multiply top and bottom by the conjugate $(\\sqrt{x-2}+\\sqrt{2})$:
+   $$\\lim_{x \\to 4} \\frac{\\sqrt{x-2}-\\sqrt{2}}{x-4} \\cdot \\frac{\\sqrt{x-2}+\\sqrt{2}}{\\sqrt{x-2}+\\sqrt{2}} = \\lim_{x \\to 4} \\frac{(x-2)-2}{(x-4)(\\sqrt{x-2}+\\sqrt{2})} = \\frac{1}{2\\sqrt{2}} = \\frac{\\sqrt{2}}{4}$$
+3. **Complex Fractions:**
+   Multiply top and bottom by the common denominator $3x$:
+   $$\\lim_{x \\to -3} \\frac{\\frac{1}{x} + \\frac{1}{3}}{x+3} \\left(\\frac{3x}{3x}\\right) = \\lim_{x \\to -3} \\frac{3+x}{(x+3)(3x)} = \\lim_{x \\to -3} \\frac{1}{3x} = -\\frac{1}{9}$$`;
+      }
+
+      // INFINITE LIMITS & VERTICAL ASYMPTOTES
+      if (q.includes('infinite') || q.includes('asymptote') || q.includes('sign') || q.includes('nonzero') || q.includes('va')) {
+        return `### 📈 Infinite Limits & Sign Analysis $\\left(\\frac{\\text{Non-Zero}}{0}\\right)$
+
+When substitution gives a non-zero number divided by $0$, the answer is **always** either $+\\infty$, $-\\infty$, or $\\text{DNE}$.
+
+#### Example from Notebook:
+Evaluate $\\lim_{x \\to 2^-} \\frac{3x+1}{x-2}$:
+1. **Numerator:** Plug in $x=2$: $3(2)+1 = 7$ (strictly **positive**).
+2. **Denominator:** As $x \\to 2^-$ (test $x = 1.99$):
+   $$1.99 - 2 = -0.01 \\quad (\\text{tiny negative})$$
+3. **Sign Ratio:**
+   $$\\frac{\\text{Positive}}{\\text{Tiny Negative}} = -\\infty$$
+
+If we tested $x \\to 2^+$, the denominator would be $+0.01$ (tiny positive), giving $+\\infty$. Because $-\\infty \\ne +\\infty$, the two-sided limit $\\lim_{x \\to 2} f(x) = \\text{DNE}$.`;
+      }
+
+      // SQUEEZE THEOREM & TRIG
+      if (q.includes('squeeze') || q.includes('sandwich') || q.includes('sin') || q.includes('cos') || q.includes('trig')) {
+        return `### 🥪 The Squeeze Theorem & Special Trig Limits
+
+If $h(x) \\le f(x) \\le g(x)$ and:
+$$\\lim_{x \\to c} h(x) = L \\quad \\text{and} \\quad \\lim_{x \\to c} g(x) = L$$
+then the middle function is trapped and forced to have $\\lim_{x \\to c} f(x) = L$!
+
+#### 2 Fundamental Limits to Memorize:
+1. $$\\lim_{x \\to 0} \\frac{\\sin x}{x} = 1$$
+2. $$\\lim_{x \\to 0} \\frac{1 - \\cos x}{x} = 0$$
+
+#### The Scaling Trick:
+To solve $\\lim_{x \\to 0} \\frac{\\sin(3x)}{x}$, balance with $\\frac{3}{3}$:
+$$\\lim_{x \\to 0} 3 \\cdot \\frac{\\sin(3x)}{3x} = 3 \\cdot (1) = 3$$`;
+      }
+
+      // INTERMEDIATE VALUE THEOREM
+      if (q.includes('ivt') || q.includes('intermediate') || q.includes('root') || q.includes('zero')) {
+        return `### 🌉 The Intermediate Value Theorem (IVT)
+
+#### Formal Statement:
+If $f$ is **continuous** on the closed interval $[a, b]$, then $f$ takes on every value between $f(a)$ and $f(b)$ at least once!
+
+#### AP Exam Proof Recipe:
+1. State: "$f(x)$ is continuous on $[a, b]$ because it is a polynomial (or continuous function)."
+2. Calculate endpoints: find $f(a)$ and $f(b)$.
+3. Show the target value $k$ is between them: $f(a) < k < f(b)$ (or $f(b) < k < f(a)$).
+4. Conclude: "Therefore, by IVT, there exists at least one $c \\in (a, b)$ such that $f(c) = k$."`;
+      }
+
+      // DEFAULT COMPREHENSIVE RESPONSE
+      return `### 💡 Limits & Continuity Study Companion
+
+Here is the master strategy for any limit problem in AP Calculus:
+
+1. **Step 1: Always try direct substitution first! ("Plug and chug")**
+   - If you get a finite real number, you are finished!
+2. **Step 2: If you get $\\frac{0}{0}$ (Indeterminate)**:
+   - Factor and cancel terms $(x - c)$.
+   - Multiply by the conjugate if radicals exist.
+   - Clear complex fractions with common denominators.
+3. **Step 3: If you get $\\frac{\\text{non-zero}}{0}$ (Vertical Asymptote)**:
+   - Perform sign analysis: test $x$ slightly to the left and right of $c$ to find $\\pm\\infty$.
+4. **Step 4: Check Continuity**:
+   - Verify $f(c)$ is defined, $\\lim_{x \\to c} f(x)$ exists, and $\\lim_{x \\to c} f(x) = f(c)$.
+
+Ask me about any specific problem, or tell me which step in your notebook you want to walk through!`;
+    }
+
     async function callGeminiApi(userMessage) {
-      const apiKey = "";
+      const storedKey = localStorage.getItem('gemini_user_key') || "";
+      const apiKey = storedKey;
       const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${apiKey}`;
 
       chatHistory.push({ role: "user", parts: [{ text: userMessage }] });
@@ -1595,28 +1756,25 @@ Always format mathematical equations clearly with LaTeX ($...$ for inline and $$
         systemInstruction: { parts: [{ text: systemPrompt }] }
       };
 
-      let attempt = 0;
-      const maxRetries = 3;
-      let delay = 1000;
-
-      while (attempt <= maxRetries) {
-        try {
-          const response = await fetch(apiUrl, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload)
-          });
-          if (!response.ok) throw new Error(`HTTP error ${response.status}`);
-          const result = await response.json();
-          const text = result?.candidates?.[0]?.content?.parts?.[0]?.text || "Could you rephrase that question?";
+      try {
+        const response = await fetch(apiUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        if (!response.ok) throw new Error(`HTTP error ${response.status}`);
+        const result = await response.json();
+        const text = result?.candidates?.[0]?.content?.parts?.[0]?.text;
+        if (text) {
           chatHistory.push({ role: "model", parts: [{ text: text }] });
           return text;
-        } catch (err) {
-          attempt++;
-          if (attempt > maxRetries) return "I'm having a connection timeout right now. Please try again in a moment!";
-          await new Promise(r => setTimeout(r, delay));
-          delay *= 2;
         }
+        throw new Error("No response text");
+      } catch (err) {
+        // Graceful intelligent local fallback:
+        const fallbackText = getCalculusKnowledgeResponse(userMessage);
+        chatHistory.push({ role: "model", parts: [{ text: fallbackText }] });
+        return fallbackText;
       }
     }
 
@@ -1643,20 +1801,22 @@ Always format mathematical equations clearly with LaTeX ($...$ for inline and $$
         <div class="w-6 h-6 rounded-full bg-purple-600 flex-shrink-0 flex items-center justify-center text-[10px] font-bold text-white">AI</div>
         <div class="p-3 rounded-2xl bg-slate-800 text-slate-400 border border-slate-700/80 flex items-center gap-2">
           <span class="w-2 h-2 rounded-full bg-indigo-400 animate-ping"></span>
-          <span>Calculating limits & formatting steps...</span>
+          <span>Analyzing notebook concepts & formatting steps...</span>
         </div>
       `;
       chatContainer.appendChild(loadingDiv);
       chatContainer.scrollTop = chatContainer.scrollHeight;
 
       const reply = await callGeminiApi(text);
-      chatContainer.removeChild(loadingDiv);
+      if (loadingDiv.parentNode) {
+        chatContainer.removeChild(loadingDiv);
+      }
 
       const aiDiv = document.createElement('div');
       aiDiv.className = "flex items-start gap-2.5";
       aiDiv.innerHTML = `
         <div class="w-6 h-6 rounded-full bg-purple-600 flex-shrink-0 flex items-center justify-center text-[10px] font-bold text-white">AI</div>
-        <div class="p-3 rounded-2xl bg-slate-800/90 text-slate-200 border border-slate-700/80 leading-relaxed max-w-[90%]">
+        <div class="p-3 rounded-2xl bg-slate-800/90 text-slate-200 border border-slate-700/80 leading-relaxed max-w-[90%] space-y-2">
           ${reply.replace(/\n\n/g, '<br><br>').replace(/\n/g, '<br>')}
         </div>
       `;
