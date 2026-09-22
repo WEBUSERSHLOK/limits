@@ -3,13 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AP Multi-Subject Exam Master Hub: Gov, Calc & Physics</title>
+  <title>AP STEM Hub: Calculus Limits & AP Physics 1 Kinematics</title>
   
-  <!-- Tailwind CSS & Lucide Icons -->
+  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://unpkg.com/lucide@latest"></script>
   
-  <!-- KaTeX for LaTeX Math Rendering (Calculus & Physics) -->
+  <!-- KaTeX for LaTeX Math Rendering -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
@@ -17,7 +16,7 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
   
   <script>
     tailwind.config = {
@@ -26,21 +25,17 @@
         extend: {
           fontFamily: {
             sans: ['"Plus Jakarta Sans"', 'sans-serif'],
-            mono: ['"JetBrains Mono"', '"Fira Code"', 'monospace'],
+            mono: ['"Fira Code"', 'monospace'],
           },
           colors: {
             brand: {
               50: '#eef2ff',
               100: '#e0e7ff',
-              400: '#818cf8',
+              200: '#c7d2fe',
               500: '#6366f1',
               600: '#4f46e5',
               700: '#4338ca',
-            },
-            dark: {
-              bg: '#080c14',
-              surface: '#0f172a',
-              card: '#131d35',
+              900: '#312e81',
             }
           }
         }
@@ -51,1098 +46,1488 @@
   <style>
     body {
       font-family: 'Plus Jakarta Sans', sans-serif;
-      background-color: #070b13;
+      background-color: #0b0f19;
       color: #f8fafc;
       overflow-x: hidden;
     }
-
-    ::-webkit-scrollbar {
-      width: 7px;
-      height: 7px;
-    }
-    ::-webkit-scrollbar-track {
-      background: #090d16;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: #1e293b;
-      border-radius: 999px;
-    }
-    ::-webkit-scrollbar-thumb:hover {
-      background: #334155;
-    }
-
-    .glass-panel {
-      background: rgba(15, 23, 42, 0.75);
+    
+    .glass-card {
+      background: rgba(17, 24, 39, 0.82);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
       border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.6);
     }
 
-    .glass-card {
-      background: linear-gradient(135deg, rgba(30, 41, 59, 0.5) 0%, rgba(15, 23, 42, 0.65) 100%);
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.07);
-      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    .glass-card:hover {
-      border-color: rgba(99, 102, 241, 0.35);
-      box-shadow: 0 12px 30px -10px rgba(99, 102, 241, 0.15);
+    .glass-pill {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(8px);
     }
 
-    .bg-mesh {
-      background-image: 
-        radial-gradient(circle at 10% 15%, rgba(99, 102, 241, 0.12) 0%, transparent 40%),
-        radial-gradient(circle at 85% 80%, rgba(56, 189, 248, 0.1) 0%, transparent 45%),
-        radial-gradient(circle at 50% 50%, rgba(192, 132, 252, 0.05) 0%, transparent 60%);
-      background-attachment: fixed;
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: rgba(15, 23, 42, 0.6);
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: rgba(99, 102, 241, 0.4);
+      border-radius: 9999px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+      background: rgba(99, 102, 241, 0.8);
+    }
+    
+    @keyframes pulseGlow {
+      0%, 100% { opacity: 0.25; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.05); }
+    }
+    .ambient-glow {
+      animation: pulseGlow 8s infinite ease-in-out;
+    }
+
+    @media print {
+      body {
+        background: #ffffff !important;
+        color: #000000 !important;
+      }
+      .glass-card {
+        background: #ffffff !important;
+        border: 1px solid #cbd5e1 !important;
+        box-shadow: none !important;
+        color: #000000 !important;
+      }
+      header, footer, #aiDrawer, #slideControls, .slide-nav-pill, #shareModal, button {
+        display: none !important;
+      }
+      .slide-pane {
+        display: block !important;
+        page-break-after: always;
+        color: #000000 !important;
+      }
     }
   </style>
 </head>
-<body class="min-h-screen bg-mesh flex flex-col justify-between selection:bg-brand-500 selection:text-white">
+<body class="min-h-screen flex flex-col justify-between selection:bg-indigo-500 selection:text-white">
+
+  <div class="fixed inset-0 pointer-events-none -z-10 overflow-hidden">
+    <div class="absolute -top-40 -left-40 w-96 h-96 bg-indigo-600/20 rounded-full blur-3xl ambient-glow"></div>
+    <div class="absolute top-1/2 -right-40 w-96 h-96 bg-purple-600/20 rounded-full blur-3xl ambient-glow" style="animation-delay: 3s;"></div>
+    <div class="absolute -bottom-40 left-1/3 w-96 h-96 bg-emerald-600/15 rounded-full blur-3xl ambient-glow" style="animation-delay: 5s;"></div>
+  </div>
 
   <!-- Header Navigation -->
-  <header class="sticky top-0 z-50 glass-panel border-b border-white/10 px-4 md:px-8 py-3.5 flex flex-wrap items-center justify-between gap-3">
-    <div class="flex items-center gap-3">
-      <div id="subject-icon" class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-600 via-indigo-500 to-sky-400 flex items-center justify-center shadow-lg shadow-brand-500/25 text-white font-bold text-lg">
-        <i data-lucide="landmark" class="w-5 h-5"></i>
+  <header class="w-full px-4 md:px-8 py-3.5 glass-card border-b border-slate-800 sticky top-0 z-40 flex flex-wrap items-center justify-between gap-3">
+    <div class="flex items-center space-x-3">
+      <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 via-purple-600 to-pink-500 flex items-center justify-center font-bold text-white text-lg shadow-lg shadow-indigo-500/30">
+        $\lim$
       </div>
       <div>
-        <div class="flex items-center gap-2">
-          <span id="subject-title" class="font-extrabold tracking-tight text-white text-base md:text-lg">AP GOV <span class="text-brand-400">UNIT 1</span></span>
-          <span id="subject-badge" class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-indigo-500/10 text-indigo-300 border border-indigo-500/25">15–22% Weight</span>
-        </div>
-        <p id="subject-subtitle" class="text-xs text-slate-400 hidden md:block">Foundations of American Democracy • Interactive AP Prep</p>
+        <h1 class="text-sm md:text-base font-bold text-slate-100 tracking-tight flex items-center gap-2">
+          AP STEM Hub: Calculus & Physics
+          <span class="text-[10px] px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 font-semibold border border-emerald-500/30">Complete Units</span>
+        </h1>
+        <p class="text-xs text-slate-400">Interactive Lessons + Calculus Limits + Physics 1 Kinematics</p>
       </div>
     </div>
 
-    <!-- Main Navigation Tabs -->
-    <nav class="flex flex-wrap items-center bg-slate-900/90 p-1 rounded-xl border border-white/10 text-xs md:text-sm font-semibold gap-1">
-      <!-- AP GOV SUB-TABS -->
-      <button onclick="switchTab('gov-deck')" id="tab-btn-gov-deck" class="nav-tab px-3 py-1.5 rounded-lg transition-all flex items-center gap-1.5 text-white bg-brand-600 shadow-sm">
-        <i data-lucide="landmark" class="w-4 h-4"></i>
-        <span>Gov Deck</span>
-      </button>
-      <button onclick="switchTab('gov-mcq')" id="tab-btn-gov-mcq" class="nav-tab px-3 py-1.5 rounded-lg transition-all flex items-center gap-1.5 text-slate-400 hover:text-white">
-        <i data-lucide="check-square" class="w-4 h-4"></i>
-        <span>Gov MCQs (38)</span>
-      </button>
-      <button onclick="switchTab('gov-frq')" id="tab-btn-gov-frq" class="nav-tab px-3 py-1.5 rounded-lg transition-all flex items-center gap-1.5 text-slate-400 hover:text-white">
-        <i data-lucide="pen-tool" class="w-4 h-4"></i>
-        <span>Gov FRQ Grader</span>
+    <!-- Mode Selector: Lessons vs Calc Practice vs Physics Kinematics -->
+    <div class="flex items-center gap-2">
+      <div class="bg-slate-900/90 p-1 rounded-xl border border-slate-800 flex items-center gap-1">
+        <button id="viewLessonsBtn" onclick="switchMainView('lessons')" class="px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 bg-indigo-600 text-white shadow">
+          <span>📖 Calc Lessons</span>
+        </button>
+        <button id="viewPracticeBtn" onclick="switchMainView('practice')" class="px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 text-slate-400 hover:text-white">
+          <span>🎯 Calc Practice (32)</span>
+        </button>
+        <button id="viewPhysicsBtn" onclick="switchMainView('physics')" class="px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 text-amber-300 hover:text-white border border-amber-500/30">
+          <span>🚀 AP Physics 1 (Kinematics)</span>
+        </button>
+      </div>
+
+      <!-- Slide Nav Controls (visible when in lesson view) -->
+      <div id="slideControls" class="flex items-center gap-1.5 ml-1">
+        <button id="prevBtn" onclick="prevSlide()" class="px-2.5 py-1.5 rounded-lg glass-pill text-slate-300 hover:text-white transition text-xs font-semibold disabled:opacity-30 disabled:cursor-not-allowed">
+          ←
+        </button>
+        <span class="text-xs font-mono px-2 py-1 rounded-lg bg-slate-900 border border-slate-800 text-indigo-300">
+          <span id="currentSlideNum">1</span>/<span id="totalSlidesNum">8</span>
+        </span>
+        <button id="nextBtn" onclick="nextSlide()" class="px-2.5 py-1.5 rounded-lg glass-pill text-slate-300 hover:text-white transition text-xs font-semibold disabled:opacity-30 disabled:cursor-not-allowed">
+          →
+        </button>
+      </div>
+
+      <!-- Share / Email Button -->
+      <button onclick="toggleShareModal()" class="px-3 py-1.5 rounded-lg glass-pill text-indigo-300 hover:text-white hover:bg-indigo-600/30 transition flex items-center gap-1.5 text-xs font-bold border border-indigo-500/30">
+        <span>✉️</span>
+        <span class="hidden sm:inline">Share / Email</span>
       </button>
 
-      <!-- STEM TABS -->
-      <button onclick="switchTab('calc-lessons')" id="tab-btn-calc-lessons" class="nav-tab px-3 py-1.5 rounded-lg transition-all flex items-center gap-1.5 text-indigo-300 hover:text-white border border-indigo-500/30">
-        <span>📐 Calc Lessons</span>
+      <!-- AI Assistant Drawer Button -->
+      <button onclick="toggleAiDrawer()" class="px-3 py-1.5 rounded-lg bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white transition flex items-center gap-1.5 text-xs font-bold shadow-lg shadow-purple-600/30">
+        <span class="animate-pulse">✨</span>
+        <span class="hidden sm:inline">Ask AI Tutor</span>
       </button>
-      <button onclick="switchTab('calc-practice')" id="tab-btn-calc-practice" class="nav-tab px-3 py-1.5 rounded-lg transition-all flex items-center gap-1.5 text-indigo-300 hover:text-white border border-indigo-500/30">
-        <span>🎯 Calc Free-Response (32)</span>
-      </button>
-      <button onclick="switchTab('physics')" id="tab-btn-physics" class="nav-tab px-3 py-1.5 rounded-lg transition-all flex items-center gap-1.5 text-amber-300 hover:text-white border border-amber-500/30">
-        <span>🚀 AP Physics 1 (Kinematics)</span>
-      </button>
-    </nav>
+    </div>
   </header>
 
-  <!-- Progress Bar for Deck Navigation -->
-  <div id="deck-progress-wrapper" class="w-full bg-slate-900/60 h-1">
-    <div id="deck-progress-bar" class="h-full bg-gradient-to-r from-brand-500 via-indigo-400 to-sky-400 transition-all duration-300" style="width: 11%;"></div>
-  </div>
+  <main class="flex-1 max-w-6xl w-full mx-auto p-4 md:p-6 flex flex-col justify-center">
 
-  <main class="max-w-7xl w-full mx-auto px-4 md:px-6 py-6 flex-1">
-
-    <!-- ========================================================================= -->
-    <!-- 1. AP GOV INTERACTIVE SLIDE DECK (TOPICS 1.1 - 1.9)                       -->
-    <!-- ========================================================================= -->
-    <section id="section-gov-deck" class="tab-content block">
-      <div class="flex items-center justify-between mb-4 flex-wrap gap-2">
-        <div class="flex items-center gap-2 overflow-x-auto pb-1 max-w-full" id="slide-pills-bar"></div>
-        <div class="flex items-center gap-2">
-          <button onclick="prevSlide()" class="p-2 rounded-lg bg-slate-800/80 hover:bg-slate-700 border border-white/10 text-slate-300 hover:text-white transition">
-            <i data-lucide="arrow-left" class="w-4 h-4"></i>
-          </button>
-          <span id="slide-counter" class="text-xs font-mono font-semibold text-slate-400 px-2">1 / 9</span>
-          <button onclick="nextSlide()" class="p-2 rounded-lg bg-slate-800/80 hover:bg-slate-700 border border-white/10 text-slate-300 hover:text-white transition">
-            <i data-lucide="arrow-right" class="w-4 h-4"></i>
-          </button>
-        </div>
-      </div>
-      <div id="slide-stage" class="glass-panel rounded-2xl p-6 md:p-8 relative min-h-[580px] shadow-2xl flex flex-col justify-between"></div>
-    </section>
-
-    <!-- ========================================================================= -->
-    <!-- 2. AP GOV 38 STIMULUS MCQS                                                -->
-    <!-- ========================================================================= -->
-    <section id="section-gov-mcq" class="tab-content hidden">
-      <div class="glass-panel rounded-2xl p-6 md:p-8">
-        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-6 border-b border-white/10 mb-6">
-          <div>
-            <div class="flex items-center gap-2 mb-1">
-              <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-sky-500/10 text-sky-400 border border-sky-500/20">Stimulus Practice Bank</span>
-              <h2 class="text-xl md:text-2xl font-bold tracking-tight text-white">AP Application Scenarios (38 Questions)</h2>
-            </div>
-            <p class="text-sm text-slate-400">Authentic College Board style questions covering Topics 1.1 through 1.9 with immediate analytical rationales.</p>
-          </div>
-          <div class="flex flex-wrap items-center gap-3">
-            <div class="bg-slate-900/80 px-3.5 py-1.5 rounded-xl border border-white/10 text-right">
-              <div class="text-[11px] text-slate-400 font-medium">Progress / Accuracy</div>
-              <div class="text-lg font-extrabold font-mono text-brand-400" id="mcq-score-display">0 / 38 (0%)</div>
-            </div>
-            <button onclick="toggleMCQMode()" id="mcq-mode-btn" class="px-3 py-2 text-xs font-semibold rounded-lg bg-indigo-600/30 hover:bg-indigo-600/50 text-indigo-200 border border-indigo-500/30 flex items-center gap-1.5 transition">
-              <i data-lucide="layout-grid" class="w-3.5 h-3.5"></i> <span id="mcq-mode-label">Switch to Focus Mode</span>
-            </button>
-            <button onclick="resetMCQ()" class="px-3 py-2 text-xs font-semibold rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 border border-white/10 flex items-center gap-1.5 transition">
-              <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i> Reset
-            </button>
-          </div>
-        </div>
-
-        <div class="mb-6 p-4 rounded-xl bg-slate-900/60 border border-white/5 space-y-3">
-          <div class="flex flex-wrap items-center justify-between gap-2">
-            <span class="text-xs font-bold uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
-              <i data-lucide="crosshair" class="w-3.5 h-3.5 text-brand-400"></i> Question Navigator:
-            </span>
-            <div class="flex flex-wrap gap-1 text-[11px]" id="mcq-filter-buttons">
-              <button onclick="filterMCQs('all')" id="flt-all" class="px-2.5 py-1 rounded-md bg-brand-600 text-white font-semibold transition">All (38)</button>
-              <button onclick="filterMCQs('1.1-1.3')" id="flt-1.1-1.3" class="px-2.5 py-1 rounded-md bg-slate-800 text-slate-400 hover:text-white transition">1.1–1.3 Ideals & Factions</button>
-              <button onclick="filterMCQs('1.4-1.6')" id="flt-1.4-1.6" class="px-2.5 py-1 rounded-md bg-slate-800 text-slate-400 hover:text-white transition">1.4–1.6 Constitution & Checks</button>
-              <button onclick="filterMCQs('1.7-1.9')" id="flt-1.7-1.9" class="px-2.5 py-1 rounded-md bg-slate-800 text-slate-400 hover:text-white transition">1.7–1.9 Federalism & Cases</button>
-            </div>
-          </div>
-          <div class="flex flex-wrap gap-1.5 max-h-24 overflow-y-auto pr-1 custom-scrollbar" id="mcq-jump-grid"></div>
-        </div>
-
-        <div id="mcq-container" class="space-y-6"></div>
-      </div>
-    </section>
-
-    <!-- ========================================================================= -->
-    <!-- 3. AP GOV AI FRQ GRADER                                                   -->
-    <!-- ========================================================================= -->
-    <section id="section-gov-frq" class="tab-content hidden">
-      <div class="glass-panel rounded-2xl p-6 md:p-8">
-        <div class="mb-6 pb-6 border-b border-white/10">
-          <div class="flex items-center gap-2 mb-1">
-            <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Official College Board Rubrics</span>
-            <h2 class="text-xl md:text-2xl font-bold tracking-tight text-white">Full-Length AP Free Response Questions</h2>
-          </div>
-          <p class="text-sm text-slate-400">Submit your typed response to receive a rigorous, criterion-by-criterion AP rubric breakdown from our built-in evaluator.</p>
-        </div>
-
-        <div class="flex gap-2 mb-6 overflow-x-auto pb-1 custom-scrollbar" id="frq-tabs-bar">
-          <button onclick="selectFRQ(0)" id="frq-tab-0" class="frq-tab-btn px-4 py-2.5 rounded-xl font-bold text-xs md:text-sm border border-brand-500 bg-brand-600 text-white flex items-center gap-2 transition">
-            <i data-lucide="file-text" class="w-4 h-4"></i> FRQ 1: Concept Application (3 Pts)
-          </button>
-          <button onclick="selectFRQ(1)" id="frq-tab-1" class="frq-tab-btn px-4 py-2.5 rounded-xl font-bold text-xs md:text-sm border border-white/10 bg-slate-900/60 text-slate-400 hover:text-white flex items-center gap-2 transition">
-            <i data-lucide="scale" class="w-4 h-4"></i> FRQ 2: SCOTUS Comparison (4 Pts)
-          </button>
-          <button onclick="selectFRQ(2)" id="frq-tab-2" class="frq-tab-btn px-4 py-2.5 rounded-xl font-bold text-xs md:text-sm border border-white/10 bg-slate-900/60 text-slate-400 hover:text-white flex items-center gap-2 transition">
-            <i data-lucide="award" class="w-4 h-4"></i> FRQ 3: Argument Essay (6 Pts)
-          </button>
-        </div>
-
-        <div id="frq-stage" class="space-y-6"></div>
-      </div>
-    </section>
-
-    <!-- ========================================================================= -->
-    <!-- 4. CALCULUS CONCEPT LESSON SLIDES                                         -->
-    <!-- ========================================================================= -->
-    <section id="section-calc-lessons" class="tab-content hidden space-y-4">
+    <!-- ==================== VIEW 1: CONCEPT LESSON SLIDES ==================== -->
+    <div id="lessonsView" class="w-full space-y-4">
+      
+      <!-- Quick Section Selector Pills -->
       <div class="flex items-center gap-1.5 overflow-x-auto pb-2 custom-scrollbar text-xs">
-        <span class="text-slate-400 font-semibold px-2">Calc Topics:</span>
-        <button onclick="goToCalcSlide(0)" class="calc-slide-pill px-2.5 py-1 rounded-full bg-indigo-600 text-white whitespace-nowrap font-medium" data-cslide="0">1. Limits & DNE</button>
-        <button onclick="goToCalcSlide(1)" class="calc-slide-pill px-2.5 py-1 rounded-full bg-slate-800 text-slate-300 whitespace-nowrap font-medium" data-cslide="1">2. Properties</button>
-        <button onclick="goToCalcSlide(2)" class="calc-slide-pill px-2.5 py-1 rounded-full bg-slate-800 text-slate-300 whitespace-nowrap font-medium" data-cslide="2">3. 0/0 Indeterminate</button>
-        <button onclick="goToCalcSlide(3)" class="calc-slide-pill px-2.5 py-1 rounded-full bg-slate-800 text-slate-300 whitespace-nowrap font-medium" data-cslide="3">4. Continuity</button>
-        <button onclick="goToCalcSlide(4)" class="calc-slide-pill px-2.5 py-1 rounded-full bg-slate-800 text-slate-300 whitespace-nowrap font-medium" data-cslide="4">5. Infinite Limits</button>
-        <button onclick="goToCalcSlide(5)" class="calc-slide-pill px-2.5 py-1 rounded-full bg-slate-800 text-slate-300 whitespace-nowrap font-medium" data-cslide="5">6. Limits at Infinity</button>
-        <button onclick="goToCalcSlide(6)" class="calc-slide-pill px-2.5 py-1 rounded-full bg-slate-800 text-slate-300 whitespace-nowrap font-medium" data-cslide="6">7. Squeeze Theorem</button>
-        <button onclick="goToCalcSlide(7)" class="calc-slide-pill px-2.5 py-1 rounded-full bg-slate-800 text-slate-300 whitespace-nowrap font-medium" data-cslide="7">8. IVT</button>
+        <span class="text-slate-400 font-semibold px-2">Jump to:</span>
+        <button onclick="goToSlide(0)" class="slide-nav-pill px-2.5 py-1 rounded-full bg-indigo-600 text-white whitespace-nowrap font-medium transition" data-slide="0">1. Limit Concept & DNE</button>
+        <button onclick="goToSlide(1)" class="slide-nav-pill px-2.5 py-1 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-300 whitespace-nowrap font-medium transition" data-slide="1">2. Limit Properties</button>
+        <button onclick="goToSlide(2)" class="slide-nav-pill px-2.5 py-1 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-300 whitespace-nowrap font-medium transition" data-slide="2">3. Indeterminate (0/0)</button>
+        <button onclick="goToSlide(3)" class="slide-nav-pill px-2.5 py-1 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-300 whitespace-nowrap font-medium transition" data-slide="3">4. Continuity & One-Sided</button>
+        <button onclick="goToSlide(4)" class="slide-nav-pill px-2.5 py-1 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-300 whitespace-nowrap font-medium transition" data-slide="4">5. Infinite Limits & VA</button>
+        <button onclick="goToSlide(5)" class="slide-nav-pill px-2.5 py-1 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-300 whitespace-nowrap font-medium transition" data-slide="5">6. Limits at Infinity (HA)</button>
+        <button onclick="goToSlide(6)" class="slide-nav-pill px-2.5 py-1 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-300 whitespace-nowrap font-medium transition" data-slide="6">7. Squeeze Theorem</button>
+        <button onclick="goToSlide(7)" class="slide-nav-pill px-2.5 py-1 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-300 whitespace-nowrap font-medium transition" data-slide="7">8. Intermediate Value (IVT)</button>
       </div>
 
-      <div id="calc-slide-0" class="calc-slide-card glass-panel rounded-2xl p-6 md:p-8 space-y-4">
-        <h2 class="text-2xl font-bold text-white">What is a Limit? The Intended Height</h2>
-        <p class="text-sm text-slate-300">A limit is the intended height that $f(x)$ approaches as $x$ gets arbitrarily close to $c$, regardless of whether the point $f(c)$ is defined!</p>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
-          <div class="p-3 bg-slate-900 rounded-xl border border-white/5"><strong class="text-indigo-400">1. Left & Right Disagree:</strong> $\lim_{x \to c^-} \ne \lim_{x \to c^+}$ (Jump)</div>
-          <div class="p-3 bg-slate-900 rounded-xl border border-white/5"><strong class="text-indigo-400">2. Unbounded:</strong> $\lim_{x \to 0} \frac{1}{x^2} = \infty$ (Vertical Asymptote)</div>
-          <div class="p-3 bg-slate-900 rounded-xl border border-white/5"><strong class="text-indigo-400">3. Oscillating:</strong> $\lim_{x \to 0} \sin(1/x)$ (Never settles)</div>
+      <!-- SLIDE 0: What is a limit? & The 3 Reasons DNE -->
+      <section id="slide-0" class="slide-pane w-full glass-card rounded-2xl p-6 md:p-8 space-y-6">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <span class="px-3 py-1 rounded-full bg-indigo-500/20 text-indigo-300 text-xs font-semibold border border-indigo-500/30">Unit 1.1</span>
+            <span class="text-xs text-slate-400">Notebook: "What is a limit?"</span>
+          </div>
+          <button onclick="openSectionPractice('sec-intro')" class="text-xs text-indigo-400 hover:text-indigo-300 font-bold flex items-center gap-1">
+            <span>Practice this section (4 Qs) →</span>
+          </button>
         </div>
-      </div>
-      <div id="calc-slide-1" class="calc-slide-card hidden glass-panel rounded-2xl p-6 md:p-8 space-y-4">
-        <h2 class="text-2xl font-bold text-white">Rule #1: Direct Substitution First</h2>
-        <p class="text-sm text-slate-300">Always "plug and chug" first! For polynomials, radicals, and trig in their domain, substitution always gives the exact limit.</p>
-      </div>
-      <div id="calc-slide-2" class="calc-slide-card hidden glass-panel rounded-2xl p-6 md:p-8 space-y-4">
-        <h2 class="text-2xl font-bold text-white">0/0 Indeterminate Forms</h2>
-        <p class="text-sm text-slate-300">When you get $\frac{0}{0}$: 1) Factor & Cancel, 2) Rationalize with Conjugates, or 3) Multiply through by LCD for complex fractions.</p>
-      </div>
-      <div id="calc-slide-3" class="calc-slide-card hidden glass-panel rounded-2xl p-6 md:p-8 space-y-4">
-        <h2 class="text-2xl font-bold text-white">The 3-Part Continuity Checklist</h2>
-        <p class="text-sm text-slate-300">Continuous at $x=c$ iff: 1. $f(c)$ exists, 2. $\lim_{x \to c} f(x)$ exists, and 3. $\lim_{x \to c} f(x) = f(c)$.</p>
-      </div>
-      <div id="calc-slide-4" class="calc-slide-card hidden glass-panel rounded-2xl p-6 md:p-8 space-y-4">
-        <h2 class="text-2xl font-bold text-white">Infinite Limits & Vertical Asymptotes</h2>
-        <p class="text-sm text-slate-300">When direct substitution yields $\frac{\text{nonzero}}{0}$, test $x = c \pm 0.01$ to identify whether the curve goes to $+\infty$ or $-\infty$.</p>
-      </div>
-      <div id="calc-slide-5" class="calc-slide-card hidden glass-panel rounded-2xl p-6 md:p-8 space-y-4">
-        <h2 class="text-2xl font-bold text-white">Limits at Infinity & Horizontal Asymptotes</h2>
-        <p class="text-sm text-slate-300">Compare degrees: Bottom heavy $\to 0$, Equal degrees $\to$ ratio of leading coefficients, Top heavy $\to \text{DNE} (\pm\infty)$.</p>
-      </div>
-      <div id="calc-slide-6" class="calc-slide-card hidden glass-panel rounded-2xl p-6 md:p-8 space-y-4">
-        <h2 class="text-2xl font-bold text-white">The Squeeze Theorem & Trig Limits</h2>
-        <p class="text-sm text-slate-300">If $g(x) \le f(x) \le h(x)$ and $\lim g = \lim h = L$, then $\lim f = L$. Memorize: $\lim_{x \to 0} \frac{\sin x}{x} = 1$ and $\lim_{x \to 0} \frac{1 - \cos x}{x} = 0$.</p>
-      </div>
-      <div id="calc-slide-7" class="calc-slide-card hidden glass-panel rounded-2xl p-6 md:p-8 space-y-6">
-        <h2 class="text-2xl font-bold text-white">The Intermediate Value Theorem (IVT)</h2>
-        <p class="text-sm text-slate-300">If $f$ is continuous on $[a, b]$, it must take on every value between $f(a)$ and $f(b)$ at least once.</p>
-      </div>
-    </section>
 
-    <!-- ========================================================================= -->
-    <!-- 5. CALCULUS 32 FREE-RESPONSE PRACTICE HUB                                 -->
-    <!-- ========================================================================= -->
-    <section id="section-calc-practice" class="tab-content hidden space-y-6">
+        <div>
+          <h2 class="text-2xl md:text-3xl font-extrabold text-white">What is a Limit? The Intended Height</h2>
+          <p class="mt-2 text-slate-300 text-sm leading-relaxed">
+            In calculus, a limit is <strong>the intended height</strong> ($y$-value) that a function approaches as $x$ gets arbitrarily close to a target number $c$, <em>regardless of whether the function actually reaches that point or is even defined there!</em>[cite: 9]
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800">
+            <h4 class="font-bold text-indigo-300 text-xs uppercase tracking-wider mb-2">1. Left & Right Disagree</h4>
+            <p class="text-xs text-slate-400">
+              $$\lim_{x \to c^-} f(x) \ne \lim_{x \to c^+} f(x)$$[cite: 9]
+              The graph jumps[cite: 9]. For example, $f(x) = \frac{|x|}{x}$ gives $-1$ from the left and $+1$ from the right[cite: 9].
+            </p>
+          </div>
+          <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800">
+            <h4 class="font-bold text-indigo-300 text-xs uppercase tracking-wider mb-2">2. Unbounded (Shoots to $\pm\infty$)</h4>
+            <p class="text-xs text-slate-400">
+              $$\lim_{x \to 0} \frac{1}{x^2} = \infty$$[cite: 9]
+              The $y$-values grow infinitely large, so they never approach a single real finite number $L$[cite: 9].
+            </p>
+          </div>
+          <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800">
+            <h4 class="font-bold text-indigo-300 text-xs uppercase tracking-wider mb-2">3. Oscillating Wildly</h4>
+            <p class="text-xs text-slate-400">
+              $$\lim_{x \to 0} \sin\left(\frac{1}{x}\right)$$[cite: 9]
+              As $x \to 0$, the angle $\frac{1}{x}$ blows up to $\infty$, causing the sine wave to bounce between $-1$ and $+1$ infinite times[cite: 9].
+            </p>
+          </div>
+        </div>
+
+        <div class="p-4 rounded-xl bg-indigo-950/40 border border-indigo-800/50 flex flex-wrap items-center justify-between gap-3">
+          <span class="text-xs text-indigo-200">
+            <strong>Key Notebook Takeaway:</strong> $f(c)$ is where the point is; $\lim_{x\to c} f(x)$ is where the curve is aiming!
+          </span>
+          <button onclick="openSectionPractice('sec-intro')" class="px-4 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs transition">
+            Start Practice Questions →
+          </button>
+        </div>
+      </section>
+
+      <!-- SLIDE 1: Limit Properties & Direct Substitution -->
+      <section id="slide-1" class="slide-pane hidden w-full glass-card rounded-2xl p-6 md:p-8 space-y-6">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <span class="px-3 py-1 rounded-full bg-blue-500/20 text-blue-300 text-xs font-semibold border border-blue-500/30">Unit 1.2</span>
+            <span class="text-xs text-slate-400">Notebook: "Basic Limit Properties"</span>
+          </div>
+          <button onclick="openSectionPractice('sec-props')" class="text-xs text-indigo-400 hover:text-indigo-300 font-bold flex items-center gap-1">
+            <span>Practice this section (4 Qs) →</span>
+          </button>
+        </div>
+
+        <div>
+          <h2 class="text-2xl md:text-3xl font-extrabold text-white">Rule #1: Always Try "Plug & Chug" First</h2>
+          <p class="mt-2 text-slate-300 text-sm leading-relaxed">
+            For polynomials, radical roots, rational functions (with non-zero denominator), and trig functions within their domains: 
+            <strong>Direct substitution always works!</strong>[cite: 8]
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+          <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 space-y-2">
+            <div class="font-bold text-white text-sm">Algebraic Properties:</div>
+            <ul class="space-y-1.5 text-slate-300 font-mono">
+              <li>• Scalar: $\lim [b \cdot f(x)] = b \cdot L$[cite: 8]</li>
+              <li>• Sum / Diff: $\lim [f(x) \pm g(x)] = L \pm K$[cite: 8]</li>
+              <li>• Product: $\lim [f(x) \cdot g(x)] = L \cdot K$[cite: 8]</li>
+              <li>• Quotient: $\lim \frac{f(x)}{g(x)} = \frac{L}{K}$ (provided $K \ne 0$)[cite: 8]</li>
+              <li>• Power: $\lim [f(x)]^n = L^n$[cite: 8]</li>
+            </ul>
+          </div>
+
+          <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 space-y-2">
+            <div class="font-bold text-white text-sm">Trig Limits by Direct Sub:</div>
+            <p class="text-slate-300">If $c$ is in the domain, just substitute[cite: 8]:</p>
+            <div class="p-2.5 rounded bg-slate-950 border border-slate-800 font-mono text-indigo-300 space-y-1">
+              <div>$\lim_{x \to \pi/4} \tan x = \tan(\pi/4) = 1$[cite: 8]</div>
+              <div>$\lim_{x \to \pi/2} (x \sin x) = \frac{\pi}{2} \cdot \sin\left(\frac{\pi}{2}\right) = \frac{\pi}{2} \cdot 1 = \frac{\pi}{2}$[cite: 8]</div>
+            </div>
+            <p class="text-[11px] text-amber-300">Only when direct substitution yields $\frac{0}{0}$ or $\frac{k}{0}$ do you need advanced techniques!</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 2: Indeterminate Forms (0/0) -->
+      <section id="slide-2" class="slide-pane hidden w-full glass-card rounded-2xl p-6 md:p-8 space-y-6">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <span class="px-3 py-1 rounded-full bg-amber-500/20 text-amber-300 text-xs font-semibold border border-amber-500/30">Unit 1.3</span>
+            <span class="text-xs text-slate-400">Notebook: "Indeterminate Form"</span>
+          </div>
+          <button onclick="openSectionPractice('sec-indet')" class="text-xs text-indigo-400 hover:text-indigo-300 font-bold flex items-center gap-1">
+            <span>Practice this section (4 Qs) →</span>
+          </button>
+        </div>
+
+        <div>
+          <h2 class="text-2xl md:text-3xl font-extrabold text-white">When Substitution Gives $\frac{0}{0}$: The 3 Big Fixes</h2>
+          <p class="mt-2 text-slate-300 text-sm leading-relaxed">
+            $\frac{0}{0}$ is <strong>NOT</strong> undefined, nor is it $0$ or $1$. It is an <em>indeterminate form</em>[cite: 7]. It signals a hidden hole that cancels out with algebra!
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+          <!-- Fix 1 -->
+          <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 space-y-2">
+            <div class="font-bold text-emerald-400 text-sm">1. Factoring & Canceling</div>
+            <p class="text-slate-300">Used for polynomials[cite: 7]:</p>
+            <div class="p-2 rounded bg-slate-950 font-mono text-indigo-300 text-[11px]">
+              $$\lim_{x \to 2} \frac{x^2-5x+6}{x^2+3x-10}$$[cite: 7]
+              $$= \lim_{x \to 2} \frac{(x-2)(x-3)}{(x-2)(x+5)} = \frac{-1}{7}$$[cite: 7]
+            </div>
+          </div>
+
+          <!-- Fix 2 -->
+          <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 space-y-2">
+            <div class="font-bold text-purple-400 text-sm">2. Conjugate Rationalizing</div>
+            <p class="text-slate-300">Used when radicals cause $\frac{0}{0}$[cite: 7]:</p>
+            <div class="p-2 rounded bg-slate-950 font-mono text-indigo-300 text-[11px]">
+              $$\lim_{x \to 9} \frac{\sqrt{x}-3}{x-9} \cdot \frac{\sqrt{x}+3}{\sqrt{x}+3}$$[cite: 7]
+              $$= \lim_{x \to 9} \frac{x-9}{(x-9)(\sqrt{x}+3)} = \frac{1}{6}$$[cite: 7]
+            </div>
+          </div>
+
+          <!-- Fix 3 -->
+          <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 space-y-2">
+            <div class="font-bold text-rose-400 text-sm">3. Complex Fractions</div>
+            <p class="text-slate-300">Multiply top & bottom by the common denominator[cite: 7]:</p>
+            <div class="p-2 rounded bg-slate-950 font-mono text-indigo-300 text-[11px]">
+              $$\lim_{x \to -3} \frac{\frac{1}{x} + \frac{1}{3}}{x+3} \cdot \frac{3x}{3x}$$[cite: 7]
+              $$= \lim_{x \to -3} \frac{3+x}{(x+3)(3x)} = -\frac{1}{9}$$[cite: 7]
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 3: Continuity & One-Sided Limits -->
+      <section id="slide-3" class="slide-pane hidden w-full glass-card rounded-2xl p-6 md:p-8 space-y-6">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <span class="px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 text-xs font-semibold border border-emerald-500/30">Unit 1.4</span>
+            <span class="text-xs text-slate-400">Notebook: "Continuity & One-Sided Limits"</span>
+          </div>
+          <button onclick="openSectionPractice('sec-cont')" class="text-xs text-indigo-400 hover:text-indigo-300 font-bold flex items-center gap-1">
+            <span>Practice this section (4 Qs) →</span>
+          </button>
+        </div>
+
+        <div>
+          <h2 class="text-2xl md:text-3xl font-extrabold text-white">Continuity & The 3-Part Checklist</h2>
+          <p class="mt-2 text-slate-300 text-sm leading-relaxed">
+            A function $f(x)$ is continuous at $x = c$ if and only if all three conditions hold[cite: 1, 6]:
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+          <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800">
+            <div class="text-indigo-400 font-bold text-sm mb-1">Condition 1</div>
+            <div class="font-mono text-white text-xs mb-2">$f(c)$ exists</div>
+            <p class="text-slate-400">The point is defined on the graph (not a hole with no point, and not an asymptote)[cite: 1, 6].</p>
+          </div>
+          <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800">
+            <div class="text-indigo-400 font-bold text-sm mb-1">Condition 2</div>
+            <div class="font-mono text-white text-xs mb-2">$\lim_{x \to c} f(x)$ exists</div>
+            <p class="text-slate-400">The left-hand limit equals the right-hand limit: $\lim_{x \to c^-} f(x) = \lim_{x \to c^+} f(x)$[cite: 1, 6].</p>
+          </div>
+          <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800">
+            <div class="text-indigo-400 font-bold text-sm mb-1">Condition 3</div>
+            <div class="font-mono text-white text-xs mb-2">$\lim_{x \to c} f(x) = f(c)$</div>
+            <p class="text-slate-400">The point is located in the exact spot the curve was aiming for![cite: 1, 6]</p>
+          </div>
+        </div>
+
+        <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 text-xs text-slate-300">
+          <strong class="text-emerald-300">Solving for $c$ in Piecewise Functions:</strong>
+          Set the left rule equal to the right rule at the boundary $x = x_0$ to guarantee that $\lim_{x \to x_0^-} f(x) = \lim_{x \to x_0^+} f(x)$[cite: 1, 6].
+        </div>
+      </section>
+
+      <!-- SLIDE 4: Infinite Limits & Vertical Asymptotes -->
+      <section id="slide-4" class="slide-pane hidden w-full glass-card rounded-2xl p-6 md:p-8 space-y-6">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <span class="px-3 py-1 rounded-full bg-rose-500/20 text-rose-300 text-xs font-semibold border border-rose-500/30">Unit 1.5</span>
+            <span class="text-xs text-slate-400">Notebook: "Infinite Limits"</span>
+          </div>
+          <button onclick="openSectionPractice('sec-inf-lim')" class="text-xs text-indigo-400 hover:text-indigo-300 font-bold flex items-center gap-1">
+            <span>Practice this section (4 Qs) →</span>
+          </button>
+        </div>
+
+        <div>
+          <h2 class="text-2xl md:text-3xl font-extrabold text-white">Infinite Limits: When Substitution Gives $\frac{\text{Non-Zero}}{0}$</h2>
+          <p class="mt-2 text-slate-300 text-sm leading-relaxed">
+            If direct substitution yields $\frac{\text{number}}{0}$ where the numerator is NOT zero, you have a <strong>Vertical Asymptote</strong>[cite: 2]. The limit is either $+\infty$, $-\infty$, or DNE (if the two sides differ in sign)![cite: 2]
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+          <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 space-y-2">
+            <div class="font-bold text-white text-sm">Notebook Example Decoded:</div>
+            <div class="font-mono text-indigo-300 p-2.5 rounded bg-slate-950">
+              $$\lim_{x \to 2^-} \frac{3x+1}{x-2} = \frac{7}{0^-}$$[cite: 2]
+            </div>
+            <p class="text-slate-300">
+              <strong>Sign Analysis:</strong> As $x \to 2^-$ (e.g., $x = 1.99$), the numerator is $3(1.99)+1 \approx +6.97 > 0$, but the denominator is $1.99 - 2 = -0.01 < 0$[cite: 2].
+            </p>
+            <p class="text-rose-300 font-bold">
+              $$\frac{\text{Positive}}{\text{Tiny Negative}} \implies -\infty$$[cite: 2]
+            </p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 space-y-2">
+            <div class="font-bold text-white text-sm">Right-Side Check:</div>
+            <div class="font-mono text-indigo-300 p-2.5 rounded bg-slate-950">
+              $$\lim_{x \to 2^+} \frac{3x+1}{x-2} = \frac{7}{0^+}$$
+            </div>
+            <p class="text-slate-300">
+              As $x \to 2^+$ (e.g., $x = 2.01$), the numerator is positive and the denominator is $2.01 - 2 = +0.01 > 0$.
+            </p>
+            <p class="text-emerald-300 font-bold">
+              $$\frac{\text{Positive}}{\text{Tiny Positive}} \implies +\infty$$
+            </p>
+            <p class="text-slate-400 text-[11px]">Because left is $-\infty$ and right is $+\infty$, the overall two-sided $\lim_{x\to 2} f(x)$ does not exist (DNE)[cite: 2].</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 5: Limits at Infinity (Horizontal Asymptotes) -->
+      <section id="slide-5" class="slide-pane hidden w-full glass-card rounded-2xl p-6 md:p-8 space-y-6">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <span class="px-3 py-1 rounded-full bg-cyan-500/20 text-cyan-300 text-xs font-semibold border border-cyan-500/30">Unit 1.6</span>
+            <span class="text-xs text-slate-400">Notebook: "Limits at Infinity"</span>
+          </div>
+          <button onclick="openSectionPractice('sec-lim-inf')" class="text-xs text-indigo-400 hover:text-indigo-300 font-bold flex items-center gap-1">
+            <span>Practice this section (4 Qs) →</span>
+          </button>
+        </div>
+
+        <div>
+          <h2 class="text-2xl md:text-3xl font-extrabold text-white">Limits at Infinity: End Behavior & Horizontal Asymptotes</h2>
+          <p class="mt-2 text-slate-300 text-sm leading-relaxed">
+            Finding $\lim_{x \to \infty} f(x)$ or $\lim_{x \to -\infty} f(x)$ asks: <em>"What horizontal ceiling or floor does the curve flatten out against as $x$ heads forever right or left?"</em>[cite: 3]
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+          <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 space-y-2">
+            <div class="font-bold text-white text-sm">Case 1: Degree Num &lt; Den</div>
+            <div class="p-2 rounded bg-slate-950 font-mono text-indigo-300 text-[11px]">
+              $$\lim_{x \to \infty} \frac{4x^3}{x^4+1} = 0$$[cite: 3]
+            </div>
+            <p class="text-slate-400">The denominator grows much faster, driving the fraction to 0[cite: 3]. Horizontal asymptote at $y = 0$[cite: 3].</p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 space-y-2">
+            <div class="font-bold text-white text-sm">Case 2: Degree Num = Den</div>
+            <div class="p-2 rounded bg-slate-950 font-mono text-indigo-300 text-[11px]">
+              $$\lim_{x \to \infty} \frac{x^2-4x}{2x^2+9} = \frac{1}{2}$$[cite: 3]
+            </div>
+            <p class="text-slate-400">The powers tie! The limit is the ratio of the leading coefficients ($\frac{1}{2}$)[cite: 3]. HA at $y = \frac{1}{2}$[cite: 3].</p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 space-y-2">
+            <div class="font-bold text-white text-sm">Case 3: Degree Num &gt; Den</div>
+            <div class="p-2 rounded bg-slate-950 font-mono text-indigo-300 text-[11px]">
+              $$\lim_{x \to \infty} \frac{x^3+4x}{x^2+1} = \text{DNE} \ (\infty)$$[cite: 3]
+            </div>
+            <p class="text-slate-400">The numerator dominates[cite: 3]. The curve blows up without bound, so no horizontal asymptote exists[cite: 3].</p>
+          </div>
+        </div>
+
+        <div class="p-3.5 rounded-xl bg-slate-800/50 border border-slate-700 text-xs text-slate-300">
+          <strong>Teacher's Grading Warning from Notebook:</strong> On tests, if asked for a <em>Horizontal Asymptote</em>, you can state the rule directly[cite: 3]. But if asked to <em>evaluate the limit</em>, divide every term by the highest power of $x$ in the denominator to show complete work![cite: 3]
+        </div>
+      </section>
+
+      <!-- SLIDE 6: Squeeze Theorem & Special Trig Limits -->
+      <section id="slide-6" class="slide-pane hidden w-full glass-card rounded-2xl p-6 md:p-8 space-y-6">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <span class="px-3 py-1 rounded-full bg-violet-500/20 text-violet-300 text-xs font-semibold border border-violet-500/30">Unit 1.7</span>
+            <span class="text-xs text-slate-400">Notebook: "Squeeze Theorem"</span>
+          </div>
+          <button onclick="openSectionPractice('sec-squeeze')" class="text-xs text-indigo-400 hover:text-indigo-300 font-bold flex items-center gap-1">
+            <span>Practice this section (4 Qs) →</span>
+          </button>
+        </div>
+
+        <div>
+          <h2 class="text-2xl md:text-3xl font-extrabold text-white">The Squeeze Theorem & Essential Trig Limits</h2>
+          <p class="mt-2 text-slate-300 text-sm leading-relaxed">
+            If $h(x) \le f(x) \le g(x)$ and both bounding functions squeeze into the same value: $\lim h(x) = L$ and $\lim g(x) = L$, then the middle function $f(x)$ is forced to have that same limit $L$![cite: 4]
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+          <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 space-y-3">
+            <div class="font-bold text-white text-sm">Two Fundamental Trig Limits:</div>
+            <div class="p-2.5 rounded bg-slate-950 font-mono text-emerald-400 font-bold space-y-1">
+              <div>$$\lim_{x \to 0} \frac{\sin x}{x} = 1$$[cite: 4]</div>
+              <div>$$\lim_{x \to 0} \frac{1 - \cos x}{x} = 0$$[cite: 4]</div>
+            </div>
+            <p class="text-slate-400">Derived directly from geometric squeeze theorems[cite: 4]. Memorize these cold!</p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 space-y-3">
+            <div class="font-bold text-white text-sm">The Scaling Trick $(\sin kx)$:</div>
+            <p class="text-slate-300">To evaluate $\lim_{x \to 0} \frac{\sin(3x)}{x}$, balance with $\frac{3}{3}$[cite: 4]:</p>
+            <div class="p-2.5 rounded bg-slate-950 font-mono text-indigo-300">
+              $$\lim_{x \to 0} \left(3 \cdot \frac{\sin 3x}{3x}\right) = 3 \cdot (1) = 3$$[cite: 4]
+            </div>
+            <p class="text-slate-300">Similarly, $\lim_{x \to 0} \frac{\sin 5x \sin 4x}{x^2} = 5 \cdot 4 = 20$[cite: 4].</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 7: Intermediate Value Theorem (IVT) -->
+      <section id="slide-7" class="slide-pane hidden w-full glass-card rounded-2xl p-6 md:p-8 space-y-6">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <span class="px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 text-xs font-semibold border border-emerald-500/30">Unit 1.8</span>
+            <span class="text-xs text-slate-400">Notebook: "Intermediate Value Theorem"</span>
+          </div>
+          <button onclick="openSectionPractice('sec-ivt')" class="text-xs text-indigo-400 hover:text-indigo-300 font-bold flex items-center gap-1">
+            <span>Practice this section (4 Qs) →</span>
+          </button>
+        </div>
+
+        <div>
+          <h2 class="text-2xl md:text-3xl font-extrabold text-white">The Intermediate Value Theorem (IVT)</h2>
+          <p class="mt-2 text-slate-300 text-sm leading-relaxed">
+            If $f$ is continuous on a closed interval $[a, b]$, it must take on every single $y$-value between $f(a)$ and $f(b)$ at least once![cite: 5]
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+          <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 space-y-2">
+            <div class="font-bold text-white text-sm">The 2 Non-Negotiable Conditions:</div>
+            <ol class="list-decimal list-inside space-y-1.5 text-slate-300">
+              <li><strong>$f(x)$ is continuous</strong> on the closed interval $[a, b]$[cite: 5].</li>
+              <li><strong>$k$ is strictly between</strong> $f(a)$ and $f(b)$[cite: 5].</li>
+            </ol>
+            <p class="text-emerald-300 mt-2">
+              <strong>Conclusion:</strong> There exists at least one $c \in (a, b)$ such that $f(c) = k$[cite: 5].
+            </p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 space-y-2">
+            <div class="font-bold text-white text-sm">Most Common AP Application: Proving Roots</div>
+            <p class="text-slate-300">
+              If $f(a) < 0$ (negative) and $f(b) > 0$ (positive), because $0$ lies between a negative and a positive, $f(x) = 0$ must have at least one solution (root) in $(a, b)$![cite: 5]
+            </p>
+          </div>
+        </div>
+
+        <div class="p-4 rounded-xl bg-indigo-950/40 border border-indigo-800/50 flex items-center justify-between">
+          <div class="text-xs text-indigo-200">
+            Ready to test your skills? Jump into the <strong>Practice Question Hub</strong> to work through open-ended problems from every section!
+          </div>
+          <button onclick="switchMainView('practice')" class="px-4 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs transition">
+            Go to Practice Questions Hub →
+          </button>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- ==================== VIEW 2: OPEN-ENDED PRACTICE QUESTIONS HUB ==================== -->
+    <div id="practiceView" class="hidden w-full space-y-6">
+      
+      <!-- Practice Hub Header & Stats -->
       <div class="glass-card rounded-2xl p-5 flex flex-wrap items-center justify-between gap-4">
         <div>
-          <h2 class="text-xl font-bold text-white">🎯 Limits & Continuity Free-Response Hub</h2>
-          <p class="text-xs text-slate-400 mt-0.5">32 open-ended AP Calculus problems with answer evaluation & step-by-step scratchwork.</p>
+          <h2 class="text-xl font-bold text-white flex items-center gap-2">
+            <span>🎯 Limits & Continuity Free-Response Suite</span>
+          </h2>
+          <p class="text-xs text-slate-400 mt-0.5">32 open-ended AP problems with active syntax evaluation & step-by-step teacher scratchwork.</p>
         </div>
-        <div class="text-right">
-          <span class="text-[11px] text-slate-400 block font-medium">Your Progress</span>
-          <span class="text-sm font-bold text-indigo-400"><span id="calc-solved-count">0</span> / 32 Solved</span>
+
+        <div class="flex items-center gap-4">
+          <div class="text-right">
+            <span class="text-[11px] text-slate-400 block font-medium">Your Progress</span>
+            <span class="text-sm font-bold text-indigo-400"><span id="solvedCount">0</span> / 32 Solved</span>
+          </div>
+          <button onclick="resetPracticeProgress()" class="px-2.5 py-1 rounded-lg glass-pill text-[11px] text-slate-400 hover:text-white transition">
+            Reset
+          </button>
         </div>
       </div>
-      <div id="calc-questions-container" class="space-y-4"></div>
-    </section>
 
-    <!-- ========================================================================= -->
-    <!-- 6. AP PHYSICS 1 KINEMATICS WORD PROBLEMS                                  -->
-    <!-- ========================================================================= -->
-    <section id="section-physics" class="tab-content hidden space-y-6">
+      <!-- Section Filter Pills -->
+      <div class="flex items-center gap-1.5 overflow-x-auto pb-2 custom-scrollbar text-xs">
+        <button onclick="filterPracticeTopic('all')" class="practice-tab-btn active px-3 py-1.5 rounded-full bg-indigo-600 text-white font-bold whitespace-nowrap shadow transition" data-topic="all">All Topics (32)</button>
+        <button onclick="filterPracticeTopic('sec-intro')" class="practice-tab-btn px-3 py-1.5 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-300 font-medium whitespace-nowrap transition" data-topic="sec-intro">1. Limits & DNE</button>
+        <button onclick="filterPracticeTopic('sec-props')" class="practice-tab-btn px-3 py-1.5 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-300 font-medium whitespace-nowrap transition" data-topic="sec-props">2. Limit Properties</button>
+        <button onclick="filterPracticeTopic('sec-indet')" class="practice-tab-btn px-3 py-1.5 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-300 font-medium whitespace-nowrap transition" data-topic="sec-indet">3. 0/0 Indeterminate</button>
+        <button onclick="filterPracticeTopic('sec-cont')" class="practice-tab-btn px-3 py-1.5 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-300 font-medium whitespace-nowrap transition" data-topic="sec-cont">4. Continuity & 1-Sided</button>
+        <button onclick="filterPracticeTopic('sec-inf-lim')" class="practice-tab-btn px-3 py-1.5 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-300 font-medium whitespace-nowrap transition" data-topic="sec-inf-lim">5. Infinite Limits & VA</button>
+        <button onclick="filterPracticeTopic('sec-lim-inf')" class="practice-tab-btn px-3 py-1.5 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-300 font-medium whitespace-nowrap transition" data-topic="sec-lim-inf">6. Limits at Infinity (HA)</button>
+        <button onclick="filterPracticeTopic('sec-squeeze')" class="practice-tab-btn px-3 py-1.5 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-300 font-medium whitespace-nowrap transition" data-topic="sec-squeeze">7. Squeeze Theorem</button>
+        <button onclick="filterPracticeTopic('sec-ivt')" class="practice-tab-btn px-3 py-1.5 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-300 font-medium whitespace-nowrap transition" data-topic="sec-ivt">8. Intermediate Value (IVT)</button>
+      </div>
+
+      <!-- Practice Question Cards Container -->
+      <div id="practiceQuestionsContainer" class="space-y-4">
+        <!-- Dynamically rendered open-ended questions -->
+      </div>
+    </div>
+
+    <!-- ==================== VIEW 3: AP PHYSICS 1 KINEMATICS TAB ==================== -->
+    <div id="physicsView" class="hidden w-full space-y-6">
+      
+      <!-- Physics Reference Banner -->
       <div class="glass-card rounded-2xl p-6 border-l-4 border-l-amber-500 space-y-3">
         <div class="flex items-center justify-between">
           <div class="flex items-center gap-2">
             <span class="px-3 py-1 rounded-full bg-amber-500/20 text-amber-300 text-xs font-bold border border-amber-500/30">AP Physics 1</span>
-            <span class="text-xs text-slate-400">1D Kinematics (Equations of Motion)</span>
+            <span class="text-xs text-slate-400">Unit 1: 1D Kinematics (Equations of Motion)</span>
           </div>
           <button onclick="toggleAllPhysicsKeys()" class="px-3 py-1.5 rounded-lg bg-amber-600/30 hover:bg-amber-600/50 text-amber-300 border border-amber-500/40 text-xs font-bold transition">
             🔑 Toggle All Answer Keys
           </button>
         </div>
         <h2 class="text-xl md:text-2xl font-black text-white">Kinematic Equations of Motion ($a = \text{const}$)</h2>
-        <p class="text-xs md:text-sm text-slate-300">
-          Use the 4 constant-acceleration equations. Assume $g = 9.8\text{ m/s}^2$ downward for free-fall.
+        <p class="text-xs md:text-sm text-slate-300 leading-relaxed">
+          Use the 4 constant-acceleration equations to solve each word problem. For free-fall, assume standard acceleration due to gravity $g = 9.8\text{ m/s}^2$ downward unless stated otherwise.
         </p>
+
+        <!-- Kinematic Formula Box -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 pt-2 text-xs font-mono">
-          <div class="p-2.5 rounded-xl bg-slate-900/90 border border-slate-800 text-amber-300">$$v = v_0 + at$$</div>
-          <div class="p-2.5 rounded-xl bg-slate-900/90 border border-slate-800 text-amber-300">$$\Delta x = v_0 t + \frac{1}{2}at^2$$</div>
-          <div class="p-2.5 rounded-xl bg-slate-900/90 border border-slate-800 text-amber-300">$$v^2 = v_0^2 + 2a\Delta x$$</div>
-          <div class="p-2.5 rounded-xl bg-slate-900/90 border border-slate-800 text-amber-300">$$\Delta x = \left(\frac{v_0 + v}{2}\right)t$$</div>
+          <div class="p-2.5 rounded-xl bg-slate-900/90 border border-slate-800 text-amber-300">
+            $$v = v_0 + at$$
+          </div>
+          <div class="p-2.5 rounded-xl bg-slate-900/90 border border-slate-800 text-amber-300">
+            $$\Delta x = v_0 t + \frac{1}{2}at^2$$
+          </div>
+          <div class="p-2.5 rounded-xl bg-slate-900/90 border border-slate-800 text-amber-300">
+            $$v^2 = v_0^2 + 2a\Delta x$$
+          </div>
+          <div class="p-2.5 rounded-xl bg-slate-900/90 border border-slate-800 text-amber-300">
+            $$\Delta x = \left(\frac{v_0 + v}{2}\right)t$$
+          </div>
         </div>
       </div>
-      <div id="physics-questions-container" class="space-y-4"></div>
-    </section>
+
+      <!-- 8 Word Problems Container -->
+      <div id="physicsQuestionsContainer" class="space-y-4"></div>
+    </div>
 
   </main>
 
-  <!-- Floating AP AI Tutor Trigger Button -->
-  <div class="fixed bottom-6 right-6 z-40">
-    <button onclick="toggleTutorChat()" id="tutor-bubble-btn" class="flex items-center gap-3 px-5 py-3.5 rounded-full bg-gradient-to-r from-brand-600 via-indigo-500 to-sky-400 text-white font-bold text-sm shadow-xl shadow-brand-500/30 hover:scale-105 active:scale-95 transition-all border border-white/20">
-      <div class="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center">
-        <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
-      </div>
-      <span>Ask AP Study AI</span>
-    </button>
-  </div>
+  <footer class="w-full px-6 py-3 glass-card border-t border-slate-800 text-center text-xs text-slate-400 flex flex-wrap items-center justify-between gap-2">
+    <div class="flex items-center gap-2">
+      <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+      <span>Calculus AP & AP Physics 1 Companion</span>
+    </div>
+    <div class="hidden sm:block text-[11px] text-slate-500">
+      Type answers into open input fields or review scoring rubrics for full proof credit
+    </div>
+    <div class="text-[11px] text-indigo-400 font-semibold cursor-pointer hover:underline" onclick="toggleAiDrawer()">
+      Stuck on a problem? Ask AI Tutor 💬
+    </div>
+  </footer>
 
-  <!-- AI Tutor Interactive Chat Drawer -->
-  <div id="tutor-drawer" class="fixed bottom-24 right-6 w-[92vw] sm:w-[420px] h-[550px] glass-panel rounded-2xl border border-brand-500/40 shadow-2xl flex flex-col z-50 transition-all duration-300 transform scale-95 opacity-0 pointer-events-none overflow-hidden">
-    <div class="p-4 bg-slate-900/90 border-b border-white/10 flex items-center justify-between">
-      <div class="flex items-center gap-2.5">
-        <div class="w-8 h-8 rounded-lg bg-indigo-500/20 border border-indigo-400/30 flex items-center justify-center text-indigo-400">
-          <i data-lucide="bot" class="w-4 h-4"></i>
+  <!-- AI Tutor Drawer -->
+  <aside id="aiDrawer" class="fixed inset-y-0 right-0 w-full max-w-md bg-slate-900/95 border-l border-slate-800 z-50 transform translate-x-full transition-transform duration-300 shadow-2xl flex flex-col">
+    <div class="px-5 py-4 border-b border-slate-800 flex items-center justify-between bg-slate-950/60">
+      <div class="flex items-center gap-3">
+        <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-purple-600 to-indigo-600 flex items-center justify-center text-white text-sm shadow-md">
+          ✨
         </div>
         <div>
-          <h4 class="text-sm font-bold text-white flex items-center gap-1.5">
-            AP Exam AI Companion
-            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-          </h4>
-          <p class="text-[11px] text-slate-400">Trained on AP Gov, Calculus & Physics 1</p>
+          <h3 class="text-sm font-bold text-white">AP STEM AI Tutor</h3>
+          <p class="text-[10px] text-slate-400">Ready for Calculus limits & Physics kinematics</p>
         </div>
       </div>
-      <button onclick="toggleTutorChat()" class="text-slate-400 hover:text-white p-1 rounded-lg hover:bg-white/5 transition">
-        <i data-lucide="x" class="w-4 h-4"></i>
+      <button onclick="toggleAiDrawer()" class="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
       </button>
     </div>
 
-    <div id="tutor-chat-logs" class="flex-1 p-4 overflow-y-auto space-y-3.5 text-xs md:text-sm custom-scrollbar">
-      <div class="flex gap-2.5 items-start">
-        <div class="w-6 h-6 rounded-full bg-indigo-600/30 flex-shrink-0 flex items-center justify-center text-indigo-400 text-xs font-bold">AI</div>
-        <div class="bg-slate-800/80 border border-white/10 rounded-2xl rounded-tl-sm p-3 text-slate-200 leading-relaxed shadow-sm">
-          Hey there! Need help acing your AP exams? Ask me about **AP Gov** (Locke, Fed 10, Brutus 1, US v. Lopez), **Calculus** (limits, continuity, conjugates, IVT), or **AP Physics 1** (kinematic equations of motion)!
+    <!-- Suggested Quick Prompts -->
+    <div class="px-4 py-2 bg-slate-950/40 border-b border-slate-800/80 flex gap-2 overflow-x-auto custom-scrollbar text-[11px] whitespace-nowrap">
+      <button onclick="sendQuickPrompt('How do I know if a discontinuity is removable or non-removable?')" class="px-2.5 py-1 rounded-full bg-slate-800 hover:bg-indigo-600 text-slate-300 hover:text-white transition">
+        ❓ Removable vs Non-Removable
+      </button>
+      <button onclick="sendQuickPrompt('Walk me through doing sign analysis for an infinite limit like lim x->3- (-2x+4)/(x-3)')" class="px-2.5 py-1 rounded-full bg-slate-800 hover:bg-indigo-600 text-slate-300 hover:text-white transition">
+        📈 Sign Analysis Guide
+      </button>
+      <button onclick="sendQuickPrompt('How do I choose the correct kinematic equation of motion in AP Physics 1?')" class="px-2.5 py-1 rounded-full bg-slate-800 hover:bg-amber-600 text-slate-300 hover:text-white transition">
+        🚀 Kinematic Equations Guide
+      </button>
+      <button onclick="sendQuickPrompt('How do I write an AP Calculus exam proof for the Intermediate Value Theorem?')" class="px-2.5 py-1 rounded-full bg-slate-800 hover:bg-indigo-600 text-slate-300 hover:text-white transition">
+        ✍️ IVT Proof Template
+      </button>
+    </div>
+
+    <!-- Messages Container -->
+    <div id="aiChatMessages" class="flex-1 overflow-y-auto p-4 space-y-4 custom-scrollbar text-xs">
+      <div class="flex items-start gap-2.5">
+        <div class="w-6 h-6 rounded-full bg-purple-600 flex-shrink-0 flex items-center justify-center text-[10px] font-bold text-white">AI</div>
+        <div class="p-3 rounded-2xl bg-slate-800/90 text-slate-200 border border-slate-700/80 leading-relaxed">
+          Hello! I'm your AP STEM tutor. Ask me about any Calculus limit problems, indeterminate forms, continuity, vertical asymptotes, horizontal asymptotes, the Squeeze Theorem, or kinematic word problems in AP Physics 1!
         </div>
       </div>
     </div>
 
-    <!-- Quick Suggested Prompts -->
-    <div class="px-3 py-2 bg-slate-900/60 border-t border-white/5 flex gap-1.5 overflow-x-auto text-[11px] text-slate-300 custom-scrollbar whitespace-nowrap">
-      <button onclick="sendQuickPrompt('Explain Brutus 1 vs Federalist 10 in simple terms')" class="px-2.5 py-1 rounded-full bg-white/5 hover:bg-white/10 border border-white/10">Fed 10 vs Brutus 1</button>
-      <button onclick="sendQuickPrompt('How do I rationalize a 0/0 limit with conjugates in Calculus?')" class="px-2.5 py-1 rounded-full bg-white/5 hover:bg-white/10 border border-white/10">Calc Conjugates</button>
-      <button onclick="sendQuickPrompt('How do I pick the right kinematic equation in Physics 1?')" class="px-2.5 py-1 rounded-full bg-white/5 hover:bg-white/10 border border-white/10">Physics Kinematics</button>
-    </div>
-
-    <div class="p-3 bg-slate-900/90 border-t border-white/10">
-      <form onsubmit="handleTutorSubmit(event)" class="flex gap-2">
-        <input type="text" id="tutor-user-input" placeholder="Ask any question across Gov, Calc, or Physics..." class="flex-1 bg-slate-950/80 border border-white/10 rounded-xl px-3.5 py-2 text-xs md:text-sm text-white placeholder-slate-500 focus:outline-none focus:border-brand-500 transition">
-        <button type="submit" id="tutor-send-btn" class="px-3.5 py-2 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-bold transition flex items-center justify-center">
-          <i data-lucide="send" class="w-4 h-4"></i>
+    <!-- Input Box -->
+    <div class="p-3 border-t border-slate-800 bg-slate-950/80">
+      <form id="aiChatForm" onsubmit="handleAiSubmit(event)" class="flex gap-2">
+        <input id="aiInput" type="text" placeholder="Ask a question about limits or kinematics..." class="flex-1 px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-700 focus:border-indigo-500 focus:outline-none text-xs text-white placeholder-slate-500">
+        <button id="aiSendBtn" type="submit" class="px-3.5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold transition text-xs flex items-center justify-center shadow-lg shadow-indigo-600/30">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
         </button>
       </form>
+      <div class="text-[10px] text-slate-500 mt-1.5 text-center">Format LaTeX with $...$</div>
+    </div>
+  </aside>
+
+  <!-- Share & Email Modal -->
+  <div id="shareModal" class="hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="glass-card max-w-lg w-full rounded-2xl p-6 border border-slate-700 shadow-2xl space-y-5 animate-in fade-in zoom-in duration-200">
+      <div class="flex items-center justify-between pb-3 border-b border-slate-800">
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-xl bg-indigo-600/30 border border-indigo-500/30 flex items-center justify-center text-base">
+            ✉️
+          </div>
+          <div>
+            <h3 class="text-sm font-bold text-white">Share & Email Study Guide</h3>
+            <p class="text-[11px] text-slate-400">Choose how you'd like to send this masterclass</p>
+          </div>
+        </div>
+        <button onclick="toggleShareModal()" class="text-slate-400 hover:text-white p-1 rounded-lg hover:bg-slate-800 transition">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+
+      <div class="space-y-3">
+        <!-- Method 1: Download & Attach file -->
+        <div class="p-3.5 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-indigo-500/50 transition">
+          <div class="flex items-start justify-between gap-3">
+            <div>
+              <div class="text-xs font-bold text-indigo-300 flex items-center gap-1.5">
+                <span>📁 Option 1: Attach the Interactive File</span>
+                <span class="text-[9px] px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 font-semibold">Recommended</span>
+              </div>
+              <p class="text-[11px] text-slate-400 mt-1">
+                Download this standalone <code class="text-indigo-300">.html</code> file to your computer, then attach it to an email in Gmail, Outlook, or Apple Mail. The recipient can open it in any browser to get the full interactive experience!
+              </p>
+            </div>
+            <button onclick="downloadHtmlFile()" class="flex-shrink-0 px-3 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs transition shadow flex items-center gap-1.5">
+              <span>⬇️ Download File</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Method 2: Open email draft -->
+        <div class="p-3.5 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-indigo-500/50 transition">
+          <div class="flex items-start justify-between gap-3">
+            <div>
+              <div class="text-xs font-bold text-purple-300">
+                📨 Option 2: Launch Email Draft with Notes Summary
+              </div>
+              <p class="text-[11px] text-slate-400 mt-1">
+                Opens your default email client with a pre-written study summary of Calculus limits and Physics kinematics.
+              </p>
+            </div>
+            <button onclick="openEmailDraft()" class="flex-shrink-0 px-3 py-2 rounded-lg bg-purple-600 hover:bg-purple-500 text-white font-bold text-xs transition shadow flex items-center gap-1.5">
+              <span>✉️ Open Mail</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Method 3: Print / Save as PDF -->
+        <div class="p-3.5 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-indigo-500/50 transition">
+          <div class="flex items-start justify-between gap-3">
+            <div>
+              <div class="text-xs font-bold text-emerald-300">
+                📄 Option 3: Print or Save as PDF
+              </div>
+              <p class="text-[11px] text-slate-400 mt-1">
+                Opens your browser's print dialog configured for print/PDF export so you can attach a document directly.
+              </p>
+            </div>
+            <button onclick="printAsPdf()" class="flex-shrink-0 px-3 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs transition shadow flex items-center gap-1.5">
+              <span>🖨️ Save PDF</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Text Copy for Email Body -->
+      <div class="pt-2 border-t border-slate-800/80 flex items-center justify-between">
+        <span id="copyConfirmNotice" class="text-[11px] text-slate-500">Need the text summary for an email body?</span>
+        <button onclick="copySummaryText()" class="px-2.5 py-1 rounded-lg glass-pill text-[11px] text-indigo-300 hover:text-white transition font-medium">
+          📋 Copy Summary
+        </button>
+      </div>
     </div>
   </div>
 
-  <footer class="glass-panel border-t border-white/10 py-4 px-6 text-center text-xs text-slate-500 flex flex-col sm:flex-row items-center justify-between max-w-7xl mx-auto w-full mt-8">
-    <div>AP® Exam Master Suite • AP Gov Unit 1, AP Calculus Limits, AP Physics 1 Kinematics</div>
-    <div class="mt-2 sm:mt-0 font-mono text-[11px]">Interactive Study Deck • Open-Ended Evaluators Included</div>
-  </footer>
-
   <script>
-    // =========================================================================
-    // AP GOV 1.1 TO 1.9 DATA
-    // =========================================================================
-    const govSlides = [
+    // ==========================================
+    // 32 Targeted OPEN-ENDED Calculus Questions
+    // ==========================================
+    const practiceQuestions = [
+      // SECTION 1: WHAT IS A LIMIT & DNE
       {
-        topic: "1.1",
-        title: "Ideals of Democracy",
-        tagline: "The Enlightenment Soil of Limited Government",
-        videoTimestamp: "01:04",
-        summary: "The American system was unprecedented: created around philosophical ideas rather than military dominance or royal blood.",
-        leftCard: {
-          title: "Core Enlightenment Principles",
-          icon: "book-open",
-          accent: "from-indigo-500/20 to-purple-500/10",
-          items: [
-            { label: "Natural Rights (Locke):", desc: "All people are endowed by their creator with rights to life, liberty, and property that no government can arbitrarily revoke." },
-            { label: "Popular Sovereignty:", desc: "All political legitimacy emanates from the consent of the governed—reversing the 'divine right of kings' to a bottom-up structure." },
-            { label: "Social Contract:", desc: "Individuals surrender complete lawless freedom in a state of nature to form a government sworn to protect their rights. If it fails, the contract is voided." },
-            { label: "Republicanism:", desc: "A representative democracy where elected officials deliberate for the common welfare rather than direct mob rule." }
-          ]
-        },
-        rightCard: {
-          title: "Foundational Texts in Action",
-          icon: "scroll",
-          accent: "from-sky-500/20 to-blue-500/10",
-          items: [
-            { label: "Declaration of Independence (1776):", desc: "Thomas Jefferson operationalized Locke: 'inalienable rights,' 'consent of the governed,' and the legal right to 'alter or abolish' tyranny." },
-            { label: "Preamble to the U.S. Constitution:", desc: "'We the People' establishes immediate popular sovereignty—power ascends from citizens, not states or monarchs." },
-            { label: "Gettysburg Address (1863):", desc: "Abraham Lincoln re-anchored the republic: government 'of the people, by the people, for the people' rooted in human equality." }
-          ]
-        },
-        interactive: {
-          quote: "Governments are instituted among Men, deriving their just powers from the consent of the governed...",
-          author: "Thomas Jefferson, 1776",
-          conceptKey: "Popular Sovereignty & Social Contract"
-        }
+        id: 'intro-1',
+        topic: 'sec-intro',
+        topicName: '1. What is a Limit & DNE',
+        isRubric: true,
+        question: 'State the precise difference between $f(c)$ and $\\lim_{x \\to c} f(x)$. Explain how it is possible for a limit to exist at $x = c$ while $f(c)$ is completely undefined.',
+        hint: 'Think about a road with a pothole: does the road aim toward a spot even if the bridge tile is missing?',
+        solution: '<strong>AP Scoring Rubric & Conceptual Explanation:</strong><br>• <strong>$f(c)$:</strong> The actual height / output of the function at the single exact point $x = c$.<br>• <strong>$\\lim_{x \\to c} f(x)$:</strong> The intended height that $f(x)$ approaches as $x$ gets arbitrarily close to $c$ from both the left and right.<br>• <strong>Key Takeaway:</strong> A limit depends strictly on the neighborhood around $c$, never on the point $x = c$ itself. A removable hole has $\\lim_{x \\to c} f(x) = L$ while $f(c)$ is undefined!'
       },
       {
-        topic: "1.2",
-        title: "Types of Democracy",
-        tagline: "Who Holds the Steering Wheel of the State?",
-        videoTimestamp: "20:04",
-        summary: "Three theoretical models compete to explain how citizens participate and how political power is exercised in a republic.",
-        leftCard: {
-          title: "The Three Competing Models",
-          icon: "users",
-          accent: "from-emerald-500/20 to-teal-500/10",
-          items: [
-            { label: "Participatory Democracy:", desc: "Emphasizes broad, direct citizen engagement. Examples: town hall meetings, state referendums, popular initiatives, direct election of officials." },
-            { label: "Pluralist Democracy:", desc: "Group-based activism. Competing non-governmental factions, interest groups, unions, and lobbies advocate policy; competition ensures compromise." },
-            { label: "Elite Democracy:", desc: "Advocates limited citizen involvement. Educated, wealthy, or elected trustees handle decisions to prevent impulsive populist swings." }
-          ]
-        },
-        rightCard: {
-          title: "Constitutional Manifestations",
-          icon: "shield-check",
-          accent: "from-amber-500/20 to-orange-500/10",
-          items: [
-            { label: "Elite Echoes:", desc: "Original Electoral College selecting the President; State legislatures picking Senators before the 17th Amendment." },
-            { label: "Pluralist Echoes:", desc: "Madisonian checks, interest group amicus briefs, and the bicameral legislature requiring inter-group negotiations." },
-            { label: "Participatory Echoes:", desc: "House elections every two years directly by local voting constituents; state ballot measures." }
-          ]
-        }
+        id: 'intro-2',
+        topic: 'sec-intro',
+        topicName: '1. What is a Limit & DNE',
+        question: 'Consider the piecewise function $f(x) = \\begin{cases} 3 - x, & x < 2 \\\\ 5, & x = 2 \\\\ x^2 - 1, & x > 2 \\end{cases}$. Evaluate $\\lim_{x \\to 2} f(x)$. If the limit does not exist, type <code>DNE</code>.',
+        accepted: ['dne', 'does not exist'],
+        hint: 'Evaluate the one-sided limits: $\\lim_{x \\to 2^-}(3-x)$ and $\\lim_{x \\to 2^+}(x^2-1)$. Do they agree?',
+        solution: '<strong>Step-by-step Solution:</strong><br>1. Left limit: $\\lim_{x \\to 2^-} (3 - x) = 3 - 2 = 1$<br>2. Right limit: $\\lim_{x \\to 2^+} (x^2 - 1) = 2^2 - 1 = 3$<br>3. Because $\\lim_{x \\to 2^-} f(x) \\ne \\lim_{x \\to 2^+} f(x)$, the two-sided limit <strong>Does Not Exist (DNE)</strong>.'
       },
       {
-        topic: "1.3",
-        title: "Government Power & Individual Rights",
-        tagline: "The Clash of Titans: Federalist No. 10 vs. Brutus No. 1",
-        videoTimestamp: "21:22",
-        summary: "The heated battle between Federalists (strong national union) and Anti-Federalists (decentralized state sovereignty).",
-        leftCard: {
-          title: "Federalist No. 10 (James Madison)",
-          icon: "award",
-          accent: "from-indigo-500/20 to-sky-500/10",
-          items: [
-            { label: "The Problem of Factions:", desc: "A faction is a group united by common passion adverse to others' rights. Causes cannot be eliminated without destroying liberty itself." },
-            { label: "The Solution:", desc: "Control faction effects through an extensive republic. A large, diverse nation produces so many competing factions that no single tyrannical majority can easily consolidate." },
-            { label: "Elected Representatives:", desc: "Refines public views through wise delegates rather than erratic emotional majorities." }
-          ]
-        },
-        rightCard: {
-          title: "Brutus No. 1 (Anti-Federalist)",
-          icon: "alert-triangle",
-          accent: "from-rose-500/20 to-amber-500/10",
-          items: [
-            { label: "Fear of Consolidation:", desc: "Warned the Elastic (Necessary & Proper) Clause and Supremacy Clause would annihilate state sovereignty." },
-            { label: "Detached Representation:", desc: "In a giant republic, representatives will be too far removed from citizens' real lives and will grow corrupt and despotic." },
-            { label: "Perpetual Gridlock:", desc: "A nation so broad and diverse will constantly clash, paralyzing government and thwarting the public good." }
-          ]
-        }
+        id: 'intro-3',
+        topic: 'sec-intro',
+        topicName: '1. What is a Limit & DNE',
+        question: 'Evaluate the left-hand limit: $\\lim_{x \\to 0^-} \\frac{|x|}{x}$.',
+        accepted: ['-1'],
+        hint: 'When $x < 0$, what does $|x|$ simplify to algebraically?',
+        solution: '<strong>Step-by-step Solution:</strong><br>For $x < 0$, $|x| = -x$.<br>$$\\lim_{x \\to 0^-} \\frac{|x|}{x} = \\lim_{x \\to 0^-} \\frac{-x}{x} = \\lim_{x \\to 0^-} (-1) = \\mathbf{-1}$$'
       },
       {
-        topic: "1.4",
-        title: "Challenges of the Articles of Confederation",
-        tagline: "A 'Monarchy Hangover' and a Crumbling Confederation",
-        videoTimestamp: "07:45",
-        summary: "Overcorrecting against British tyranny created a national government so toothless it couldn't pay bills, protect trade, or suppress insurrections.",
-        leftCard: {
-          title: "Structural Disasters (1781–1789)",
-          icon: "alert-octagon",
-          accent: "from-red-500/20 to-rose-500/10",
-          items: [
-            { label: "Unicameral, Equal Votes:", desc: "One branch (Congress). Each state received one vote regardless of population—Virginia had the exact same voice as tiny Rhode Island." },
-            { label: "No Executive or Judiciary:", desc: "No President to enforce laws, and no national Supreme Court to resolve interstate boundary or commercial disputes." },
-            { label: "Supermajorities & Impossibility:", desc: "9 of 13 states needed to pass any law; unanimous 13 of 13 needed to amend the Articles." },
-            { label: "Broke & Powerless:", desc: "Congress could not levy taxes directly (could only beg states for cash) or raise a standing national military." }
-          ]
-        },
-        rightCard: {
-          title: "The Breaking Point: Shays' Rebellion (1786)",
-          icon: "flame",
-          accent: "from-amber-500/20 to-red-500/10",
-          items: [
-            { label: "The Uprising:", desc: "Daniel Shays led indebted Massachusetts veterans and farmers storming courthouses to stop farm foreclosures and debt seizures." },
-            { label: "Federal Impotence:", desc: "Congress lacked authority and money to deploy troops; Massachusetts elites had to hire a private militia." },
-            { label: "The Philadelphia Call:", desc: "Terrified state leaders realized internal collapse was imminent, paving the way for the 1787 Constitutional Convention." }
-          ]
-        }
+        id: 'intro-4',
+        topic: 'sec-intro',
+        topicName: '1. What is a Limit & DNE',
+        isRubric: true,
+        question: 'Explain why $\\lim_{x \\to 0} \\sin\\left(\\frac{1}{x}\\right)$ does not exist as a finite real number.',
+        hint: 'What happens to the angle $1/x$ as $x \\to 0$?',
+        solution: '<strong>AP Scoring Rubric & Explanation:</strong><br>• As $x \\to 0$, the argument $\\frac{1}{x} \\to \\pm\\infty$.<br>• The function $\\sin(1/x)$ oscillates between $-1$ and $+1$ an infinite number of times in any interval around $x = 0$.<br>• Because the values never settle onto a single finite number $L$, the limit <strong>Does Not Exist (oscillating behavior)</strong>.'
+      },
+
+      // SECTION 2: LIMIT PROPERTIES & DIRECT SUBSTITUTION
+      {
+        id: 'props-1',
+        topic: 'sec-props',
+        topicName: '2. Limit Properties',
+        question: 'Evaluate the limit analytically using direct substitution: $\\lim_{x \\to 2} (4x^2 + 3)$.',
+        accepted: ['19'],
+        hint: 'Polynomials are continuous everywhere. Substitute $x = 2$ directly.',
+        solution: '<strong>Step-by-step Solution:</strong><br>$$\\lim_{x \\to 2} (4x^2 + 3) = 4(2)^2 + 3 = 4(4) + 3 = 16 + 3 = \\mathbf{19}$$'
       },
       {
-        topic: "1.5",
-        title: "Ratification of the Constitution",
-        tagline: "Sweating Through Frocks: Compromises in Philadelphia",
-        videoTimestamp: "11:30",
-        summary: "Delegates had to bridge furious divides between big states, small states, Northern merchants, and Southern slaveholders.",
-        leftCard: {
-          title: "Institutional Compromises",
-          icon: "split",
-          accent: "from-violet-500/20 to-purple-500/10",
-          items: [
-            { label: "The Great (Connecticut) Compromise:", desc: "Virginia Plan (population) vs New Jersey Plan (equal). Result: Bicameral legislature—House by population, Senate with 2 seats per state." },
-            { label: "Electoral College Compromise:", desc: "Bridged direct popular vote vs selection by Congress/governors. States pick electors corresponding to total congressional delegation." },
-            { label: "Three-Fifths Compromise:", desc: "Counted 3/5 of enslaved humans for representation and direct tax allocations, boosting Southern political leverage." },
-            { label: "Importation of Enslaved Persons:", desc: "Forbidden to ban the transatlantic slave trade until 20 years later (1808)." }
-          ]
-        },
-        rightCard: {
-          title: "Article V & The Bill of Rights",
-          icon: "check-check",
-          accent: "from-sky-500/20 to-indigo-500/10",
-          items: [
-            { label: "Article V Amendment Procedure:", desc: "High bar, but achievable: 2/3 of both chambers of Congress (or state convention) to propose; 3/4 of state legislatures to ratify." },
-            { label: "Adaptable Framework:", desc: "Broad, flexible language designed to evolve across generations without requiring a brand-new constitution every crisis." },
-            { label: "The Bill of Rights Deal:", desc: "Federalists promised to draft the first 10 Amendments guaranteeing individual liberties to secure Anti-Federalist ratification." }
-          ]
-        }
+        id: 'props-2',
+        topic: 'sec-props',
+        topicName: '2. Limit Properties',
+        question: 'Given $\\lim_{x \\to c} f(x) = 3$ and $\\lim_{x \\to c} g(x) = -2$, evaluate $\\lim_{x \\to c} \\left([f(x)]^2 - 4g(x)\\right)$.',
+        accepted: ['17'],
+        hint: 'Apply limit power and scalar laws: $[\\lim f(x)]^2 - 4[\\lim g(x)]$.',
+        solution: '<strong>Step-by-step Solution:</strong><br>$$\\lim_{x \\to c} [f(x)^2 - 4g(x)] = (3)^2 - 4(-2) = 9 - (-8) = 9 + 8 = \\mathbf{17}$$'
       },
       {
-        topic: "1.6",
-        title: "Principles of American Government",
-        tagline: "Federalist 51: Ambition Must Counteract Ambition",
-        videoTimestamp: "14:46",
-        summary: "Dividing power horizontally between branches and arming each branch with constitutional weapons prevents any single tyrant or majority from ruling absolute.",
-        leftCard: {
-          title: "Separation of Powers",
-          icon: "git-commit",
-          accent: "from-cyan-500/20 to-sky-500/10",
-          items: [
-            { label: "Legislative (Article I):", desc: "Congress makes laws, controls the budget ('power of the purse'), confirms appointments, declares war." },
-            { label: "Executive (Article II):", desc: "The President enforces laws, acts as Commander-in-Chief, negotiates treaties, issues pardons." },
-            { label: "Judicial (Article III):", desc: "The Supreme Court and federal courts interpret laws and the Constitution via Judicial Review." },
-            { label: "Montesquieu's Rule:", desc: "Overlap branches too much, and tyranny is guaranteed. Keep them largely independent." }
-          ]
-        },
-        rightCard: {
-          title: "The System of Checks & Balances",
-          icon: "refresh-cw",
-          accent: "from-indigo-500/20 to-emerald-500/10",
-          items: [
-            { label: "President Checks Congress:", desc: "Veto power over bills; executive orders for administrative enforcement." },
-            { label: "Congress Checks President:", desc: "2/3 override of vetoes; Senate confirms judges and cabinet; House impeaches, Senate removes." },
-            { label: "Courts Check Both:", desc: "Judicial review strikes down unconstitutional executive actions and statutory laws." },
-            { label: "Multiple Access Points:", desc: "Citizens and interest groups have dozens of channels (lobbying, lawsuits, voting, agency comments) to influence policy." }
-          ]
-        }
+        id: 'props-3',
+        topic: 'sec-props',
+        topicName: '2. Limit Properties',
+        question: 'Evaluate $\\lim_{x \\to \\pi/2} (x \\sin x)$. (Type your answer in terms of pi, e.g. <code>pi/2</code>).',
+        accepted: ['pi/2', '\\pi/2', '0.5pi', '1.57', '1.5707', '1.571'],
+        hint: 'Product property: $\\lim x \\cdot \\lim \\sin x$. What is $\\sin(\\pi/2)$?',
+        solution: '<strong>Step-by-step Solution:</strong><br>$$\\lim_{x \\to \\pi/2} (x \\sin x) = \\left(\\frac{\\pi}{2}\\right) \\cdot \\sin\\left(\\frac{\\pi}{2}\\right) = \\frac{\\pi}{2} \\cdot 1 = \\mathbf{\\frac{\\pi}{2}}$$'
       },
       {
-        topic: "1.7",
-        title: "Relationship: States & Federal Government",
-        tagline: "Federalism: The Vertical Division of Power",
-        videoTimestamp: "24:26",
-        summary: "Federalism divides sovereign power vertically between the national government and state governments.",
-        leftCard: {
-          title: "Constitutional Divisions of Power",
-          icon: "layers",
-          accent: "from-blue-500/20 to-cyan-500/10",
-          items: [
-            { label: "Delegated / Enumerated Powers:", desc: "Exclusive to national government (Article 1, Section 8): coin money, declare war, conduct foreign policy, regulate interstate commerce." },
-            { label: "Reserved Powers (10th Amendment):", desc: "Powers not delegated to the federal government are reserved to the states: police powers, public education, marriage, local elections." },
-            { label: "Concurrent Powers:", desc: "Shared concurrently: taxation, borrowing money, building courts, maintaining infrastructure." }
-          ]
-        },
-        rightCard: {
-          title: "Federalist No. 39 & Article IV",
-          icon: "map",
-          accent: "from-purple-500/20 to-pink-500/10",
-          items: [
-            { label: "Madison's 'Compound Republic':", desc: "Federalist 39 proves the government is neither purely national nor purely federal; ratification is federal, House is national, Senate is federal." },
-            { label: "Full Faith and Credit (Article IV):", desc: "States must respect judicial rulings and public acts of other states (e.g. driver's licenses, marriage licenses)." },
-            { label: "Privileges & Immunities:", desc: "States cannot discriminate against out-of-state citizens regarding fundamental civil rights." }
-          ]
-        }
+        id: 'props-4',
+        topic: 'sec-props',
+        topicName: '2. Limit Properties',
+        question: 'Evaluate $\\lim_{x \\to 1} \\frac{x^4 + 3}{x^2 - 2}$ by direct substitution.',
+        accepted: ['-4'],
+        hint: 'Direct substitution: numerator is $1^4 + 3$, denominator is $1^2 - 2$.',
+        solution: '<strong>Step-by-step Solution:</strong><br>$$\\lim_{x \\to 1} \\frac{x^4 + 3}{x^2 - 2} = \\frac{(1)^4 + 3}{(1)^2 - 2} = \\frac{1 + 3}{1 - 2} = \\frac{4}{-1} = \\mathbf{-4}$$'
+      },
+
+      // SECTION 3: INDETERMINATE FORMS (0/0)
+      {
+        id: 'indet-1',
+        topic: 'sec-indet',
+        topicName: '3. 0/0 Indeterminate',
+        question: 'Evaluate $\\lim_{x \\to 2} \\frac{x^2 - 5x + 6}{x^2 + 3x - 10}$. (Enter as a fraction, e.g. <code>-1/7</code>).',
+        accepted: ['-1/7', '-0.1428', '-0.143'],
+        hint: 'Direct substitution gives 0/0. Factor $(x-2)$ from both the numerator and denominator.',
+        solution: '<strong>Step-by-step Solution:</strong><br>1. Factor: $\\frac{(x-2)(x-3)}{(x-2)(x+5)}$<br>2. Cancel $(x-2)$ for $x \\ne 2$: $\\lim_{x \\to 2} \\frac{x-3}{x+5} = \\frac{2-3}{2+5} = \\mathbf{-\\frac{1}{7}}$'
       },
       {
-        topic: "1.8",
-        title: "Constitutional Interpretations of Federalism",
-        tagline: "The Great Supreme Court Battlegrounds",
-        videoTimestamp: "28:35",
-        summary: "The balance of power tips over time via landmark Supreme Court interpretations of key constitutional clauses.",
-        leftCard: {
-          title: "McCulloch v. Maryland (1819)",
-          icon: "landmark",
-          accent: "from-emerald-500/20 to-teal-500/10",
-          items: [
-            { label: "The Core Conflict:", desc: "Maryland attempted to tax the Second Bank of the U.S. to protect state banks from federal competition." },
-            { label: "Necessary & Proper (Elastic) Clause:", desc: "Marshall ruled Congress has implied powers to create a bank to facilitate enumerated taxing and borrowing." },
-            { label: "Supremacy Clause (Article VI):", desc: "'The power to tax involves the power to destroy.' States cannot nullify or tax legitimate federal institutions. Huge federal power win." }
-          ]
-        },
-        rightCard: {
-          title: "United States v. Lopez (1995)",
-          icon: "shield-alert",
-          accent: "from-amber-500/20 to-red-500/10",
-          items: [
-            { label: "The Conflict:", desc: "Alfonso Lopez carried an unloaded gun to high school; charged under the federal Gun-Free School Zones Act of 1990." },
-            { label: "Commerce Clause Limits:", desc: "Feds argued guns in schools disrupt learning and hurt GDP. The Rehnquist Court said NO: gun possession in a local school is non-economic activity." },
-            { label: "NOT a 2nd Amendment Case:", desc: "This case was purely about Federalism and the Commerce Clause! First modern curb on Congress's Commerce authority, defending 10th Amendment police powers." }
-          ]
-        }
+        id: 'indet-2',
+        topic: 'sec-indet',
+        topicName: '3. 0/0 Indeterminate',
+        question: 'Evaluate the warm-up limit from your notebook: $\\lim_{x \\to 4} \\frac{\\sqrt{x-2} - \\sqrt{2}}{x - 4}$. (Type as <code>sqrt(2)/4</code> or <code>1/(2sqrt(2))</code>).',
+        accepted: ['sqrt(2)/4', '1/(2sqrt(2))', '1/(2*sqrt(2))', '0.3535', '0.354'],
+        hint: 'Multiply numerator and denominator by conjugate $(\\sqrt{x-2} + \\sqrt{2})$.',
+        solution: '<strong>Step-by-step Solution:</strong><br>$$\\lim_{x \\to 4} \\frac{\\sqrt{x-2}-\\sqrt{2}}{x-4} \\cdot \\frac{\\sqrt{x-2}+\\sqrt{2}}{\\sqrt{x-2}+\\sqrt{2}} = \\lim_{x \\to 4} \\frac{(x-2)-2}{(x-4)(\\sqrt{x-2}+\\sqrt{2})}$$<br>$$= \\lim_{x \\to 4} \\frac{x-4}{(x-4)(\\sqrt{x-2}+\\sqrt{2})} = \\lim_{x \\to 4} \\frac{1}{\\sqrt{x-2}+\\sqrt{2}} = \\frac{1}{\\sqrt{2}+\\sqrt{2}} = \\mathbf{\\frac{1}{2\\sqrt{2}}} = \\mathbf{\\frac{\\sqrt{2}}{4}}$$'
       },
       {
-        topic: "1.9",
-        title: "Federalism in Action (Fiscal Federalism)",
-        tagline: "The Golden Rule: Whoever Has the Gold Makes the Rules",
-        videoTimestamp: "33:12",
-        summary: "How the federal government uses its massive treasury to influence state policies from drinking ages to civil rights.",
-        leftCard: {
-          title: "Grants-in-Aid Hierarchy",
-          icon: "dollar-sign",
-          accent: "from-green-500/20 to-emerald-500/10",
-          items: [
-            { label: "Revenue Sharing (Fewest Strings):", desc: "Federal tax funds sent to states with almost zero restrictions; states spent as needed (phased out in 1986)." },
-            { label: "Block Grants (Broad Purpose):", desc: "Lump sums for general policy areas (e.g. community health, welfare). States love them because they decide how to spend." },
-            { label: "Categorical Grants (Many Strings Attached):", desc: "Funds for specific, targeted federal objectives (e.g. 1984 minimum drinking age tied to highway construction money). Favored by Congress." }
-          ]
-        },
-        rightCard: {
-          title: "Federal Mandates: Heavy Hand of the Law",
-          icon: "file-warning",
-          accent: "from-amber-500/20 to-rose-500/10",
-          items: [
-            { label: "Federal Mandates:", desc: "Direct legal rules states must obey under penalty of law, regardless of whether funding is provided." },
-            { label: "Unfunded Mandates:", desc: "Orders without money! Example: Americans with Disabilities Act (ADA, 1990) required state/local governments to install ramps and wheelchair access out of their own pockets." },
-            { label: "Devolution Trend:", desc: "1980s-90s conservative movement (Reagan, Contract with America) aiming to return federal powers and block grants back to states." }
-          ]
-        }
+        id: 'indet-3',
+        topic: 'sec-indet',
+        topicName: '3. 0/0 Indeterminate',
+        question: 'Evaluate $\\lim_{x \\to -3} \\frac{\\frac{1}{x} + \\frac{1}{3}}{x + 3}$. (Enter as a fraction, e.g. <code>-1/9</code>).',
+        accepted: ['-1/9', '-0.111'],
+        hint: 'Clear the compound fraction by multiplying top and bottom by $3x$.',
+        solution: '<strong>Step-by-step Solution:</strong><br>$$\\lim_{x \\to -3} \\frac{\\frac{1}{x}+\\frac{1}{3}}{x+3} \\left(\\frac{3x}{3x}\\right) = \\lim_{x \\to -3} \\frac{3+x}{3x(x+3)} = \\lim_{x \\to -3} \\frac{1}{3x} = \\frac{1}{3(-3)} = \\mathbf{-\\frac{1}{9}}$$'
+      },
+      {
+        id: 'indet-4',
+        topic: 'sec-indet',
+        topicName: '3. 0/0 Indeterminate',
+        question: 'Evaluate $\\lim_{x \\to 0} \\frac{\\sin x + \\sin 2x}{\\sin x}$.',
+        accepted: ['3'],
+        hint: 'Recall $\\sin 2x = 2\\sin x \\cos x$. Factor out $\\sin x$ from the numerator!',
+        solution: '<strong>Step-by-step Solution:</strong><br>$$\\lim_{x \\to 0} \\frac{\\sin x(1 + 2\\cos x)}{\\sin x} = \\lim_{x \\to 0} (1 + 2\\cos x) = 1 + 2\\cos(0) = 1 + 2(1) = \\mathbf{3}$$'
+      },
+
+      // SECTION 4: CONTINUITY & ONE-SIDED LIMITS
+      {
+        id: 'cont-1',
+        topic: 'sec-cont',
+        topicName: '4. Continuity & 1-Sided',
+        isRubric: true,
+        question: 'Let $f(x) = \\begin{cases} x, & x \\ne 3 \\\\ 5, & x = 3 \\end{cases}$. Using the 3-part definition of continuity, explain exactly why $f(x)$ is discontinuous at $x = 3$.',
+        hint: 'Test Condition 1 ($f(c)$ exists), Condition 2 (limit exists), and Condition 3 (limit equals function value).',
+        solution: '<strong>AP Scoring Rubric & Verification:</strong><br>1. <strong>Condition 1:</strong> $f(3) = 5$ (exists).<br>2. <strong>Condition 2:</strong> $\\lim_{x \\to 3} f(x) = 3$ (exists).<br>3. <strong>Condition 3 Fails:</strong> $\\lim_{x \\to 3} f(x) \\ne f(3)$ because $3 \\ne 5$.<br>Therefore, $f$ has a <strong>removable discontinuity</strong> at $x = 3$.'
+      },
+      {
+        id: 'cont-2',
+        topic: 'sec-cont',
+        topicName: '4. Continuity & 1-Sided',
+        question: 'Find the constant $c$ that makes $g(x) = \\begin{cases} \\sqrt{2x-c}, & x < 0 \\\\ 3x^2 + 1, & x \\ge 0 \\end{cases}$ continuous everywhere.',
+        accepted: ['-1', 'c = -1', 'c=-1'],
+        hint: 'Set the left limit $\\lim_{x \\to 0^-} \\sqrt{2x-c} = \\sqrt{-c}$ equal to $g(0) = 3(0)^2+1 = 1$.',
+        solution: '<strong>Step-by-step Solution:</strong><br>Equate the left and right behaviors at $x = 0$:<br>$$\\sqrt{-c} = 1 \\implies -c = 1^2 \\implies \\mathbf{c = -1}$$'
+      },
+      {
+        id: 'cont-3',
+        topic: 'sec-cont',
+        topicName: '4. Continuity & 1-Sided',
+        question: 'For $f(x) = \\frac{x^2+6x+8}{x^2-x-20}$, at which $x$-value does a removable discontinuity (hole) occur?',
+        accepted: ['-4', 'x = -4', 'x=-4'],
+        hint: 'Factor numerator and denominator: $\\frac{(x+4)(x+2)}{(x-5)(x+4)}$. Which factor cancels out?',
+        solution: '<strong>Step-by-step Solution:</strong><br>$$f(x) = \\frac{(x+4)(x+2)}{(x-5)(x+4)}$$<br>Because the factor $(x+4)$ cancels out, there is a <strong>removable discontinuity (hole) at $x = -4$</strong>.<br>(The remaining factor $(x-5)$ creates a vertical asymptote at $x = 5$).'
+      },
+      {
+        id: 'cont-4',
+        topic: 'sec-cont',
+        topicName: '4. Continuity & 1-Sided',
+        isRubric: true,
+        question: 'State the formal calculus definition of continuity on a closed interval $[a, b]$.',
+        hint: 'What must be true on the interior $(a, b)$, and how do you approach the endpoints $a$ and $b$?',
+        solution: '<strong>AP Scoring Definition:</strong><br>A function $f(x)$ is continuous on the closed interval $[a, b]$ if and only if:<br>1. It is continuous on the open interval $(a, b)$.<br>2. $\\lim_{x \\to a^+} f(x) = f(a)$ (continuous from the right at $a$).<br>3. $\\lim_{x \\to b^-} f(x) = f(b)$ (continuous from the left at $b$).'
+      },
+
+      // SECTION 5: INFINITE LIMITS & VERTICAL ASYMPTOTES
+      {
+        id: 'inf-1',
+        topic: 'sec-inf-lim',
+        topicName: '5. Infinite Limits & VA',
+        question: 'Evaluate $\\lim_{x \\to 2^-} \\frac{3x+1}{x-2}$. (Type <code>-infinity</code> or <code>infinity</code>).',
+        accepted: ['-infinity', '-inf', '-\\infty'],
+        hint: 'Direct substitution gives 7/0. Test $x = 1.99$ to determine the sign of the zero.',
+        solution: '<strong>Step-by-step Solution:</strong><br>• Numerator at $x = 2$: $3(2)+1 = 7 > 0$ (positive)<br>• Denominator as $x \\to 2^-$: $(1.99 - 2) < 0$ (tiny negative)<br>$$\\frac{\\text{Positive}}{\\text{Negative 0}} = \\mathbf{-\\infty}$$'
+      },
+      {
+        id: 'inf-2',
+        topic: 'sec-inf-lim',
+        topicName: '5. Infinite Limits & VA',
+        question: 'Evaluate $\\lim_{x \\to 3^+} \\frac{-2x+4}{x-3}$. (Type <code>-infinity</code> or <code>infinity</code>).',
+        accepted: ['-infinity', '-inf', '-\\infty'],
+        hint: 'Substitution yields $-2/0$. Test $x = 3.01$.',
+        solution: '<strong>Step-by-step Solution:</strong><br>• Numerator: $-2(3)+4 = -2 < 0$ (negative)<br>• Denominator as $x \\to 3^+$: $3.01 - 3 > 0$ (tiny positive)<br>$$\\frac{\\text{Negative}}{\\text{Positive 0}} = \\mathbf{-\\infty}$$'
+      },
+      {
+        id: 'inf-3',
+        topic: 'sec-inf-lim',
+        topicName: '5. Infinite Limits & VA',
+        question: 'Find the single vertical asymptote of $f(x) = \\frac{x^2 - 4x + 3}{x^2 - 5x + 4}$. (Type in the form <code>x = 4</code> or <code>4</code>).',
+        accepted: ['4', 'x = 4', 'x=4'],
+        hint: 'Factor first: $\\frac{(x-3)(x-1)}{(x-4)(x-1)}$. Remember $x = 1$ is a removable hole!',
+        solution: '<strong>Step-by-step Solution:</strong><br>Canceling $(x-1)$ leaves $\\frac{x-3}{x-4}$. Setting the remaining denominator to zero gives the vertical asymptote: $\\mathbf{x = 4}$.'
+      },
+      {
+        id: 'inf-4',
+        topic: 'sec-inf-lim',
+        topicName: '5. Infinite Limits & VA',
+        question: 'If $\\lim_{x \\to 4^-} g(x) = -\\infty$ and $\\lim_{x \\to 4^+} g(x) = +\\infty$, evaluate $\\lim_{x \\to 4} g(x)$. (Type <code>DNE</code>).',
+        accepted: ['dne', 'does not exist'],
+        hint: 'Can a two-sided limit exist if the two one-sided limits go to opposite infinities?',
+        solution: '<strong>Step-by-step Solution:</strong><br>Because the left limit $(-\\infty)$ and right limit $(+\\infty)$ do not approach the same infinite direction, the two-sided limit <strong>Does Not Exist (DNE)</strong>.'
+      },
+
+      // SECTION 6: LIMITS AT INFINITY & HORIZONTAL ASYMPTOTES
+      {
+        id: 'lim-inf-1',
+        topic: 'sec-lim-inf',
+        topicName: '6. Limits at Infinity',
+        question: 'Evaluate $\\lim_{x \\to \\infty} \\frac{x^2 - 4x}{2x^2 + 9}$. (Type as a fraction, e.g. <code>1/2</code>).',
+        accepted: ['1/2', '0.5'],
+        hint: 'Divide every term by $x^2$, or compare the coefficients of the matching highest powers.',
+        solution: '<strong>Step-by-step Solution:</strong><br>$$\\lim_{x \\to \\infty} \\frac{1 - 4/x}{2 + 9/x^2} = \\frac{1 - 0}{2 + 0} = \\mathbf{\\frac{1}{2}}$$'
+      },
+      {
+        id: 'lim-inf-2',
+        topic: 'sec-lim-inf',
+        topicName: '6. Limits at Infinity',
+        question: 'Evaluate $\\lim_{x \\to \\infty} \\frac{4x^3}{x^4 + 1}$.',
+        accepted: ['0'],
+        hint: 'Degree of the numerator (3) is less than the degree of the denominator (4).',
+        solution: '<strong>Step-by-step Solution:</strong><br>Dividing by $x^4$: $\\lim_{x \\to \\infty} \\frac{4/x}{1 + 1/x^4} = \\frac{0}{1+0} = \\mathbf{0}$'
+      },
+      {
+        id: 'lim-inf-3',
+        topic: 'sec-lim-inf',
+        topicName: '6. Limits at Infinity',
+        question: 'Evaluate $\\lim_{x \\to \\infty} \\frac{x^3 + 4x}{x^2 + 1}$. (Type <code>infinity</code> or <code>DNE</code>).',
+        accepted: ['infinity', 'inf', 'dne'],
+        hint: 'The degree of the numerator (3) is greater than the denominator (2).',
+        solution: '<strong>Step-by-step Solution:</strong><br>$$\\lim_{x \\to \\infty} \\frac{x + 4/x}{1 + 1/x^2} = \\frac{\\infty + 0}{1 + 0} = \\mathbf{+\\infty} \\quad (\\text{DNE})$$'
+      },
+      {
+        id: 'lim-inf-4',
+        topic: 'sec-lim-inf',
+        topicName: '6. Limits at Infinity',
+        question: 'What is the maximum number of distinct horizontal asymptotes that any function can have?',
+        accepted: ['2', 'two'],
+        hint: 'Think about end behavior: one as $x \\to +\\infty$ and one as $x \\to -\\infty$.',
+        solution: '<strong>Explanation:</strong><br>A function can approach one horizontal asymptote as $x \\to +\\infty$ and another as $x \\to -\\infty$, meaning a function can have at most <strong>2 horizontal asymptotes</strong>.'
+      },
+
+      // SECTION 7: SQUEEZE THEOREM & SPECIAL TRIG LIMITS
+      {
+        id: 'sq-1',
+        topic: 'sec-squeeze',
+        topicName: '7. Squeeze Theorem',
+        question: 'Evaluate $\\lim_{x \\to 0} \\frac{\\sin 3x}{x}$.',
+        accepted: ['3'],
+        hint: 'Multiply top and bottom by 3 to use the standard limit $\\lim_{\\theta \\to 0} \\frac{\\sin \\theta}{\\theta} = 1$.',
+        solution: '<strong>Step-by-step Solution:</strong><br>$$\\lim_{x \\to 0} \\left(3 \\cdot \\frac{\\sin 3x}{3x}\\right) = 3 \\cdot (1) = \\mathbf{3}$$'
+      },
+      {
+        id: 'sq-2',
+        topic: 'sec-squeeze',
+        topicName: '7. Squeeze Theorem',
+        question: 'Evaluate $\\lim_{x \\to 0} \\frac{\\sin 5x \\sin 4x}{x^2}$.',
+        accepted: ['20'],
+        hint: 'Split into $\\left(5 \\frac{\\sin 5x}{5x}\\right) \\cdot \\left(4 \\frac{\\sin 4x}{4x}\\right)$.',
+        solution: '<strong>Step-by-step Solution:</strong><br>$$\\lim_{x \\to 0} \\left(5 \\cdot 1\\right) \\cdot \\left(4 \\cdot 1\\right) = \\mathbf{20}$$'
+      },
+      {
+        id: 'sq-3',
+        topic: 'sec-squeeze',
+        topicName: '7. Squeeze Theorem',
+        question: 'Evaluate $\\lim_{x \\to 0} \\frac{1 - \\cos^2 x}{x}$.',
+        accepted: ['0'],
+        hint: 'Use $1 - \\cos^2 x = \\sin^2 x$. Then split $\\sin x \\cdot \\frac{\\sin x}{x}$.',
+        solution: '<strong>Step-by-step Solution:</strong><br>$$\\lim_{x \\to 0} \\frac{\\sin^2 x}{x} = \\lim_{x \\to 0} \\left(\\sin x \\cdot \\frac{\\sin x}{x}\\right) = 0 \\cdot 1 = \\mathbf{0}$$'
+      },
+      {
+        id: 'sq-4',
+        topic: 'sec-squeeze',
+        topicName: '7. Squeeze Theorem',
+        question: 'If $4 - x^2 \\le h(x) \\le 4 + x^2$ for all $x \\ne 0$, find $\\lim_{x \\to 0} h(x)$ by the Squeeze Theorem.',
+        accepted: ['4'],
+        hint: 'Evaluate the limits of $4 - x^2$ and $4 + x^2$ as $x \\to 0$.',
+        solution: '<strong>Step-by-step Solution:</strong><br>Because $\\lim_{x \\to 0}(4 - x^2) = 4$ and $\\lim_{x \\to 0}(4 + x^2) = 4$, by the Squeeze Theorem: $\\lim_{x \\to 0} h(x) = \\mathbf{4}$.'
+      },
+
+      // SECTION 8: INTERMEDIATE VALUE THEOREM (IVT)
+      {
+        id: 'ivt-1',
+        topic: 'sec-ivt',
+        topicName: '8. Intermediate Value (IVT)',
+        question: 'For $f(x) = x^3 - x^2 - 2x$ on $[1, 3]$, find the exact value of the root $c \\in (1, 3)$ guaranteed by IVT where $f(c) = 0$.',
+        accepted: ['2', 'c = 2', 'c=2'],
+        hint: 'Factor $x(x-2)(x+1) = 0$. Which zero lies strictly between 1 and 3?',
+        solution: '<strong>Step-by-step Solution:</strong><br>1. $f(1) = -2 < 0$ and $f(3) = 12 > 0$. By IVT, a zero exists.<br>2. Factor: $x(x-2)(x+1) = 0 \\implies x = 0, 2, -1$.<br>3. The only root in $(1, 3)$ is $\\mathbf{c = 2}$.'
+      },
+      {
+        id: 'ivt-2',
+        topic: 'sec-ivt',
+        topicName: '8. Intermediate Value (IVT)',
+        question: 'For $h(x) = \\frac{x^2+x}{x-1}$ on $[5/2, 4]$, find the value of $c$ where $h(c) = 6$.',
+        accepted: ['3', 'c = 3', 'c=3'],
+        hint: 'Solve $\\frac{c^2+c}{c-1} = 6 \\implies c^2 - 5c + 6 = 0$. Remember $c \\in [5/2, 4]$!',
+        solution: '<strong>Step-by-step Solution:</strong><br>$$c^2 + c = 6c - 6 \\implies c^2 - 5c + 6 = 0 \\implies (c-3)(c-2) = 0$$<br>Since $2 \\notin [5/2, 4]$ and $3 \\in [5/2, 4]$, the guaranteed value is $\\mathbf{c = 3}$.'
+      },
+      {
+        id: 'ivt-3',
+        topic: 'sec-ivt',
+        topicName: '8. Intermediate Value (IVT)',
+        isRubric: true,
+        question: 'If $f$ is continuous on $[2, 6]$ with $f(2) = 20$ and $f(6) = 10$, explain why $f(x) = 17$ must have a solution on $[2, 6]$, while $f(x) = 0$ is not guaranteed to have a solution.',
+        hint: 'What range of values does the Intermediate Value Theorem guarantee?',
+        solution: '<strong>AP Scoring Rubric & Explanation:</strong><br>• IVT guarantees that the function takes on <em>every value strictly between</em> $f(2) = 20$ and $f(6) = 10$.<br>• Because $10 < 17 < 20$, $f(x) = 17$ <strong>must</strong> have a solution in $(2, 6)$.<br>• Because $0$ is not between $10$ and $20$, $f(x) = 0$ is <strong>not guaranteed</strong>.'
+      },
+      {
+        id: 'ivt-4',
+        topic: 'sec-ivt',
+        topicName: '8. Intermediate Value (IVT)',
+        isRubric: true,
+        question: 'Why does IVT fail to guarantee a solution to $f(x) = 0$ for $f(x) = \\frac{1}{x}$ on $[-1, 1]$, even though $f(-1) = -1 < 0$ and $f(1) = 1 > 0$?',
+        hint: 'What is the required hypothesis regarding continuity for IVT to apply?',
+        solution: '<strong>AP Scoring Rubric & Explanation:</strong><br>• The Intermediate Value Theorem requires that $f(x)$ be <strong>continuous on the entire closed interval $[a, b]$</strong>.<br>• $f(x) = \\frac{1}{x}$ has a vertical asymptote (infinite discontinuity) at $x = 0 \\in [-1, 1]$.<br>• Because the continuity hypothesis fails, IVT does not apply!'
       }
     ];
 
-    // Import MCQs and FRQs from original payload
-    const mcqQuestions = [
-      { id: 1, topic: "1.9", stimulus: "In 1984, Congress passed the National Minimum Drinking Age Act, withholding 10% of highway funds from states not raising drinking age to 21.", question: "Which constitutional mechanism and principle are demonstrated?", options: [{text:"A. Unfunded mandate", correct:false}, {text:"B. Categorical grant utilizing federal spending power", correct:true}, {text:"C. Block grant for state discretion", correct:false}, {text:"D. Direct 21st Amendment preemption", correct:false}], explanation: "Categorical grants with conditions of aid allow Congress to use the Spending Power to influence state policies." },
-      { id: 2, topic: "1.3", stimulus: "In Federalist No. 10, Madison wrote: 'The latent causes of faction are thus sown in the nature of man.'", question: "Which argument represents Madison's conclusion?", options: [{text:"A. Pure participatory democracy", correct:false}, {text:"B. Abolish liberty to express views", correct:false}, {text:"C. Large commercial republic controls faction effects", correct:true}, {text:"D. Decentralized states are less corrupt", correct:false}], explanation: "A large republic dilutes factions by encompassing a vast sphere of competing interests." },
-      { id: 3, topic: "1.7", stimulus: "A small-town mayor notices adjacent states legalized a substance that their own state penalizes.", question: "Why must the town still enforce its own state's statutes?", options: [{text:"A. Full Faith and Credit Clause does not require enforcement of other states' criminal statutes", correct:true}, {text:"B. Supremacy Clause elevates municipal ordinances", correct:false}, {text:"C. Commerce Clause automatically invalidates state criminal statutes", correct:false}, {text:"D. Privileges and Immunities forces identical laws", correct:false}], explanation: "10th Amendment police powers permit states to enforce criminal health/safety laws regardless of neighboring states." },
-      { id: 4, topic: "1.8", stimulus: "Congress passes a law punishing interference with interstate broadband fiber conduits.", question: "Why is this upheld under Commerce Clause unlike US v. Lopez?", options: [{text:"A. Internet conduits are channels and instrumentalities of interstate commerce", correct:true}, {text:"B. 10th Amendment was repealed for telecoms", correct:false}, {text:"C. Inherent national police power", correct:false}, {text:"D. McCulloch exempts it from judicial review", correct:false}], explanation: "Broadband lines are channels/instrumentalities of commerce, unlike local non-economic gun possession in a school." },
-      { id: 5, topic: "1.3", stimulus: "Brutus warned that federal powers would swallow all state authority.", question: "Which two constitutional clauses alarmed Brutus?", options: [{text:"A. Due Process and Equal Protection", correct:false}, {text:"B. Necessary & Proper Clause and Supremacy Clause", correct:true}, {text:"C. Origination and Presentment", correct:false}, {text:"D. Full Faith and Credit", correct:false}], explanation: "The Elastic and Supremacy Clauses were seen by Anti-Federalists as engines of total federal consolidation." }
-    ];
-
-    // Fill in remaining MCQs up to 38
-    for (let i = 6; i <= 38; i++) {
-      mcqQuestions.push({
-        id: i,
-        topic: i % 2 === 0 ? "1.6" : "1.8",
-        stimulus: `Representative Government Stimulus Scenario ${i}: Examining institutional checks, separation of powers, and federal-state power dynamics.`,
-        question: `In context of Topic ${i % 2 === 0 ? '1.6 Checks and Balances' : '1.8 Federalism & SCOTUS'}, which action is constitutional?`,
-        options: [
-          { text: "A. The Supreme Court striking down an unconstitutional act via judicial review", correct: true },
-          { text: "B. A state governor nullifying a federal tariff law", correct: false },
-          { text: "C. The President declaring war without Congress", correct: false },
-          { text: "D. Congress appointing judicial magistrates without Senate advice and consent", correct: false }
-        ],
-        explanation: "Judicial review allows the federal judiciary to maintain constitutional limits across branches."
-      });
-    }
-
-    const frqs = [
-      {
-        type: "Concept Application",
-        points: 3,
-        title: "FRQ 1: Clean Water & Fiscal Federalism",
-        scenario: "Congress allocates $12B in grants to states adopting new EPA water runoff standards. States refusing forfeit 15% of infrastructure funding.",
-        tasks: ["A. Describe the constitutional tool Congress is utilizing.", "B. Explain how the Supremacy Clause affects state laws legalizing discharge exceeding EPA limits.", "C. Explain how the 10th Amendment could be invoked to challenge this condition as coercive."],
-        rubric: [
-          { name: "Task A", max: 1, desc: "Identifies categorical grant / conditional spending power." },
-          { name: "Task B", max: 1, desc: "Explains Supremacy Clause preemption over conflicting state laws." },
-          { name: "Task C", max: 1, desc: "Invokes 10th Amendment reserved powers and anti-coercion doctrine." }
-        ]
-      },
-      {
-        type: "SCOTUS Comparison",
-        points: 4,
-        title: "FRQ 2: Printz v. US vs. US v. Lopez",
-        scenario: "Brady Handgun Act required local sheriffs to conduct background checks. Sheriffs challenged under anti-commandeering doctrine.",
-        tasks: ["A. Identify the constitutional clause common to Printz and Lopez.", "B. Explain how Lopez shifted the Court's historical interpretation of federalism.", "C. Describe an action Congress could take without violating the anti-commandeering doctrine."],
-        rubric: [
-          { name: "Task A", max: 1, desc: "Identifies Commerce Clause or 10th Amendment." },
-          { name: "Task B", max: 2, desc: "Explains non-economic activity distinction and halting 60 years of Commerce expansion." },
-          { name: "Task C", max: 1, desc: "Suggests conditional spending grant incentives." }
-        ]
-      },
-      {
-        type: "Argument Essay",
-        points: 6,
-        title: "FRQ 3: Decentralization vs. Centralized Republic",
-        scenario: "Develop an argument on whether a strong national government or strong state governments better protect individual liberty. Use evidence from Fed 10, Brutus 1, or Declaration of Independence.",
-        tasks: ["1. Articulate a defensible claim/thesis with line of reasoning.", "2. Support with 2 pieces of evidence (at least 1 foundational doc).", "3. Explain reasoning.", "4. Rebut an alternate perspective."],
-        rubric: [
-          { name: "Thesis", max: 1, desc: "Defensible claim establishing line of reasoning." },
-          { name: "Evidence", max: 3, desc: "Accurate foundational document evidence and explanation." },
-          { name: "Reasoning", max: 1, desc: "Connects evidence to thesis." },
-          { name: "Rebuttal", max: 1, desc: "Responds to opposing viewpoint with refutation." }
-        ]
-      }
-    ];
-
-    // =========================================================================
-    // CALCULUS FREE RESPONSE 32 QUESTIONS DATABASE
-    // =========================================================================
-    const calcQuestions = [
-      { id: "c1", topic: "1. Limits & DNE", question: "Evaluate $\\lim_{x \\to 2} f(x)$ where $f(x) = 3-x$ for $x < 2$ and $f(x) = x^2-1$ for $x > 2$. If it fails, type DNE.", accepted: ["dne"], hint: "Check left (1) vs right (3).", solution: "Left limit is $3-2=1$, right limit is $2^2-1=3$. Since $1 \\ne 3$, the limit is DNE." },
-      { id: "c2", topic: "1. Limits & DNE", question: "Evaluate $\\lim_{x \\to 0^-} \\frac{|x|}{x}$.", accepted: ["-1"], hint: "When $x < 0$, $|x| = -x$.", solution: "$\\lim_{x \\to 0^-} \\frac{-x}{x} = -1$." },
-      { id: "c3", topic: "2. Properties", question: "Evaluate $\\lim_{x \\to 2} (4x^2 + 3)$.", accepted: ["19"], hint: "Polynomial: direct substitution.", solution: "$4(2)^2 + 3 = 19$." },
-      { id: "c4", topic: "2. Properties", question: "Evaluate $\\lim_{x \\to \\pi/2} (x \\sin x)$ in terms of pi (e.g. pi/2).", accepted: ["pi/2", "\\pi/2", "1.57"], hint: "$\\sin(\\pi/2) = 1$.", solution: "$\\frac{\\pi}{2} \\cdot 1 = \\frac{\\pi}{2}$." },
-      { id: "c5", topic: "3. 0/0 Indeterminate", question: "Evaluate $\\lim_{x \\to 2} \\frac{x^2-5x+6}{x^2+3x-10}$.", accepted: ["-1/7", "-0.143"], hint: "Factor out $(x-2)$.", solution: "$\\frac{(x-2)(x-3)}{(x-2)(x+5)} = \\frac{2-3}{2+5} = -\\frac{1}{7}$." },
-      { id: "c6", topic: "3. 0/0 Indeterminate", question: "Evaluate $\\lim_{x \\to 4} \\frac{\\sqrt{x-2}-\\sqrt{2}}{x-4}$ (e.g. sqrt(2)/4).", accepted: ["sqrt(2)/4", "1/(2sqrt(2))", "0.354"], hint: "Multiply by conjugate $\\sqrt{x-2}+\\sqrt{2}$.", solution: "Simplifies to $\\frac{1}{\\sqrt{2}+\\sqrt{2}} = \\frac{\\sqrt{2}}{4}$." },
-      { id: "c7", topic: "4. Continuity", question: "Find $c$ so $g(x) = \\begin{cases} \\sqrt{2x-c}, x < 0 \\\\ 3x^2+1, x \\ge 0 \\end{cases}$ is continuous everywhere.", accepted: ["-1", "c = -1", "c=-1"], hint: "Set $\\sqrt{-c} = 1$.", solution: "$\\sqrt{-c} = 1 \\implies c = -1$." },
-      { id: "c8", topic: "5. Infinite Limits", question: "Evaluate $\\lim_{x \\to 2^-} \\frac{3x+1}{x-2}$ (infinity or -infinity).", accepted: ["-infinity", "-inf"], hint: "Numerator is $+7$, denominator is tiny negative.", solution: "$\\frac{+}{0^-} = -\\infty$." },
-      { id: "c9", topic: "6. Limits at Infinity", question: "Evaluate $\\lim_{x \\to \\infty} \\frac{x^2-4x}{2x^2+9}$.", accepted: ["1/2", "0.5"], hint: "Ratio of leading coefficients.", solution: "$\\frac{1}{2}$." },
-      { id: "c10", topic: "7. Squeeze Theorem", question: "Evaluate $\\lim_{x \\to 0} \\frac{\\sin 3x}{x}$.", accepted: ["3"], hint: "Multiply by 3/3.", solution: "$3 \\cdot 1 = 3$." },
-      { id: "c11", topic: "8. IVT", question: "For $f(x) = x^3 - x^2 - 2x$ on $[1, 3]$, find the zero $c \\in (1, 3)$.", accepted: ["2", "c = 2"], hint: "Factor $x(x-2)(x+1) = 0$.", solution: "$c = 2$ lies in $(1, 3)$." }
-    ];
-    for (let j = 12; j <= 32; j++) {
-      calcQuestions.push({
-        id: `c${j}`,
-        topic: "Calculus Limit Application",
-        question: `Evaluate the limit: $\\lim_{x \\to 0} \\frac{\\sin(${j}x)}{x}$.`,
-        accepted: [`${j}`],
-        hint: `Scale with $\\frac{${j}}{${j}}$.`,
-        solution: `$$\\lim_{x \\to 0} ${j} \\cdot \\frac{\\sin(${j}x)}{${j}x} = ${j}(1) = ${j}$$`
-      });
-    }
-
-    // =========================================================================
-    // AP PHYSICS 1 KINEMATICS WORD PROBLEMS
-    // =========================================================================
+    // ==========================================
+    // AP Physics 1 Kinematics 8 Word Problems
+    // ==========================================
     const physicsQuestions = [
-      { id: 'p1', title: 'Problem 1: Highway Braking', prompt: 'A car traveling at $v_0 = 25\\text{ m/s}$ decelerates at $a = 5.0\\text{ m/s}^2$ to a full stop. Calculate stopping distance $\\Delta x$ in meters.', accepted: ['62.5', '62.5m', '63'], hint: 'Use $v^2 = v_0^2 + 2a\\Delta x$.', eqUsed: 'v^2 = v_0^2 + 2a\\Delta x', solution: '$0 = 25^2 + 2(-5)\\Delta x \\implies \\Delta x = 62.5\\text{ m}$.' },
-      { id: 'p2', title: 'Problem 2: Vertical Rock Apex', prompt: 'Rock thrown up with $v_0 = 19.6\\text{ m/s}$. Taking $g = 9.8\\text{ m/s}^2$, find max height in meters.', accepted: ['19.6', '19.6m', '20'], hint: 'At apex, $v = 0$.', eqUsed: 'v^2 = v_0^2 - 2g\\Delta y', solution: '$0 = (19.6)^2 - 2(9.8)\\Delta y \\implies \\Delta y = 19.6\\text{ m}$.' },
-      { id: 'p3', title: 'Problem 3: Jet Catapult Launch', prompt: 'Jet accelerates from rest along a $90\\text{ m}$ carrier deck to $v = 60\\text{ m/s}$. Find acceleration $a$ in $\\text{m/s}^2$.', accepted: ['20', '20m/s^2'], hint: 'Use $v^2 = 2a\\Delta x$.', eqUsed: 'v^2 = v_0^2 + 2a\\Delta x', solution: '$60^2 = 2a(90) \\implies a = 20\\text{ m/s}^2$.' },
-      { id: 'p4', title: 'Problem 4: Arrow Flight Time', prompt: 'Arrow shot upwards at $29.4\\text{ m/s}$. Seconds until returning to launch height ($g = 9.8\\text{ m/s}^2$)?', accepted: ['6', '6s', '6.0'], hint: 'Net vertical displacement $\\Delta y = 0$.', eqUsed: '\\Delta y = v_0 t - 1/2 g t^2', solution: '$0 = 29.4t - 4.9t^2 \\implies t = 6.0\\text{ s}$.' },
-      { id: 'p5', title: 'Problem 5: Police Pursuit', prompt: 'Speeder passes at constant $30\\text{ m/s}$. Police accelerates from rest at $3.0\\text{ m/s}^2$. Seconds to overtake?', accepted: ['20', '20s'], hint: 'Set $\\Delta x_{\\text{car}} = \\Delta x_{\\text{police}}$.', eqUsed: 'vt = 1/2 a t^2', solution: '$30t = 1.5t^2 \\implies t = 20\\text{ s}$.' },
-      { id: 'p6', title: 'Problem 6: Cliff Diver Drop', prompt: 'Diver falls from rest for $2.5\\text{ s}$ ($g = 9.8\\text{ m/s}^2$). Find height in meters.', accepted: ['30.625', '30.6', '31'], hint: '$\\Delta y = 1/2 g t^2$.', eqUsed: '\\Delta y = 1/2 g t^2', solution: '$\\Delta y = 0.5(9.8)(2.5^2) = 30.625\\text{ m}$.' },
-      { id: 'p7', title: 'Problem 7: Train Station Stop', prompt: 'Train slows from $20\\text{ m/s}$ to stop over $100\\text{ m}$. Seconds elapsed?', accepted: ['10', '10s'], hint: '$\\Delta x = \\frac{v_0 + v}{2} t$.', eqUsed: '\\Delta x = \\frac{v_0+v}{2}t', solution: '$100 = 10t \\implies t = 10\\text{ s}$.' },
-      { id: 'p8', title: 'Problem 8: Bullet Deceleration', prompt: 'Bullet strikes wood at $350\\text{ m/s}$ and stops after $0.14\\text{ m}$. Find deceleration magnitude in $\\text{m/s}^2$.', accepted: ['437500', '4.38e5'], hint: '$0 = v_0^2 + 2a\\Delta x$.', eqUsed: 'v^2 = v_0^2 + 2a\\Delta x', solution: '$0 = 350^2 + 2a(0.14) \\implies \vert{}a\vert{} = 437,500\\text{ m/s}^2$.' }
+      {
+        id: 'phys-1',
+        title: 'Problem 1: Braking Distance on a Highway',
+        prompt: 'A car is traveling along a straight road at a constant speed of $v_0 = 25\\text{ m/s}$. The driver suddenly sees an obstruction ahead and slams on the brakes, producing a constant deceleration of magnitude $a = 5.0\\text{ m/s}^2$ until coming to a complete stop ($v = 0$). Calculate the stopping distance $\\Delta x$ of the car in meters.',
+        accepted: ['62.5', '62.5m', '63'],
+        hint: 'You know $v_0 = 25$, $v = 0$, and $a = -5.0\\text{ m/s}^2$. Notice that time $t$ is neither given nor requested. Which kinematic equation doesn\'t need time?',
+        eqUsed: 'v^2 = v_0^2 + 2a\\Delta x',
+        solution: '$$v^2 = v_0^2 + 2a\\Delta x \\implies 0^2 = 25^2 + 2(-5.0)\\Delta x \\implies 10\\Delta x = 625 \\implies \\mathbf{\\Delta x = 62.5\\text{ m}}$$'
+      },
+      {
+        id: 'phys-2',
+        title: 'Problem 2: Vertical Rock Toss Apex',
+        prompt: 'A student standing on level ground throws a small rock straight up into the air with an initial velocity of $v_0 = 19.6\\text{ m/s}$. Assuming air resistance is negligible and acceleration due to gravity is $g = 9.8\\text{ m/s}^2$ downward, what is the maximum height $y_{\\text{max}}$ above the release point reached by the rock?',
+        accepted: ['19.6', '19.6m', '20'],
+        hint: 'At the apex of vertical flight, what is the instantaneous vertical velocity $v_y$?',
+        eqUsed: 'v_y^2 = v_{0y}^2 + 2a_y\\Delta y',
+        solution: '$$0 = (19.6)^2 + 2(-9.8)\\Delta y \\implies 19.6\\Delta y = 384.16 \\implies \\mathbf{\\Delta y = 19.6\\text{ m}}$$'
+      },
+      {
+        id: 'phys-3',
+        title: 'Problem 3: Aircraft Carrier Catapult Launch',
+        prompt: 'A fighter jet accelerates from rest ($v_0 = 0$) down a runway of length $\\Delta x = 90\\text{ m}$ on an aircraft carrier. If the jet leaves the deck with a takeoff speed of $v = 60\\text{ m/s}$, calculate the constant acceleration $a$ provided by the catapult in $\\text{m/s}^2$.',
+        accepted: ['20', '20m/s^2', '20 m/s^2'],
+        hint: 'Use $v^2 = v_0^2 + 2a\\Delta x$ with $v_0 = 0$.',
+        eqUsed: 'v^2 = v_0^2 + 2a\\Delta x',
+        solution: '$$(60)^2 = 0^2 + 2a(90) \\implies 3600 = 180a \\implies \\mathbf{a = 20\\text{ m/s}^2}$$'
+      },
+      {
+        id: 'phys-4',
+        title: 'Problem 4: Total Flight Time of an Arrow',
+        prompt: 'An archer shoots an arrow straight upwards from ground level at an initial speed of $v_0 = 29.4\\text{ m/s}$. How many seconds ($t$) will elapse before the arrow returns to the ground? (Use $g = 9.8\\text{ m/s}^2$).',
+        accepted: ['6', '6s', '6.0', '6.0s'],
+        hint: 'When the arrow lands back on the ground, net displacement is $\\Delta y = 0$.',
+        eqUsed: '\\Delta y = v_{0y}t + \\frac{1}{2}a_y t^2',
+        solution: '$$0 = 29.4t - 4.9t^2 \\implies t(29.4 - 4.9t) = 0 \\implies t = \\frac{29.4}{4.9} = \\mathbf{6.0\\text{ s}}$$'
+      },
+      {
+        id: 'phys-5',
+        title: 'Problem 5: Police Pursuit Interception',
+        prompt: 'A speeder passes a parked police car at a constant speed of $v_{\\text{car}} = 30\\text{ m/s}$. Exactly as the speeder passes, the police officer starts from rest ($v_0 = 0$) and accelerates at a constant rate of $a = 3.0\\text{ m/s}^2$. How many seconds ($t$) does it take for the police officer to overtake the speeder?',
+        accepted: ['20', '20s', '20.0'],
+        hint: 'Set the displacements equal: $\\Delta x_{\\text{speeder}} = \\Delta x_{\\text{police}}$.',
+        eqUsed: 'v t = \\frac{1}{2}at^2',
+        solution: '$$30t = \\frac{1}{2}(3.0)t^2 \\implies 1.5t = 30 \\implies \\mathbf{t = 20\\text{ s}}$$'
+      },
+      {
+        id: 'phys-6',
+        title: 'Problem 6: Cliff Diver Drop Distance',
+        prompt: 'A cliff diver steps off a high platform from rest ($v_0 = 0$) and hits the ocean below after falling for $t = 2.5\\text{ s}$. Ignoring air resistance and taking $g = 9.8\\text{ m/s}^2$, what is the vertical height of the platform in meters?',
+        accepted: ['30.625', '30.6', '31'],
+        hint: 'Use $\\Delta y = v_0 t + \\frac{1}{2}gt^2$ with $v_0 = 0$.',
+        eqUsed: '\\Delta y = \\frac{1}{2}gt^2',
+        solution: '$$\\Delta y = \\frac{1}{2}(9.8)(2.5)^2 = 4.9(6.25) = \\mathbf{30.625\\text{ m}}$$'
+      },
+      {
+        id: 'phys-7',
+        title: 'Problem 7: Train Entering a Station',
+        prompt: 'A commuter train enters a passenger platform moving at $v_0 = 20\\text{ m/s}$ and decelerates uniformly to a stop ($v = 0$) over a distance of $\\Delta x = 100\\text{ m}$. How many seconds ($t$) did it take for the train to stop?',
+        accepted: ['10', '10s', '10.0'],
+        hint: 'Use the average velocity relation $\\Delta x = \\left(\\frac{v_0 + v}{2}\\right)t$.',
+        eqUsed: '\\Delta x = \\left(\\frac{v_0 + v}{2}\\right)t',
+        solution: '$$100 = \\left(\\frac{20 + 0}{2}\\right)t = 10t \\implies \\mathbf{t = 10\\text{ s}}$$'
+      },
+      {
+        id: 'phys-8',
+        title: 'Problem 8: Bullet Penetrating a Wooden Block',
+        prompt: 'A rifle bullet strikes a block of wood with a velocity of $v_0 = 350\\text{ m/s}$ and penetrates a depth of $\\Delta x = 0.14\\text{ m}$ ($14\\text{ cm}$) before coming to rest ($v = 0$). Calculate the magnitude of the average deceleration of the bullet in $\\text{m/s}^2$.',
+        accepted: ['437500', '4.375e5', '4.38e5', '438000'],
+        hint: 'Use $v^2 = v_0^2 + 2a\\Delta x$ and solve for the magnitude $|a|$.',
+        eqUsed: 'v^2 = v_0^2 + 2a\\Delta x',
+        solution: '$$0 = (350)^2 + 2a(0.14) \\implies 0.28a = -122500 \\implies |a| = \\mathbf{437,500\\text{ m/s}^2}$$'
+      }
     ];
 
-    // =========================================================================
-    // STATE & TAB ROUTING
-    // =========================================================================
-    let currentSlideIdx = 0;
-    let selectedFRQIdx = 0;
-    let userAnswers = {};
-    let calcSolved = new Set();
-    let isFocusMode = false;
-    let focusMCQIndex = 0;
-    let currentMCQFilter = 'all';
-    let isTutorChatOpen = false;
+    // ==========================================
+    // State Variables & Navigation
+    // ==========================================
+    let currentSlide = 0;
+    const totalSlides = 8;
+    let solvedQuestions = new Set();
+    let currentPracticeFilter = 'all';
 
-    function switchTab(tabKey) {
-      document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
-      document.querySelectorAll('.nav-tab').forEach(el => {
-        el.classList.remove('bg-brand-600', 'text-white');
-        el.classList.add('text-slate-400');
+    function updateSlideDisplay() {
+      for (let i = 0; i < totalSlides; i++) {
+        const slide = document.getElementById(`slide-${i}`);
+        if (slide) slide.classList.add('hidden');
+      }
+      const activeSlide = document.getElementById(`slide-${currentSlide}`);
+      if (activeSlide) activeSlide.classList.remove('hidden');
+
+      document.getElementById('currentSlideNum').innerText = currentSlide + 1;
+      document.getElementById('prevBtn').disabled = (currentSlide === 0);
+      document.getElementById('nextBtn').disabled = (currentSlide === totalSlides - 1);
+
+      document.querySelectorAll('.slide-nav-pill').forEach(pill => {
+        if (parseInt(pill.getAttribute('data-slide')) === currentSlide) {
+          pill.className = "slide-nav-pill px-2.5 py-1 rounded-full bg-indigo-600 text-white whitespace-nowrap font-medium transition shadow";
+        } else {
+          pill.className = "slide-nav-pill px-2.5 py-1 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-300 whitespace-nowrap font-medium transition";
+        }
       });
 
-      const activeBtn = document.getElementById(`tab-btn-${tabKey}`);
-      if (activeBtn) {
-        activeBtn.classList.add('bg-brand-600', 'text-white');
-        activeBtn.classList.remove('text-slate-400');
-      }
-
-      const activeSec = document.getElementById(`section-${tabKey}`);
-      if (activeSec) activeSec.classList.remove('hidden');
-
-      const progressWrapper = document.getElementById('deck-progress-wrapper');
-      const icon = document.getElementById('subject-icon');
-      const title = document.getElementById('subject-title');
-      const badge = document.getElementById('subject-badge');
-
-      if (tabKey.startsWith('gov')) {
-        progressWrapper.style.display = tabKey === 'gov-deck' ? 'block' : 'none';
-        icon.innerHTML = '<i data-lucide="landmark" class="w-5 h-5"></i>';
-        title.innerHTML = 'AP GOV <span class="text-brand-400">UNIT 1</span>';
-        badge.innerText = '15–22% Weight';
-      } else if (tabKey.startsWith('calc')) {
-        progressWrapper.style.display = 'none';
-        icon.innerHTML = '<span class="font-mono">lim</span>';
-        title.innerHTML = 'AP CALCULUS <span class="text-indigo-400">LIMITS</span>';
-        badge.innerText = 'College Board AB/BC';
-      } else if (tabKey === 'physics') {
-        progressWrapper.style.display = 'none';
-        icon.innerHTML = '<i data-lucide="zap" class="w-5 h-5"></i>';
-        title.innerHTML = 'AP PHYSICS 1 <span class="text-amber-400">KINEMATICS</span>';
-        badge.innerText = 'Unit 1: 1D Motion';
-      }
-
-      if (tabKey === 'gov-deck') renderSlide();
-      if (tabKey === 'gov-mcq') renderMCQs();
-      if (tabKey === 'gov-frq') renderFRQ(selectedFRQIdx);
-      if (tabKey === 'calc-practice') renderCalcPractice();
-      if (tabKey === 'physics') renderPhysicsQuestions();
-
-      lucide.createIcons();
-      renderLatex();
+      renderMathInElement(document.body, {
+        delimiters: [
+          { left: '$$', right: '$$', display: true },
+          { left: '$', right: '$', display: false }
+        ],
+        throwOnError: false
+      });
     }
 
-    // Slide Functions
-    function renderPills() {
-      const container = document.getElementById('slide-pills-bar');
-      container.innerHTML = govSlides.map((s, idx) => `
-        <button onclick="goToSlide(${idx})" class="px-3 py-1.5 rounded-lg text-xs font-bold transition-all whitespace-nowrap flex items-center gap-1.5 ${idx === currentSlideIdx ? 'bg-brand-600 text-white shadow-md' : 'bg-slate-900/60 text-slate-400 hover:text-white border border-white/5'}">
-          <span class="font-mono text-[11px] opacity-75">${s.topic}</span>
-          <span class="hidden md:inline">${s.title.split(' ')[0]}</span>
-        </button>
+    function nextSlide() {
+      if (currentSlide < totalSlides - 1) {
+        currentSlide++;
+        updateSlideDisplay();
+      }
+    }
+
+    function prevSlide() {
+      if (currentSlide > 0) {
+        currentSlide--;
+        updateSlideDisplay();
+      }
+    }
+
+    function goToSlide(idx) {
+      currentSlide = idx;
+      switchMainView('lessons');
+      updateSlideDisplay();
+    }
+
+    function switchMainView(view) {
+      const lessonsView = document.getElementById('lessonsView');
+      const practiceView = document.getElementById('practiceView');
+      const physicsView = document.getElementById('physicsView');
+      const slideControls = document.getElementById('slideControls');
+
+      const btnLessons = document.getElementById('viewLessonsBtn');
+      const btnPractice = document.getElementById('viewPracticeBtn');
+      const btnPhysics = document.getElementById('viewPhysicsBtn');
+
+      [btnLessons, btnPractice, btnPhysics].forEach(b => {
+        if (b) b.className = "px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 text-slate-400 hover:text-white";
+      });
+
+      lessonsView.classList.add('hidden');
+      practiceView.classList.add('hidden');
+      if (physicsView) physicsView.classList.add('hidden');
+      slideControls.classList.add('hidden');
+
+      if (view === 'lessons') {
+        lessonsView.classList.remove('hidden');
+        slideControls.classList.remove('hidden');
+        btnLessons.className = "px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 bg-indigo-600 text-white shadow";
+        updateSlideDisplay();
+      } else if (view === 'practice') {
+        practiceView.classList.remove('hidden');
+        btnPractice.className = "px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 bg-indigo-600 text-white shadow";
+        renderPracticeQuestions();
+      } else if (view === 'physics') {
+        if (physicsView) physicsView.classList.remove('hidden');
+        if (btnPhysics) btnPhysics.className = "px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 bg-amber-600 text-white shadow";
+        renderPhysicsQuestions();
+      }
+    }
+
+    function openSectionPractice(topicId) {
+      switchMainView('practice');
+      filterPracticeTopic(topicId);
+    }
+
+    // ==========================================
+    // Open-Ended Practice Questions Rendering
+    // ==========================================
+    function filterPracticeTopic(topic) {
+      currentPracticeFilter = topic;
+      document.querySelectorAll('.practice-tab-btn').forEach(btn => {
+        if (btn.getAttribute('data-topic') === topic) {
+          btn.className = "practice-tab-btn active px-3 py-1.5 rounded-full bg-indigo-600 text-white font-bold whitespace-nowrap shadow transition";
+        } else {
+          btn.className = "practice-tab-btn px-3 py-1.5 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-300 font-medium whitespace-nowrap transition";
+        }
+      });
+      renderPracticeQuestions();
+    }
+
+    function renderPracticeQuestions() {
+      const container = document.getElementById('practiceQuestionsContainer');
+      const filtered = currentPracticeFilter === 'all' 
+        ? practiceQuestions 
+        : practiceQuestions.filter(q => q.topic === currentPracticeFilter);
+
+      container.innerHTML = filtered.map((q, idx) => `
+        <div id="q-card-${q.id}" class="glass-card rounded-xl p-5 border border-slate-800 transition hover:border-slate-700">
+          <div class="flex items-center justify-between gap-2 mb-3">
+            <div class="flex items-center gap-2">
+              <span class="px-2 py-0.5 rounded bg-indigo-500/20 text-indigo-300 text-[10px] font-mono font-semibold">Q${idx + 1}</span>
+              <span class="text-xs text-slate-400 font-semibold">${q.topicName}</span>
+            </div>
+            <span id="q-badge-${q.id}" class="text-[10px] px-2 py-0.5 rounded font-bold ${solvedQuestions.has(q.id) ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30' : 'bg-slate-800 text-slate-400'}">
+              ${solvedQuestions.has(q.id) ? 'Solved ✓' : (q.isRubric ? 'Self-Check' : 'Unsolved')}
+            </span>
+          </div>
+
+          <div class="text-xs md:text-sm font-semibold text-slate-100 mb-3 leading-relaxed">
+            ${q.question}
+          </div>
+
+          ${q.isRubric ? `
+            <div class="mb-3">
+              <button onclick="toggleSolution('${q.id}')" class="px-3.5 py-2 rounded-lg bg-indigo-600/30 hover:bg-indigo-600/50 text-indigo-300 border border-indigo-500/40 text-xs font-bold transition flex items-center gap-1.5">
+                <span>📋 Formulate Explanation & Reveal AP Scoring Rubric</span>
+              </button>
+            </div>
+          ` : `
+            <div class="flex flex-wrap items-center gap-2.5 mb-3">
+              <input id="input-${q.id}" type="text" placeholder="Type your answer (e.g. 3, -1/7, DNE, infinity)" 
+                     onkeydown="if(event.key==='Enter') checkOpenAnswer('${q.id}')"
+                     class="flex-1 min-w-[240px] px-3.5 py-2 rounded-lg bg-slate-900 border border-slate-700 focus:border-indigo-500 focus:outline-none text-xs text-white placeholder-slate-500">
+              <button onclick="checkOpenAnswer('${q.id}')" class="px-4 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs transition shadow flex items-center gap-1.5">
+                <span>Submit Answer</span>
+              </button>
+            </div>
+          `}
+
+          <div id="feedback-${q.id}" class="hidden p-3 rounded-lg text-xs font-medium mb-3"></div>
+
+          <div class="flex items-center justify-between pt-2 border-t border-slate-800/80 text-xs">
+            <button onclick="toggleHint('${q.id}')" class="text-slate-400 hover:text-amber-300 transition flex items-center gap-1">
+              <span>💡 Hint</span>
+            </button>
+            <button onclick="toggleSolution('${q.id}')" class="text-indigo-400 hover:text-indigo-300 font-semibold transition flex items-center gap-1">
+              <span>Teacher Scratchwork & Solution ▾</span>
+            </button>
+          </div>
+
+          <div id="hint-${q.id}" class="hidden mt-2 p-2.5 rounded bg-amber-950/30 border border-amber-500/30 text-xs text-amber-200">
+            <strong>Hint:</strong> ${q.hint}
+          </div>
+
+          <div id="sol-${q.id}" class="hidden mt-2 p-3 rounded-xl bg-slate-950 border border-slate-800 text-xs text-slate-300 space-y-1.5">
+            ${q.solution}
+          </div>
+        </div>
       `).join('');
-    }
 
-    function renderSlide() {
-      const s = govSlides[currentSlideIdx];
-      renderPills();
-      document.getElementById('slide-counter').innerText = `${currentSlideIdx + 1} / ${govSlides.length}`;
-      document.getElementById('deck-progress-bar').style.width = `${((currentSlideIdx + 1) / govSlides.length) * 100}%`;
-
-      const stage = document.getElementById('slide-stage');
-      stage.innerHTML = `
-        <div>
-          <div class="flex flex-col md:flex-row md:items-center justify-between gap-3 pb-5 border-b border-white/10 mb-6">
-            <div>
-              <div class="flex items-center gap-2 mb-1.5">
-                <span class="px-2.5 py-0.5 rounded-full text-xs font-mono font-bold bg-brand-500/20 text-brand-300 border border-brand-500/30">TOPIC ${s.topic}</span>
-                <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider">AP Gov Foundations</span>
-              </div>
-              <h2 class="text-2xl md:text-3xl font-extrabold text-white tracking-tight">${s.title}</h2>
-              <p class="text-sm font-medium text-indigo-300 mt-1">${s.tagline}</p>
-            </div>
-            <a href="https://www.youtube.com/watch?v=dCfpbSGsUKI" target="_blank" class="px-3.5 py-1.5 rounded-xl bg-red-600/15 hover:bg-red-600/25 border border-red-500/30 text-red-300 text-xs font-bold flex items-center gap-1.5 transition">
-              <i data-lucide="play" class="w-3.5 h-3.5 fill-red-400"></i> Heimler [${s.videoTimestamp}]
-            </a>
-          </div>
-
-          <div class="p-3.5 rounded-xl bg-slate-900/60 border border-white/5 text-xs md:text-sm text-slate-300 mb-6 flex items-center gap-3">
-            <i data-lucide="sparkle" class="w-4 h-4 text-brand-400 flex-shrink-0"></i>
-            <span>${s.summary}</span>
-          </div>
-
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-6">
-            <div class="glass-card rounded-2xl p-5 md:p-6 bg-gradient-to-br ${s.leftCard.accent}">
-              <div class="flex items-center gap-2.5 mb-4">
-                <div class="p-2 rounded-lg bg-white/10 text-white"><i data-lucide="${s.leftCard.icon}" class="w-4 h-4"></i></div>
-                <h3 class="font-bold text-white text-base md:text-lg">${s.leftCard.title}</h3>
-              </div>
-              <ul class="space-y-3">
-                ${s.leftCard.items.map(it => `<li class="text-xs md:text-sm text-slate-300"><strong class="text-white">${it.label}</strong>${it.desc}</li>`).join('')}
-              </ul>
-            </div>
-            <div class="glass-card rounded-2xl p-5 md:p-6 bg-gradient-to-br ${s.rightCard.accent}">
-              <div class="flex items-center gap-2.5 mb-4">
-                <div class="p-2 rounded-lg bg-white/10 text-white"><i data-lucide="${s.rightCard.icon}" class="w-4 h-4"></i></div>
-                <h3 class="font-bold text-white text-base md:text-lg">${s.rightCard.title}</h3>
-              </div>
-              <ul class="space-y-3">
-                ${s.rightCard.items.map(it => `<li class="text-xs md:text-sm text-slate-300"><strong class="text-white">${it.label}</strong>${it.desc}</li>`).join('')}
-              </ul>
-            </div>
-          </div>
-        </div>
-      `;
-      lucide.createIcons();
-    }
-
-    function goToSlide(i) { currentSlideIdx = i; renderSlide(); }
-    function nextSlide() { if (currentSlideIdx < govSlides.length - 1) { currentSlideIdx++; renderSlide(); } }
-    function prevSlide() { if (currentSlideIdx > 0) { currentSlideIdx--; renderSlide(); } }
-
-    // Calc Slide Switching
-    function goToCalcSlide(idx) {
-      document.querySelectorAll('.calc-slide-card').forEach((c, i) => {
-        c.classList.toggle('hidden', i !== idx);
+      renderMathInElement(container, {
+        delimiters: [
+          { left: '$$', right: '$$', display: true },
+          { left: '$', right: '$', display: false }
+        ],
+        throwOnError: false
       });
-      document.querySelectorAll('.calc-slide-pill').forEach((p, i) => {
-        p.className = i === idx ? 'calc-slide-pill px-2.5 py-1 rounded-full bg-indigo-600 text-white font-medium' : 'calc-slide-pill px-2.5 py-1 rounded-full bg-slate-800 text-slate-300 font-medium';
-      });
-      renderLatex();
     }
 
-    // MCQ Functions
-    function renderMCQs() {
-      const grid = document.getElementById('mcq-jump-grid');
-      grid.innerHTML = mcqQuestions.map((q, idx) => {
-        const ans = userAnswers[q.id];
-        let color = "bg-slate-800/80 text-slate-400 border-white/5";
-        if (ans) color = ans.isCorrect ? "bg-emerald-600 text-white" : "bg-rose-600 text-white";
-        return `<button onclick="jumpToMCQ(${idx})" class="w-7 h-7 rounded-lg border text-xs font-mono flex items-center justify-center ${color}">${idx+1}</button>`;
-      }).join('');
+    function checkOpenAnswer(qId) {
+      const q = practiceQuestions.find(item => item.id === qId);
+      const input = document.getElementById(`input-${qId}`);
+      const feedback = document.getElementById(`feedback-${qId}`);
+      const badge = document.getElementById(`q-badge-${qId}`);
+      if (!q || !input) return;
 
-      const container = document.getElementById('mcq-container');
-      const list = isFocusMode ? [mcqQuestions[focusMCQIndex]] : mcqQuestions;
-      container.innerHTML = list.map((q, idx) => {
-        const answered = userAnswers[q.id];
-        return `
-          <div class="glass-card rounded-2xl p-5 border border-white/5" id="mcq-card-${q.id}">
-            <div class="flex items-center justify-between mb-3">
-              <span class="text-xs font-mono font-bold px-2 py-0.5 rounded bg-brand-500/10 text-brand-400">Question ${isFocusMode ? focusMCQIndex + 1 : idx + 1} of 38</span>
-              ${answered ? `<span class="text-xs font-bold ${answered.isCorrect ? 'text-emerald-400' : 'text-rose-400'}">${answered.isCorrect ? '✓ Correct' : '✗ Incorrect'}</span>` : ''}
-            </div>
-            <div class="p-3 rounded-xl bg-slate-900/80 border-l-4 border-brand-500 text-xs text-slate-300 mb-3 italic">"${q.stimulus}"</div>
-            <h3 class="text-sm font-bold text-white mb-3">${q.question}</h3>
-            <div class="space-y-2">
-              ${q.options.map((opt, oIdx) => `
-                <button onclick="answerMCQ(${q.id}, ${oIdx})" ${answered ? 'disabled' : ''} class="w-full text-left p-3 rounded-xl border text-xs flex items-start gap-2.5 ${answered ? (opt.correct ? 'bg-emerald-950/40 border-emerald-500 text-emerald-200' : (answered.selectedIdx === oIdx ? 'bg-rose-950/40 border-rose-500 text-rose-200' : 'opacity-40')) : 'bg-slate-900/40 hover:bg-slate-800 border-white/10 text-slate-300'}">
-                  <span class="w-5 h-5 rounded bg-white/5 flex items-center justify-center font-mono font-bold">${['A','B','C','D'][oIdx]}</span>
-                  <span>${opt.text}</span>
-                </button>
-              `).join('')}
-            </div>
-            ${answered ? `<div class="mt-3 p-3 rounded-xl bg-slate-950/60 border border-white/10 text-xs text-slate-300"><strong>Explanation:</strong> ${q.explanation}</div>` : ''}
-          </div>
-        `;
-      }).join('');
-      lucide.createIcons();
-    }
-
-    function answerMCQ(id, oIdx) {
-      if (userAnswers[id]) return;
-      const q = mcqQuestions.find(i => i.id === id);
-      userAnswers[id] = { selectedIdx: oIdx, isCorrect: q.options[oIdx].correct };
-      const score = Object.values(userAnswers).filter(a => a.isCorrect).length;
-      document.getElementById('mcq-score-display').innerText = `${score} / 38 (${Math.round((score/Object.keys(userAnswers).length)*100)}%)`;
-      renderMCQs();
-    }
-    function jumpToMCQ(i) { focusMCQIndex = i; if (isFocusMode) renderMCQs(); else document.getElementById(`mcq-card-${mcqQuestions[i].id}`).scrollIntoView({ behavior: 'smooth', block: 'center' }); }
-    function toggleMCQMode() { isFocusMode = !isFocusMode; document.getElementById('mcq-mode-label').innerText = isFocusMode ? "Switch to All" : "Focus Mode"; renderMCQs(); }
-    function resetMCQ() { userAnswers = {}; document.getElementById('mcq-score-display').innerText = "0 / 38 (0%)"; renderMCQs(); }
-
-    // FRQ Functions
-    function selectFRQ(i) {
-      selectedFRQIdx = i;
-      document.querySelectorAll('.frq-tab-btn').forEach((b, idx) => {
-        b.className = idx === i ? "frq-tab-btn px-4 py-2.5 rounded-xl font-bold text-xs md:text-sm border border-brand-500 bg-brand-600 text-white flex items-center gap-2" : "frq-tab-btn px-4 py-2.5 rounded-xl font-bold text-xs md:text-sm border border-white/10 bg-slate-900/60 text-slate-400 hover:text-white flex items-center gap-2";
-      });
-      renderFRQ(i);
-    }
-
-    function renderFRQ(i) {
-      const q = frqs[i];
-      const stage = document.getElementById('frq-stage');
-      stage.innerHTML = `
-        <div class="glass-card rounded-2xl p-6 border border-white/10 space-y-4">
-          <div class="flex items-center justify-between"><span class="px-2.5 py-0.5 rounded-full text-xs font-mono font-bold bg-emerald-500/15 text-emerald-400">${q.type} • Max Score: ${q.points} Pts</span></div>
-          <h3 class="text-xl font-bold text-white">${q.title}</h3>
-          <div class="p-4 rounded-xl bg-slate-900/80 border-l-4 border-emerald-500 text-xs md:text-sm text-slate-300 leading-relaxed">${q.scenario}</div>
-          <div class="space-y-1.5 p-3 rounded-xl bg-white/5 text-xs text-slate-200">
-            <strong>Prompt Tasks:</strong>
-            ${q.tasks.map(t => `<div>• ${t}</div>`).join('')}
-          </div>
-          <textarea id="frq-input" rows="7" placeholder="Type your full AP response here..." class="w-full bg-slate-950 border border-white/15 rounded-xl p-3.5 text-xs text-white focus:outline-none focus:border-brand-500 font-mono"></textarea>
-          <button onclick="evaluateFRQ(${i})" class="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs transition flex items-center gap-1.5">
-            <i data-lucide="sparkles" class="w-4 h-4"></i> Grade with AP Rubric
-          </button>
-          <div id="frq-eval-result" class="hidden p-4 rounded-xl bg-slate-900 border border-emerald-500/40 text-xs leading-relaxed space-y-2"></div>
-        </div>
-      `;
-      lucide.createIcons();
-    }
-
-    function evaluateFRQ(i) {
-      const text = document.getElementById('frq-input').value.trim();
-      const resBox = document.getElementById('frq-eval-result');
-      if (text.length < 20) {
-        resBox.classList.remove('hidden');
-        resBox.innerHTML = '<span class="text-rose-400">Please write a complete response before requesting grading.</span>';
+      const userVal = input.value.trim().toLowerCase().replace(/\s+/g, '');
+      if (!userVal) {
+        feedback.classList.remove('hidden');
+        feedback.className = "p-3 rounded-lg text-xs font-semibold bg-amber-950/40 border border-amber-500/40 text-amber-300";
+        feedback.innerHTML = "Please enter an answer before submitting.";
         return;
       }
-      resBox.classList.remove('hidden');
-      resBox.innerHTML = `
-        <div class="font-bold text-emerald-300">✓ AI Evaluator Rubric Feedback:</div>
-        <div><strong>Thesis & Reasoning:</strong> Response directly engages the prompt prompt tasks and cites constitutional mechanisms.</div>
-        <div><strong>Score Awarded:</strong> ${frqs[i].points} / ${frqs[i].points} Points. (Well-structured AP format with explicit clause references).</div>
-      `;
-    }
 
-    // Calculus Practice
-    function renderCalcPractice() {
-      const container = document.getElementById('calc-questions-container');
-      container.innerHTML = calcQuestions.map((q, idx) => `
-        <div class="glass-card rounded-xl p-5 border border-slate-800">
-          <div class="flex items-center justify-between mb-2">
-            <span class="text-xs font-mono text-indigo-400 font-bold">Problem ${idx + 1}: ${q.topic}</span>
-            <span id="cbadge-${q.id}" class="text-[10px] px-2 py-0.5 rounded font-bold bg-slate-800 text-slate-400">Unsolved</span>
-          </div>
-          <p class="text-xs md:text-sm text-slate-100 mb-3">${q.question}</p>
-          <div class="flex flex-wrap items-center gap-2 mb-3">
-            <input id="cinput-${q.id}" type="text" placeholder="Type answer (e.g. 3, -1/7, DNE)" class="px-3.5 py-1.5 rounded-lg bg-slate-900 border border-slate-700 text-xs text-white focus:outline-none focus:border-indigo-500">
-            <button onclick="checkCalcAnswer('${q.id}')" class="px-3.5 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs transition">Submit</button>
-            <button onclick="document.getElementById('chint-${q.id}').classList.toggle('hidden')" class="px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 text-xs">💡 Hint</button>
-            <button onclick="document.getElementById('csol-${q.id}').classList.toggle('hidden')" class="px-3 py-1.5 rounded-lg bg-slate-800 text-indigo-300 text-xs font-semibold">Derivation ▾</button>
-          </div>
-          <div id="cfeedback-${q.id}" class="hidden text-xs font-semibold mb-2"></div>
-          <div id="chint-${q.id}" class="hidden p-2.5 rounded bg-amber-950/30 border border-amber-500/30 text-xs text-amber-200 mb-2"><strong>Hint:</strong> ${q.hint}</div>
-          <div id="csol-${q.id}" class="hidden p-3 rounded-xl bg-slate-950 border border-slate-800 text-xs text-slate-300">${q.solution}</div>
-        </div>
-      `).join('');
-      renderLatex();
-    }
+      const isCorrect = q.accepted && q.accepted.some(acc => userVal === acc.toLowerCase().replace(/\s+/g, ''));
+      feedback.classList.remove('hidden');
 
-    function checkCalcAnswer(id) {
-      const q = calcQuestions.find(item => item.id === id);
-      const val = document.getElementById(`cinput-${id}`).value.trim().toLowerCase().replace(/\s+/g, '');
-      const isCorrect = q.accepted.some(a => val === a.toLowerCase().replace(/\s+/g, ''));
-      const fb = document.getElementById(`cfeedback-${id}`);
-      fb.classList.remove('hidden');
       if (isCorrect) {
-        fb.className = "text-xs font-bold text-emerald-400 mb-2";
-        fb.innerHTML = "✓ Correct! Exact calculus value.";
-        calcSolved.add(id);
-        document.getElementById(`cbadge-${id}`).className = "text-[10px] px-2 py-0.5 rounded font-bold bg-emerald-500/20 text-emerald-300";
-        document.getElementById(`cbadge-${id}`).innerText = "Solved ✓";
+        feedback.className = "p-3 rounded-lg text-xs font-semibold bg-emerald-950/40 border border-emerald-500/40 text-emerald-300";
+        feedback.innerHTML = `🎉 <strong>Correct!</strong> That is the exact mathematical answer.`;
+        solvedQuestions.add(qId);
+        badge.innerText = "Solved ✓";
+        badge.className = "text-[10px] px-2 py-0.5 rounded font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30";
       } else {
-        fb.className = "text-xs font-bold text-rose-400 mb-2";
-        fb.innerHTML = "✗ Check arithmetic or click 'Derivation'.";
+        feedback.className = "p-3 rounded-lg text-xs font-semibold bg-rose-950/40 border border-rose-500/40 text-rose-300";
+        feedback.innerHTML = `❌ <strong>Not quite.</strong> Check your sign, fraction simplification, or click '💡 Hint' and 'Teacher Scratchwork' to inspect the derivation.`;
       }
-      document.getElementById('calc-solved-count').innerText = calcSolved.size;
+
+      document.getElementById('solvedCount').innerText = solvedQuestions.size;
+
+      renderMathInElement(feedback, {
+        delimiters: [
+          { left: '$$', right: '$$', display: true },
+          { left: '$', right: '$', display: false }
+        ],
+        throwOnError: false
+      });
     }
 
-    // Physics Practice
+    // ==========================================
+    // Render & Check Physics Questions
+    // ==========================================
     function renderPhysicsQuestions() {
-      const container = document.getElementById('physics-questions-container');
+      const container = document.getElementById('physicsQuestionsContainer');
+      if (!container) return;
       container.innerHTML = physicsQuestions.map((q, idx) => `
-        <div class="glass-card rounded-xl p-5 border border-slate-800">
-          <div class="flex items-center justify-between mb-2">
-            <span class="text-xs font-mono text-amber-400 font-bold">Problem ${idx + 1}: ${q.title}</span>
-            <span id="pbadge-${q.id}" class="text-[10px] px-2 py-0.5 rounded font-bold bg-slate-800 text-slate-400">Unsolved</span>
+        <div id="card-${q.id}" class="glass-card rounded-xl p-5 border border-slate-800 transition hover:border-amber-500/50">
+          <div class="flex items-center justify-between gap-2 mb-2">
+            <div class="flex items-center gap-2">
+              <span class="px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 text-[10px] font-mono font-bold">Problem ${idx + 1}</span>
+              <span class="text-xs text-slate-300 font-bold">${q.title}</span>
+            </div>
+            <span id="badge-${q.id}" class="text-[10px] px-2 py-0.5 rounded font-bold bg-slate-800 text-slate-400">Unsolved</span>
           </div>
-          <p class="text-xs md:text-sm text-slate-100 mb-3">${q.prompt}</p>
-          <div class="flex flex-wrap items-center gap-2 mb-3">
-            <input id="pinput-${q.id}" type="text" placeholder="Type numerical answer..." class="px-3.5 py-1.5 rounded-lg bg-slate-900 border border-slate-700 text-xs text-white focus:outline-none focus:border-amber-500">
-            <button onclick="checkPhysicsAnswer('${q.id}')" class="px-3.5 py-1.5 rounded-lg bg-amber-600 hover:bg-amber-500 text-white font-bold text-xs transition">Submit</button>
-            <button onclick="document.getElementById('phint-${q.id}').classList.toggle('hidden')" class="px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 text-xs">💡 Hint</button>
-            <button onclick="document.getElementById('pkey-${q.id}').classList.toggle('hidden')" class="px-3 py-1.5 rounded-lg bg-amber-950/40 border border-amber-500/40 text-amber-300 text-xs font-bold">Answer Key ▾</button>
+          <p class="text-xs md:text-sm text-slate-200 mb-3 leading-relaxed">${q.prompt}</p>
+          <div class="flex flex-wrap items-center gap-2.5 mb-3">
+            <input id="input-${q.id}" type="text" placeholder="Type numerical answer..." 
+                   onkeydown="if(event.key==='Enter') checkPhysicsAnswer('${q.id}')"
+                   class="flex-1 min-w-[200px] px-3.5 py-2 rounded-lg bg-slate-900 border border-slate-700 text-xs text-white focus:outline-none focus:border-amber-500">
+            <button onclick="checkPhysicsAnswer('${q.id}')" class="px-4 py-2 rounded-lg bg-amber-600 hover:bg-amber-500 text-white font-bold text-xs transition shadow">
+              Submit Answer
+            </button>
+            <button onclick="toggleElement('hint-${q.id}')" class="px-3 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs">
+              💡 Hint
+            </button>
+            <button onclick="toggleElement('key-${q.id}')" class="px-3 py-2 rounded-lg bg-amber-950/40 hover:bg-amber-900/50 border border-amber-500/40 text-amber-300 text-xs font-bold">
+              🔑 Answer Key & Derivation ▾
+            </button>
           </div>
-          <div id="pfeedback-${q.id}" class="hidden text-xs font-semibold mb-2"></div>
-          <div id="phint-${q.id}" class="hidden p-2.5 rounded bg-amber-950/30 border border-amber-500/30 text-xs text-amber-200 mb-2"><strong>Hint:</strong> ${q.hint}</div>
-          <div id="pkey-${q.id}" class="hidden p-3 rounded-xl bg-slate-950 border border-slate-800 text-xs text-slate-300 space-y-1">
+          <div id="feedback-${q.id}" class="hidden p-3 rounded-lg text-xs font-medium mb-3"></div>
+          <div id="hint-${q.id}" class="hidden p-3 rounded-lg bg-amber-950/30 border border-amber-500/30 text-xs text-amber-200 mb-2">
+            <strong>Kinematics Hint:</strong> ${q.hint}
+          </div>
+          <div id="key-${q.id}" class="hidden p-4 rounded-xl bg-slate-950 border border-slate-800 text-xs text-slate-300 space-y-2">
             <div class="text-amber-400 font-bold">Primary Equation: <code>$${q.eqUsed}$</code></div>
             <div>${q.solution}</div>
           </div>
         </div>
       `).join('');
-      renderLatex();
+
+      renderMathInElement(container, {
+        delimiters: [
+          { left: '$$', right: '$$', display: true },
+          { left: '$', right: '$', display: false }
+        ],
+        throwOnError: false
+      });
     }
 
     function checkPhysicsAnswer(id) {
       const q = physicsQuestions.find(item => item.id === id);
-      const val = document.getElementById(`pinput-${id}`).value.trim().toLowerCase().replace(/[^0-9.e-]/g, '');
-      const isCorrect = q.accepted.some(a => Math.abs(parseFloat(val) - parseFloat(a.replace(/[^0-9.e-]/g, ''))) < 0.5);
-      const fb = document.getElementById(`pfeedback-${id}`);
-      fb.classList.remove('hidden');
+      const input = document.getElementById(`input-${id}`);
+      const feedback = document.getElementById(`feedback-${id}`);
+      const badge = document.getElementById(`badge-${id}`);
+      if (!q || !input) return;
+
+      const userVal = input.value.trim().toLowerCase().replace(/[^0-9.e-]/g, '');
+      const isCorrect = q.accepted.some(acc => {
+        const cleanAcc = acc.toLowerCase().replace(/[^0-9.e-]/g, '');
+        return Math.abs(parseFloat(userVal) - parseFloat(cleanAcc)) < 0.5;
+      });
+
+      feedback.classList.remove('hidden');
       if (isCorrect) {
-        fb.className = "text-xs font-bold text-emerald-400 mb-2";
-        fb.innerHTML = "✓ Correct! Kinematics matches perfectly.";
-        document.getElementById(`pbadge-${id}`).className = "text-[10px] px-2 py-0.5 rounded font-bold bg-emerald-500/20 text-emerald-300";
-        document.getElementById(`pbadge-${id}`).innerText = "Solved ✓";
+        feedback.className = "p-3 rounded-lg text-xs font-semibold bg-emerald-950/40 border border-emerald-500/40 text-emerald-300";
+        feedback.innerHTML = "🎉 <strong>Correct!</strong> That matches the kinematic calculation.";
+        badge.innerText = "Solved ✓";
+        badge.className = "text-[10px] px-2 py-0.5 rounded font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30";
       } else {
-        fb.className = "text-xs font-bold text-rose-400 mb-2";
-        fb.innerHTML = "✗ Check math values or open Answer Key.";
+        feedback.className = "p-3 rounded-lg text-xs font-semibold bg-rose-950/40 border border-rose-500/40 text-rose-300";
+        feedback.innerHTML = "❌ <strong>Check your numbers.</strong> Inspect signs or open the 'Answer Key & Derivation' to verify your algebra.";
       }
     }
 
     function toggleAllPhysicsKeys() {
-      physicsQuestions.forEach(q => document.getElementById(`pkey-${q.id}`).classList.toggle('hidden'));
-      renderLatex();
+      physicsQuestions.forEach(q => {
+        const el = document.getElementById(`key-${q.id}`);
+        if (el) el.classList.toggle('hidden');
+      });
+      renderMathInElement(document.getElementById('physicsQuestionsContainer'), {
+        delimiters: [
+          { left: '$$', right: '$$', display: true },
+          { left: '$', right: '$', display: false }
+        ],
+        throwOnError: false
+      });
     }
 
-    // AI Tutor Drawer
-    function toggleTutorChat() {
-      const d = document.getElementById('tutor-drawer');
-      isTutorChatOpen = !isTutorChatOpen;
-      d.classList.toggle('opacity-0', !isTutorChatOpen);
-      d.classList.toggle('pointer-events-none', !isTutorChatOpen);
-      d.classList.toggle('scale-95', !isTutorChatOpen);
+    function toggleElement(id) {
+      const el = document.getElementById(id);
+      if (el) el.classList.toggle('hidden');
+      renderMathInElement(document.body, {
+        delimiters: [
+          { left: '$$', right: '$$', display: true },
+          { left: '$', right: '$', display: false }
+        ],
+        throwOnError: false
+      });
     }
 
-    function sendQuickPrompt(t) {
-      document.getElementById('tutor-user-input').value = t;
-      handleTutorSubmit(new Event('submit'));
+    function toggleHint(qId) {
+      const el = document.getElementById(`hint-${qId}`);
+      if (el) el.classList.toggle('hidden');
     }
 
-    function handleTutorSubmit(e) {
-      e.preventDefault();
-      const input = document.getElementById('tutor-user-input');
-      const text = input.value.trim();
-      if (!text) return;
-      const logs = document.getElementById('tutor-chat-logs');
-      logs.innerHTML += `<div class="p-3 bg-brand-600 text-white rounded-2xl max-w-[85%] ml-auto text-xs">${text}</div>`;
-      input.value = '';
-
-      setTimeout(() => {
-        let reply = "Here is your study guide answer: For **AP Gov**, make sure to cite foundational documents (Fed 10, Brutus 1). For **Calculus**, remember that $\\frac{0}{0}$ requires factoring or conjugate rationalization. For **Physics**, list your 5 variables ($v_0, v, a, t, \\Delta x$) to choose your equation!";
-        const low = text.toLowerCase();
-        if (low.includes('fed 10') || low.includes('brutus')) {
-          reply = "<strong>Fed 10 vs. Brutus 1:</strong> Madison (Fed 10) argues a large republic controls factions by diluting them. Brutus 1 warns that a large republic consolidates power, detached from local interests.";
-        } else if (low.includes('conjugate') || low.includes('limit')) {
-          reply = "For limits with radicals giving $\\frac{0}{0}$, multiply numerator and denominator by $(\\sqrt{A}+B)$ so $(a-b)(a+b)=a^2-b^2$ cancels the problematic factor!";
-        } else if (low.includes('kinematic') || low.includes('equation')) {
-          reply = "Pick your equation by whichever variable is missing: no $t \\implies v^2 = v_0^2 + 2a\\Delta x$; no $a \\implies \\Delta x = \\frac{v_0+v}{2}t$; no $v \\implies \\Delta x = v_0 t + \\frac{1}{2}at^2$!";
-        }
-        logs.innerHTML += `<div class="p-3 bg-slate-800 text-slate-200 border border-white/10 rounded-2xl max-w-[85%] text-xs">${reply}</div>`;
-        logs.scrollTop = logs.scrollHeight;
-      }, 300);
-    }
-
-    function renderLatex() {
-      if (window.renderMathInElement) {
-        renderMathInElement(document.body, {
+    function toggleSolution(qId) {
+      const el = document.getElementById(`sol-${qId}`);
+      if (el) {
+        el.classList.toggle('hidden');
+        renderMathInElement(el, {
           delimiters: [
             { left: '$$', right: '$$', display: true },
             { left: '$', right: '$', display: false }
@@ -1152,11 +1537,210 @@
       }
     }
 
-    window.addEventListener('DOMContentLoaded', () => {
-      renderSlide();
-      lucide.createIcons();
-      renderLatex();
+    function resetPracticeProgress() {
+      solvedQuestions.clear();
+      document.getElementById('solvedCount').innerText = 0;
+      renderPracticeQuestions();
+    }
+
+    // ==========================================
+    // Share & Email Export Functions
+    // ==========================================
+    function toggleShareModal() {
+      const modal = document.getElementById('shareModal');
+      modal.classList.toggle('hidden');
+    }
+
+    function downloadHtmlFile() {
+      const htmlContent = "<!DOCTYPE html>\n" + document.documentElement.outerHTML;
+      const blob = new Blob([htmlContent], { type: 'text/html;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'AP_STEM_Calculus_Physics_Masterclass.html';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+
+      const notice = document.getElementById('copyConfirmNotice');
+      notice.innerText = "✅ File downloaded! You can now attach it to any email.";
+      notice.className = "text-[11px] text-emerald-400 font-semibold";
+    }
+
+    function printAsPdf() {
+      toggleShareModal();
+      window.print();
+    }
+
+    function openEmailDraft() {
+      const subject = encodeURIComponent("AP STEM: Calculus Limits & Physics 1 Kinematics Hub");
+      const body = encodeURIComponent(
+        "Hi!\n\n" +
+        "Here is the comprehensive study guide and practice problem suite for AP Calculus Limits and AP Physics 1 Kinematics:\n\n" +
+        "CALCULUS TOPICS:\n" +
+        "1. What is a Limit & DNE (Left != Right, Unbounded, Oscillating)\n" +
+        "2. Limit Properties & Direct Substitution\n" +
+        "3. Indeterminate Forms (0/0: Factoring, Conjugates, Complex Fractions)\n" +
+        "4. Continuity & One-Sided Limits (The 3-Part Checklist)\n" +
+        "5. Infinite Limits & Vertical Asymptotes\n" +
+        "6. Limits at Infinity & Horizontal Asymptotes\n" +
+        "7. The Squeeze Theorem & Special Trig Limits\n" +
+        "8. Intermediate Value Theorem (IVT)\n\n" +
+        "PHYSICS TOPICS:\n" +
+        "• 1D Kinematic Equations of Motion ($v = v_0 + at$, $\\Delta x = v_0 t + 1/2 a t^2$, $v^2 = v_0^2 + 2a\\Delta x$, etc.)\n" +
+        "• 8 Multi-Step Word Problems with Full Answer Keys\n\n" +
+        "(Download and attach the .html file to view everything interactively offline!)"
+      );
+      window.location.href = `mailto:?subject=${subject}&body=${body}`;
+    }
+
+    function copySummaryText() {
+      const summaryText = 
+        "AP Calculus & Physics Study Summary:\n" +
+        "• Continuity Test: f(c) exists, lim f(x) exists, lim f(x) = f(c)\n" +
+        "• 0/0 Indeterminate: Factor, multiply conjugate, or clear fractions\n" +
+        "• Nonzero/0: Vertical asymptote (test signs: +inf or -inf)\n" +
+        "• Limits at Infinity: Compare degrees (Bottom heavy = 0, Equal = ratio of leading coeffs, Top heavy = DNE)\n" +
+        "• Physics Kinematics: v = v0 + at, Δx = v0*t + 1/2*a*t^2, v^2 = v0^2 + 2*a*Δx, Δx = ((v0+v)/2)*t";
+
+      const tempTextArea = document.createElement("textarea");
+      tempTextArea.value = summaryText;
+      document.body.appendChild(tempTextArea);
+      tempTextArea.select();
+      document.execCommand("copy");
+      document.body.removeChild(tempTextArea);
+
+      const notice = document.getElementById('copyConfirmNotice');
+      notice.innerText = "✅ Summary copied to clipboard! Paste it into your email.";
+      notice.className = "text-[11px] text-emerald-400 font-semibold";
+    }
+
+    // Keyboard slide flipping
+    window.addEventListener('keydown', (e) => {
+      if (document.activeElement && (document.activeElement.id === 'aiInput' || document.activeElement.tagName === 'INPUT')) return;
+      const lessonsView = document.getElementById('lessonsView');
+      if (lessonsView && !lessonsView.classList.contains('hidden')) {
+        if (e.key === 'ArrowRight' || e.key === ' ') nextSlide();
+        else if (e.key === 'ArrowLeft') prevSlide();
+      }
     });
+
+    // ==========================================
+    // AI Tutor Logic
+    // ==========================================
+    function toggleAiDrawer() {
+      const drawer = document.getElementById('aiDrawer');
+      drawer.classList.toggle('translate-x-full');
+      if (!drawer.classList.contains('translate-x-full')) {
+        setTimeout(() => document.getElementById('aiInput').focus(), 300);
+      }
+    }
+
+    function sendQuickPrompt(promptText) {
+      document.getElementById('aiInput').value = promptText;
+      document.getElementById('aiChatForm').dispatchEvent(new Event('submit'));
+    }
+
+    function parseMarkdownToHtml(markdown) {
+      if (!markdown) return "";
+      let html = markdown
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;');
+
+      html = html.replace(/^### (.*$)/gim, '<h4 class="text-sm font-bold text-indigo-300 mt-2 mb-1">$1</h4>');
+      html = html.replace(/^## (.*$)/gim, '<h3 class="text-base font-extrabold text-white mt-2.5 mb-1">$1</h3>');
+      html = html.replace(/^# (.*$)/gim, '<h2 class="text-lg font-black text-white mt-3 mb-1.5">$1</h2>');
+
+      html = html.replace(/\*\*(.*?)\*\*/g, '<strong class="text-white font-bold">$1</strong>');
+      html = html.replace(/\*(.*?)\*/g, '<em class="text-indigo-200">$1</em>');
+      html = html.replace(/^---$/gim, '<hr class="my-2 border-slate-700/60">');
+      html = html.replace(/^\s*[-•]\s+(.*$)/gim, '<li class="ml-3 list-disc text-slate-300 my-0.5">$1</li>');
+      html = html.replace(/^\s*(\d+)\.\s+(.*$)/gim, '<li class="ml-4 list-decimal text-slate-300 my-0.5"><span class="font-medium">$2</span></li>');
+
+      html = html.replace(/\n\n/g, '<div class="h-2"></div>');
+      html = html.replace(/\n/g, '<br>');
+
+      return html;
+    }
+
+    function getSTEMKnowledgeResponse(query) {
+      const q = query.toLowerCase().trim().replace(/[^a-z0-9 ]/g, ' ');
+
+      if (q.includes('kinematic') || q.includes('physics') || q.includes('motion') || q.includes('velocity') || q.includes('acceleration')) {
+        return `### 🚀 AP Physics 1: How to Pick the Right Kinematic Equation
+
+List your 5 variables: $v_0$ (initial velocity), $v$ (final velocity), $a$ (acceleration), $\\Delta x$ or $\\Delta y$ (displacement), and $t$ (time).
+
+1. **If time ($t$) is missing:** Use $v^2 = v_0^2 + 2a\\Delta x$.
+2. **If final velocity ($v$) is missing:** Use $\\Delta x = v_0 t + \\frac{1}{2}at^2$.
+3. **If acceleration ($a$) is missing:** Use $\\Delta x = \\left(\\frac{v_0 + v}{2}\\right)t$.
+4. **If displacement ($\\Delta x$) is missing:** Use $v = v_0 + at$.`;
+      }
+
+      if (q.includes('contin') || q.includes('contu') || q.includes('piecewise') || q.includes('hole') || q.includes('jump')) {
+        return `### 🎯 Continuity at a Point $x = c$[cite: 1, 6]
+1. **$f(c)$ exists** (defined point)[cite: 1, 6].
+2. **$\\lim_{x \\to c} f(x)$ exists** (left limit = right limit)[cite: 1, 6].
+3. **$\\lim_{x \\to c} f(x) = f(c)$** (curve matches point)[cite: 1, 6].`;
+      }
+
+      if (q.includes('infinite') || q.includes('asymptote') || q.includes('sign') || q.includes('va')) {
+        return `### 📈 Vertical Asymptotes & Infinite Limits[cite: 2]
+When direct substitution yields $\\frac{\\text{non-zero}}{0}$, the curve approaches a vertical asymptote[cite: 2]. Test a number slightly left or right of $c$ to determine if it shoots to $+\\infty$ or $-\\infty$[cite: 2]!`;
+      }
+
+      return `### 💡 AP STEM Companion
+• For **Calculus**: Always try direct substitution first[cite: 8]. If you get $\\frac{0}{0}$, factor or rationalize[cite: 7].
+• For **Physics**: Write down what you know ($v_0, v, a, t, \\Delta x$) and choose the kinematic formula that excludes your unknown!`;
+    }
+
+    function handleAiSubmit(e) {
+      e.preventDefault();
+      const input = document.getElementById('aiInput');
+      const text = input.value.trim();
+      if (!text) return;
+
+      const chatContainer = document.getElementById('aiChatMessages');
+      
+      const userDiv = document.createElement('div');
+      userDiv.className = "flex items-start gap-2.5 justify-end";
+      userDiv.innerHTML = `<div class="p-3 rounded-2xl bg-indigo-600 text-white leading-relaxed max-w-[85%]">${escapeHtml(text)}</div>`;
+      chatContainer.appendChild(userDiv);
+      input.value = "";
+      chatContainer.scrollTop = chatContainer.scrollHeight;
+
+      setTimeout(() => {
+        const reply = getSTEMKnowledgeResponse(text);
+        const aiDiv = document.createElement('div');
+        aiDiv.className = "flex items-start gap-2.5";
+        aiDiv.innerHTML = `
+          <div class="w-6 h-6 rounded-full bg-purple-600 flex-shrink-0 flex items-center justify-center text-[10px] font-bold text-white">AI</div>
+          <div class="p-3 rounded-2xl bg-slate-800/90 text-slate-200 border border-slate-700/80 leading-relaxed max-w-[90%] space-y-2">
+            ${parseMarkdownToHtml(reply)}
+          </div>
+        `;
+        chatContainer.appendChild(aiDiv);
+        renderMathInElement(aiDiv, {
+          delimiters: [
+            { left: '$$', right: '$$', display: true },
+            { left: '$', right: '$', display: false }
+          ],
+          throwOnError: false
+        });
+        chatContainer.scrollTop = chatContainer.scrollHeight;
+      }, 300);
+    }
+
+    function escapeHtml(str) {
+      return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    }
+
+    window.onload = function() {
+      updateSlideDisplay();
+      renderPracticeQuestions();
+    };
   </script>
 </body>
 </html>
