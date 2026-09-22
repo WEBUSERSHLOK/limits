@@ -1606,11 +1606,166 @@ Always format mathematical equations clearly with LaTeX ($...$ for inline and $$
     // Intelligent Offline / Fallback Calculus Tutor Knowledge
     // Ensures answers are always available even without internet or key
     // ========================================================
+    let currentQuizProblem = null;
+    let lastDiscussedTopic = 'continuity';
+
+    function parseMarkdownToHtml(markdown) {
+      if (!markdown) return "";
+      let html = markdown
+        // Escape bare HTML tags except what we generate
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;');
+
+      // Headers
+      html = html.replace(/^### (.*$)/gim, '<h4 class="text-sm font-bold text-indigo-300 mt-2 mb-1">$1</h4>');
+      html = html.replace(/^## (.*$)/gim, '<h3 class="text-base font-extrabold text-white mt-2.5 mb-1">$1</h3>');
+      html = html.replace(/^# (.*$)/gim, '<h2 class="text-lg font-black text-white mt-3 mb-1.5">$1</h2>');
+
+      // Bold & Italic
+      html = html.replace(/\*\*(.*?)\*\*/g, '<strong class="text-white font-bold">$1</strong>');
+      html = html.replace(/\*(.*?)\*/g, '<em class="text-indigo-200">$1</em>');
+
+      // Horizontal rule
+      html = html.replace(/^---$/gim, '<hr class="my-2 border-slate-700/60">');
+
+      // Bullet points
+      html = html.replace(/^\s*[-•]\s+(.*$)/gim, '<li class="ml-3 list-disc text-slate-300 my-0.5">$1</li>');
+      // Numbered lists
+      html = html.replace(/^\s*(\d+)\.\s+(.*$)/gim, '<li class="ml-4 list-decimal text-slate-300 my-0.5"><span class="font-medium">$2</span></li>');
+
+      // Paragraph newlines
+      html = html.replace(/\n\n/g, '<div class="h-2"></div>');
+      html = html.replace(/\n/g, '<br>');
+
+      return html;
+    }
+
+    const quizProblemsBank = {
+      continuity: [
+        {
+          id: 'c1',
+          question: 'Find the value of $k$ that makes $f(x)$ continuous everywhere:\n$$f(x) = \\begin{cases} kx^2 - 3, & x < 2 \\\\ 2x + 5, & x \\ge 2 \\end{cases}$$',
+          options: [
+            'A) $k = 2$',
+            'B) $k = 3$',
+            'C) $k = 4$',
+            'D) $k = 1$'
+          ],
+          correct: 'B',
+          solution: 'Set the left limit equal to the right limit at the boundary $x = 2$:\n$$\\lim_{x \\to 2^-} (k(2)^2 - 3) = \\lim_{x \\to 2^+} (2(2) + 5)$$\n$$4k - 3 = 4 + 5 = 9$$\n$$4k = 12 \\implies \\mathbf{k = 3}$$'
+        },
+        {
+          id: 'c2',
+          question: 'Let $g(x) = \\begin{cases} \\frac{x^2 - 16}{x - 4}, & x \\ne 4 \\\\ c, & x = 4 \\end{cases}$. What value of $c$ removes the discontinuity at $x = 4$?',
+          options: [
+            'A) $c = 4$',
+            'B) $c = 0$',
+            'C) $c = 8$',
+            'D) $c = 16$'
+          ],
+          correct: 'C',
+          solution: 'By Condition 3 of continuity, we must have $c = \\lim_{x \\to 4} g(x)$:\n$$\\lim_{x \\to 4} \\frac{x^2 - 16}{x - 4} = \\lim_{x \\to 4} \\frac{(x-4)(x+4)}{x-4} = 4 + 4 = 8$$\nTherefore, $\\mathbf{c = 8}$.'
+        }
+      ],
+      indet: [
+        {
+          id: 'i1',
+          question: 'Evaluate the limit:\n$$\\lim_{x \\to 0} \\frac{\\sqrt{4 + x} - 2}{x}$$',
+          options: [
+            'A) $\\frac{1}{2}$',
+            'B) $\\frac{1}{4}$',
+            'C) $0$',
+            'D) DNE'
+          ],
+          correct: 'B',
+          solution: 'Rationalize with the conjugate $(\\sqrt{4+x}+2)$:\n$$\\lim_{x \\to 0} \\frac{(\\sqrt{4+x}-2)(\\sqrt{4+x}+2)}{x(\\sqrt{4+x}+2)} = \\lim_{x \\to 0} \\frac{(4+x)-4}{x(\\sqrt{4+x}+2)} = \\frac{1}{\\sqrt{4}+2} = \\mathbf{\\frac{1}{4}}$$'
+        }
+      ],
+      infinite: [
+        {
+          id: 'inf1',
+          question: 'Evaluate the one-sided infinite limit:\n$$\\lim_{x \\to 3^-} \\frac{x + 1}{x - 3}$$',
+          options: [
+            'A) $+\\infty$',
+            'B) $-\\infty$',
+            'C) $0$',
+            'D) $-4$'
+          ],
+          correct: 'B',
+          solution: 'Sign analysis:\n• Numerator at $x = 3$: $3 + 1 = 4 > 0$ (positive)\n• Denominator as $x \\to 3^-$ (test $x = 2.99$): $2.99 - 3 = -0.01 < 0$ (tiny negative)\n$$\\frac{\\text{Positive}}{\\text{Negative 0}} = -\\infty$$'
+        }
+      ]
+    };
+
     function getCalculusKnowledgeResponse(query) {
-      const q = query.toLowerCase().replace(/[^a-z0-9 ]/g, ' ');
+      const q = query.toLowerCase().trim().replace(/[^a-z0-9 ]/g, ' ');
+
+      // Check if user is answering an active quiz problem
+      if (currentQuizProblem) {
+        const p = currentQuizProblem;
+        const normalized = query.trim().toUpperCase();
+        const isLetterMatch = normalized === p.correct || normalized.startsWith(p.correct + ')') || normalized.startsWith(p.correct + ' ');
+        const isTextMatch = normalized.includes(p.correct);
+
+        if (isLetterMatch || isTextMatch) {
+          const solved = p;
+          currentQuizProblem = null;
+          return `### 🎉 Bingo! Option ${solved.correct} is Correct!
+
+Here is the exact scratchwork:
+${solved.solution}
+
+---
+Would you like **another problem**, or should we review another concept (like *IVT*, *Squeeze Theorem*, or *Limits at Infinity*)?`;
+        } else if (['A', 'B', 'C', 'D'].some(letter => normalized.startsWith(letter))) {
+          return `### ❌ Not quite Option ${normalized.charAt(0)}.
+
+**Hint:** Double-check your signs when substituting into the left and right sides!
+
+Try again, or reply **"show answer"** if you'd like me to walk through the step-by-step algebra!`;
+        } else if (q.includes('show answer') || q.includes('solution') || q.includes('give up') || q.includes('what is the answer')) {
+          const solved = p;
+          currentQuizProblem = null;
+          return `### 📝 Full Solution for that Problem:
+
+The correct answer was **Option ${solved.correct}**.
+
+${solved.solution}
+
+Ready for another one? Just say **"give me another problem"**!`;
+        }
+      }
+
+      // Check if user is asking for a problem or quiz
+      if (
+        q.includes('give me a problem') || 
+        q.includes('quiz me') || 
+        q.includes('practice problem') || 
+        q.includes('give me an example') || 
+        q.includes('another problem') || 
+        q.includes('test me') ||
+        (q.includes('problem') && (q.includes('yes') || q.includes('sure') || q.includes('ok') || q.includes('ready') || q.includes('one')))
+      ) {
+        let bank = quizProblemsBank[lastDiscussedTopic] || quizProblemsBank['continuity'];
+        let picked = bank[Math.floor(Math.random() * bank.length)];
+        currentQuizProblem = picked;
+
+        return `### 🎯 AP Practice Challenge: ${lastDiscussedTopic.toUpperCase()}
+
+Here is a targeted problem to test your understanding:
+
+${picked.question}
+
+${picked.options.join('\n\n')}
+
+---
+**What is your answer (A, B, C, or D)?** Reply with your choice and I'll verify your scratchwork!`;
+      }
 
       // CONTINUITY & ONE-SIDED LIMITS
       if (q.includes('contin') || q.includes('contu') || q.includes('piecewise') || q.includes('hole') || q.includes('jump')) {
+        lastDiscussedTopic = 'continuity';
         return `### 🎯 Complete Breakdown: Continuity at a Point $x = c$
 
 Don't worry, continuity is one of the most common stumbling blocks in Unit 1! Let's make it super intuitive.
@@ -1658,11 +1813,12 @@ To make it continuous at $x = 0$, set the left-hand rule equal to the right-hand
 $$\\lim_{x \\to 0^-} \\sqrt{2(0)-c} = \\lim_{x \\to 0^+} (3(0)^2+1)$$
 $$\\sqrt{-c} = 1 \\implies -c = 1 \\implies \\mathbf{c = -1}$$
 
-Would you like to try a practice problem on continuity, or do you have a specific question about one of your homework problems?`;
+Would you like to try a practice problem on continuity? Just say **"yes give me a problem"**!`;
       }
 
       // 0/0 INDETERMINATE FORMS
       if (q.includes('indetermin') || q.includes('0/0') || q.includes('factor') || q.includes('conjugat') || q.includes('rationaliz')) {
+        lastDiscussedTopic = 'indet';
         return `### ⚡ Indeterminate Form $\\frac{0}{0}$: The 3 Big Fixes
 
 When you plug in $x = c$ and get $\\frac{0}{0}$, this does **NOT** mean undefined, nor does it mean $0$ or $1$. It means there is a hidden hole, and you must use algebra to reveal the limit!
@@ -1674,11 +1830,14 @@ When you plug in $x = c$ and get $\\frac{0}{0}$, this does **NOT** mean undefine
    $$\\lim_{x \\to 4} \\frac{\\sqrt{x-2}-\\sqrt{2}}{x-4} \\cdot \\frac{\\sqrt{x-2}+\\sqrt{2}}{\\sqrt{x-2}+\\sqrt{2}} = \\lim_{x \\to 4} \\frac{(x-2)-2}{(x-4)(\\sqrt{x-2}+\\sqrt{2})} = \\frac{1}{2\\sqrt{2}} = \\frac{\\sqrt{2}}{4}$$
 3. **Complex Fractions:**
    Multiply top and bottom by the common denominator $3x$:
-   $$\\lim_{x \\to -3} \\frac{\\frac{1}{x} + \\frac{1}{3}}{x+3} \\left(\\frac{3x}{3x}\\right) = \\lim_{x \\to -3} \\frac{3+x}{(x+3)(3x)} = \\lim_{x \\to -3} \\frac{1}{3x} = -\\frac{1}{9}$$`;
+   $$\\lim_{x \\to -3} \\frac{\\frac{1}{x} + \\frac{1}{3}}{x+3} \\left(\\frac{3x}{3x}\\right) = \\lim_{x \\to -3} \\frac{3+x}{(x+3)(3x)} = \\lim_{x \\to -3} \\frac{1}{3x} = -\\frac{1}{9}$$
+
+Ready to test this with a problem? Say **"give me a problem"**!`;
       }
 
       // INFINITE LIMITS & VERTICAL ASYMPTOTES
       if (q.includes('infinite') || q.includes('asymptote') || q.includes('sign') || q.includes('nonzero') || q.includes('va')) {
+        lastDiscussedTopic = 'infinite';
         return `### 📈 Infinite Limits & Sign Analysis $\\left(\\frac{\\text{Non-Zero}}{0}\\right)$
 
 When substitution gives a non-zero number divided by $0$, the answer is **always** either $+\\infty$, $-\\infty$, or $\\text{DNE}$.
@@ -1691,7 +1850,9 @@ Evaluate $\\lim_{x \\to 2^-} \\frac{3x+1}{x-2}$:
 3. **Sign Ratio:**
    $$\\frac{\\text{Positive}}{\\text{Tiny Negative}} = -\\infty$$
 
-If we tested $x \\to 2^+$, the denominator would be $+0.01$ (tiny positive), giving $+\\infty$. Because $-\\infty \\ne +\\infty$, the two-sided limit $\\lim_{x \\to 2} f(x) = \\text{DNE}$.`;
+If we tested $x \\to 2^+$, the denominator would be $+0.01$ (tiny positive), giving $+\\infty$. Because $-\\infty \\ne +\\infty$, the two-sided limit $\\lim_{x \\to 2} f(x) = \\text{DNE}$.
+
+Would you like to try one? Say **"give me a problem"**!`;
       }
 
       // SQUEEZE THEOREM & TRIG
@@ -1741,10 +1902,18 @@ Here is the master strategy for any limit problem in AP Calculus:
 4. **Step 4: Check Continuity**:
    - Verify $f(c)$ is defined, $\\lim_{x \\to c} f(x)$ exists, and $\\lim_{x \\to c} f(x) = f(c)$.
 
-Ask me about any specific problem, or tell me which step in your notebook you want to walk through!`;
+Ask me about any specific problem, or say **"give me a problem"** to test your knowledge!`;
     }
 
     async function callGeminiApi(userMessage) {
+      // Check conversational problem cues first for immediate zero-latency quiz generation
+      const lower = userMessage.toLowerCase().trim();
+      if (currentQuizProblem || lower.includes('problem') || lower.includes('quiz') || lower.includes('test me')) {
+        const localReply = getCalculusKnowledgeResponse(userMessage);
+        chatHistory.push({ role: "model", parts: [{ text: localReply }] });
+        return localReply;
+      }
+
       const storedKey = localStorage.getItem('gemini_user_key') || "";
       const apiKey = storedKey;
       const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${apiKey}`;
@@ -1817,7 +1986,7 @@ Ask me about any specific problem, or tell me which step in your notebook you wa
       aiDiv.innerHTML = `
         <div class="w-6 h-6 rounded-full bg-purple-600 flex-shrink-0 flex items-center justify-center text-[10px] font-bold text-white">AI</div>
         <div class="p-3 rounded-2xl bg-slate-800/90 text-slate-200 border border-slate-700/80 leading-relaxed max-w-[90%] space-y-2">
-          ${reply.replace(/\n\n/g, '<br><br>').replace(/\n/g, '<br>')}
+          ${parseMarkdownToHtml(reply)}
         </div>
       `;
       chatContainer.appendChild(aiDiv);
