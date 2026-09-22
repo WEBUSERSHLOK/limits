@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AP Calculus Limits & Continuity — Interactive Guide & Practice Hub</title>
+  <title>AP STEM Hub: Calculus Limits & AP Physics 1 Kinematics</title>
   
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -126,21 +126,24 @@
       </div>
       <div>
         <h1 class="text-sm md:text-base font-bold text-slate-100 tracking-tight flex items-center gap-2">
-          AP Calculus Limits Masterclass
-          <span class="text-[10px] px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 font-semibold border border-emerald-500/30">Complete Unit</span>
+          AP STEM Hub: Calculus & Physics
+          <span class="text-[10px] px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 font-semibold border border-emerald-500/30">Complete Units</span>
         </h1>
-        <p class="text-xs text-slate-400">Interactive Lessons + 32 Practice Problems with Step-by-Step Solutions</p>
+        <p class="text-xs text-slate-400">Interactive Lessons + Calculus Limits + Physics 1 Kinematics</p>
       </div>
     </div>
 
-    <!-- Mode Selector: Lessons vs Practice Hub -->
+    <!-- Mode Selector: Lessons vs Calc Practice vs Physics Kinematics -->
     <div class="flex items-center gap-2">
       <div class="bg-slate-900/90 p-1 rounded-xl border border-slate-800 flex items-center gap-1">
         <button id="viewLessonsBtn" onclick="switchMainView('lessons')" class="px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 bg-indigo-600 text-white shadow">
-          <span>📖 Concept Slides</span>
+          <span>📖 Calc Lessons</span>
         </button>
         <button id="viewPracticeBtn" onclick="switchMainView('practice')" class="px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 text-slate-400 hover:text-white">
-          <span>🎯 Practice Hub (3-5 per Topic)</span>
+          <span>🎯 Calc Practice (32)</span>
+        </button>
+        <button id="viewPhysicsBtn" onclick="switchMainView('physics')" class="px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 text-amber-300 hover:text-white border border-amber-500/30">
+          <span>🚀 AP Physics 1 (Kinematics)</span>
         </button>
       </div>
 
@@ -204,7 +207,7 @@
         <div>
           <h2 class="text-2xl md:text-3xl font-extrabold text-white">What is a Limit? The Intended Height</h2>
           <p class="mt-2 text-slate-300 text-sm leading-relaxed">
-            In calculus, a limit is <strong>the intended height</strong> ($y$-value) that a function approaches as $x$ gets arbitrarily close to a target number $c$, <em>regardless of whether the function actually reaches that point or is even defined there!</em>
+            In calculus, a limit is <strong>the intended height</strong> ($y$-value) that a function approaches as $x$ gets arbitrarily close to a target number $c$, <em>regardless of whether the function actually reaches that point or is even defined there!</em>[cite: 9]
           </p>
         </div>
 
@@ -212,22 +215,22 @@
           <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800">
             <h4 class="font-bold text-indigo-300 text-xs uppercase tracking-wider mb-2">1. Left & Right Disagree</h4>
             <p class="text-xs text-slate-400">
-              $$\lim_{x \to c^-} f(x) \ne \lim_{x \to c^+} f(x)$$
-              The graph jumps. For example, $f(x) = \frac{|x|}{x}$ gives $-1$ from the left and $+1$ from the right.
+              $$\lim_{x \to c^-} f(x) \ne \lim_{x \to c^+} f(x)$$[cite: 9]
+              The graph jumps[cite: 9]. For example, $f(x) = \frac{|x|}{x}$ gives $-1$ from the left and $+1$ from the right[cite: 9].
             </p>
           </div>
           <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800">
             <h4 class="font-bold text-indigo-300 text-xs uppercase tracking-wider mb-2">2. Unbounded (Shoots to $\pm\infty$)</h4>
             <p class="text-xs text-slate-400">
-              $$\lim_{x \to 0} \frac{1}{x^2} = \infty$$
-              The $y$-values grow infinitely large, so they never approach a single real finite number $L$.
+              $$\lim_{x \to 0} \frac{1}{x^2} = \infty$$[cite: 9]
+              The $y$-values grow infinitely large, so they never approach a single real finite number $L$[cite: 9].
             </p>
           </div>
           <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800">
             <h4 class="font-bold text-indigo-300 text-xs uppercase tracking-wider mb-2">3. Oscillating Wildly</h4>
             <p class="text-xs text-slate-400">
-              $$\lim_{x \to 0} \sin\left(\frac{1}{x}\right)$$
-              As $x \to 0$, the angle $\frac{1}{x}$ blows up to $\infty$, causing the sine wave to bounce between $-1$ and $+1$ infinite times.
+              $$\lim_{x \to 0} \sin\left(\frac{1}{x}\right)$$[cite: 9]
+              As $x \to 0$, the angle $\frac{1}{x}$ blows up to $\infty$, causing the sine wave to bounce between $-1$ and $+1$ infinite times[cite: 9].
             </p>
           </div>
         </div>
@@ -258,7 +261,7 @@
           <h2 class="text-2xl md:text-3xl font-extrabold text-white">Rule #1: Always Try "Plug & Chug" First</h2>
           <p class="mt-2 text-slate-300 text-sm leading-relaxed">
             For polynomials, radical roots, rational functions (with non-zero denominator), and trig functions within their domains: 
-            <strong>Direct substitution always works!</strong>
+            <strong>Direct substitution always works!</strong>[cite: 8]
           </p>
         </div>
 
@@ -266,20 +269,20 @@
           <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 space-y-2">
             <div class="font-bold text-white text-sm">Algebraic Properties:</div>
             <ul class="space-y-1.5 text-slate-300 font-mono">
-              <li>• Scalar: $\lim [b \cdot f(x)] = b \cdot L$</li>
-              <li>• Sum / Diff: $\lim [f(x) \pm g(x)] = L \pm K$</li>
-              <li>• Product: $\lim [f(x) \cdot g(x)] = L \cdot K$</li>
-              <li>• Quotient: $\lim \frac{f(x)}{g(x)} = \frac{L}{K}$ (provided $K \ne 0$)</li>
-              <li>• Power: $\lim [f(x)]^n = L^n$</li>
+              <li>• Scalar: $\lim [b \cdot f(x)] = b \cdot L$[cite: 8]</li>
+              <li>• Sum / Diff: $\lim [f(x) \pm g(x)] = L \pm K$[cite: 8]</li>
+              <li>• Product: $\lim [f(x) \cdot g(x)] = L \cdot K$[cite: 8]</li>
+              <li>• Quotient: $\lim \frac{f(x)}{g(x)} = \frac{L}{K}$ (provided $K \ne 0$)[cite: 8]</li>
+              <li>• Power: $\lim [f(x)]^n = L^n$[cite: 8]</li>
             </ul>
           </div>
 
           <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 space-y-2">
             <div class="font-bold text-white text-sm">Trig Limits by Direct Sub:</div>
-            <p class="text-slate-300">If $c$ is in the domain, just substitute:</p>
+            <p class="text-slate-300">If $c$ is in the domain, just substitute[cite: 8]:</p>
             <div class="p-2.5 rounded bg-slate-950 border border-slate-800 font-mono text-indigo-300 space-y-1">
-              <div>$\lim_{x \to \pi/4} \tan x = \tan(\pi/4) = 1$</div>
-              <div>$\lim_{x \to \pi/2} (x \sin x) = \frac{\pi}{2} \cdot \sin\left(\frac{\pi}{2}\right) = \frac{\pi}{2} \cdot 1 = \frac{\pi}{2}$</div>
+              <div>$\lim_{x \to \pi/4} \tan x = \tan(\pi/4) = 1$[cite: 8]</div>
+              <div>$\lim_{x \to \pi/2} (x \sin x) = \frac{\pi}{2} \cdot \sin\left(\frac{\pi}{2}\right) = \frac{\pi}{2} \cdot 1 = \frac{\pi}{2}$[cite: 8]</div>
             </div>
             <p class="text-[11px] text-amber-300">Only when direct substitution yields $\frac{0}{0}$ or $\frac{k}{0}$ do you need advanced techniques!</p>
           </div>
@@ -301,7 +304,7 @@
         <div>
           <h2 class="text-2xl md:text-3xl font-extrabold text-white">When Substitution Gives $\frac{0}{0}$: The 3 Big Fixes</h2>
           <p class="mt-2 text-slate-300 text-sm leading-relaxed">
-            $\frac{0}{0}$ is <strong>NOT</strong> undefined, nor is it $0$ or $1$. It is an <em>indeterminate form</em>. It signals a hidden hole that cancels out with algebra!
+            $\frac{0}{0}$ is <strong>NOT</strong> undefined, nor is it $0$ or $1$. It is an <em>indeterminate form</em>[cite: 7]. It signals a hidden hole that cancels out with algebra!
           </p>
         </div>
 
@@ -309,30 +312,30 @@
           <!-- Fix 1 -->
           <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 space-y-2">
             <div class="font-bold text-emerald-400 text-sm">1. Factoring & Canceling</div>
-            <p class="text-slate-300">Used for polynomials:</p>
+            <p class="text-slate-300">Used for polynomials[cite: 7]:</p>
             <div class="p-2 rounded bg-slate-950 font-mono text-indigo-300 text-[11px]">
-              $$\lim_{x \to 2} \frac{x^2-5x+6}{x^2+3x-10}$$
-              $$= \lim_{x \to 2} \frac{(x-2)(x-3)}{(x-2)(x+5)} = \frac{-1}{7}$$
+              $$\lim_{x \to 2} \frac{x^2-5x+6}{x^2+3x-10}$$[cite: 7]
+              $$= \lim_{x \to 2} \frac{(x-2)(x-3)}{(x-2)(x+5)} = \frac{-1}{7}$$[cite: 7]
             </div>
           </div>
 
           <!-- Fix 2 -->
           <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 space-y-2">
             <div class="font-bold text-purple-400 text-sm">2. Conjugate Rationalizing</div>
-            <p class="text-slate-300">Used when radicals cause $\frac{0}{0}$:</p>
+            <p class="text-slate-300">Used when radicals cause $\frac{0}{0}$[cite: 7]:</p>
             <div class="p-2 rounded bg-slate-950 font-mono text-indigo-300 text-[11px]">
-              $$\lim_{x \to 9} \frac{\sqrt{x}-3}{x-9} \cdot \frac{\sqrt{x}+3}{\sqrt{x}+3}$$
-              $$= \lim_{x \to 9} \frac{x-9}{(x-9)(\sqrt{x}+3)} = \frac{1}{6}$$
+              $$\lim_{x \to 9} \frac{\sqrt{x}-3}{x-9} \cdot \frac{\sqrt{x}+3}{\sqrt{x}+3}$$[cite: 7]
+              $$= \lim_{x \to 9} \frac{x-9}{(x-9)(\sqrt{x}+3)} = \frac{1}{6}$$[cite: 7]
             </div>
           </div>
 
           <!-- Fix 3 -->
           <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 space-y-2">
             <div class="font-bold text-rose-400 text-sm">3. Complex Fractions</div>
-            <p class="text-slate-300">Multiply top & bottom by the common denominator:</p>
+            <p class="text-slate-300">Multiply top & bottom by the common denominator[cite: 7]:</p>
             <div class="p-2 rounded bg-slate-950 font-mono text-indigo-300 text-[11px]">
-              $$\lim_{x \to -3} \frac{\frac{1}{x} + \frac{1}{3}}{x+3} \cdot \frac{3x}{3x}$$
-              $$= \lim_{x \to -3} \frac{3+x}{(x+3)(3x)} = -\frac{1}{9}$$
+              $$\lim_{x \to -3} \frac{\frac{1}{x} + \frac{1}{3}}{x+3} \cdot \frac{3x}{3x}$$[cite: 7]
+              $$= \lim_{x \to -3} \frac{3+x}{(x+3)(3x)} = -\frac{1}{9}$$[cite: 7]
             </div>
           </div>
         </div>
@@ -353,7 +356,7 @@
         <div>
           <h2 class="text-2xl md:text-3xl font-extrabold text-white">Continuity & The 3-Part Checklist</h2>
           <p class="mt-2 text-slate-300 text-sm leading-relaxed">
-            A function $f(x)$ is continuous at $x = c$ if and only if all three conditions hold:
+            A function $f(x)$ is continuous at $x = c$ if and only if all three conditions hold[cite: 1, 6]:
           </p>
         </div>
 
@@ -361,23 +364,23 @@
           <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800">
             <div class="text-indigo-400 font-bold text-sm mb-1">Condition 1</div>
             <div class="font-mono text-white text-xs mb-2">$f(c)$ exists</div>
-            <p class="text-slate-400">The point is defined on the graph (not a hole with no point, and not an asymptote).</p>
+            <p class="text-slate-400">The point is defined on the graph (not a hole with no point, and not an asymptote)[cite: 1, 6].</p>
           </div>
           <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800">
             <div class="text-indigo-400 font-bold text-sm mb-1">Condition 2</div>
             <div class="font-mono text-white text-xs mb-2">$\lim_{x \to c} f(x)$ exists</div>
-            <p class="text-slate-400">The left-hand limit equals the right-hand limit: $\lim_{x \to c^-} f(x) = \lim_{x \to c^+} f(x)$.</p>
+            <p class="text-slate-400">The left-hand limit equals the right-hand limit: $\lim_{x \to c^-} f(x) = \lim_{x \to c^+} f(x)$[cite: 1, 6].</p>
           </div>
           <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800">
             <div class="text-indigo-400 font-bold text-sm mb-1">Condition 3</div>
             <div class="font-mono text-white text-xs mb-2">$\lim_{x \to c} f(x) = f(c)$</div>
-            <p class="text-slate-400">The point is located in the exact spot the curve was aiming for!</p>
+            <p class="text-slate-400">The point is located in the exact spot the curve was aiming for![cite: 1, 6]</p>
           </div>
         </div>
 
         <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 text-xs text-slate-300">
           <strong class="text-emerald-300">Solving for $c$ in Piecewise Functions:</strong>
-          Set the left rule equal to the right rule at the boundary $x = x_0$ to guarantee that $\lim_{x \to x_0^-} f(x) = \lim_{x \to x_0^+} f(x)$.
+          Set the left rule equal to the right rule at the boundary $x = x_0$ to guarantee that $\lim_{x \to x_0^-} f(x) = \lim_{x \to x_0^+} f(x)$[cite: 1, 6].
         </div>
       </section>
 
@@ -396,7 +399,7 @@
         <div>
           <h2 class="text-2xl md:text-3xl font-extrabold text-white">Infinite Limits: When Substitution Gives $\frac{\text{Non-Zero}}{0}$</h2>
           <p class="mt-2 text-slate-300 text-sm leading-relaxed">
-            If direct substitution yields $\frac{\text{number}}{0}$ where the numerator is NOT zero, you have a <strong>Vertical Asymptote</strong>. The limit is either $+\infty$, $-\infty$, or DNE (if the two sides differ in sign)!
+            If direct substitution yields $\frac{\text{number}}{0}$ where the numerator is NOT zero, you have a <strong>Vertical Asymptote</strong>[cite: 2]. The limit is either $+\infty$, $-\infty$, or DNE (if the two sides differ in sign)![cite: 2]
           </p>
         </div>
 
@@ -404,13 +407,13 @@
           <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 space-y-2">
             <div class="font-bold text-white text-sm">Notebook Example Decoded:</div>
             <div class="font-mono text-indigo-300 p-2.5 rounded bg-slate-950">
-              $$\lim_{x \to 2^-} \frac{3x+1}{x-2} = \frac{7}{0^-}$$
+              $$\lim_{x \to 2^-} \frac{3x+1}{x-2} = \frac{7}{0^-}$$[cite: 2]
             </div>
             <p class="text-slate-300">
-              <strong>Sign Analysis:</strong> As $x \to 2^-$ (e.g., $x = 1.99$), the numerator is $3(1.99)+1 \approx +6.97 > 0$, but the denominator is $1.99 - 2 = -0.01 < 0$.
+              <strong>Sign Analysis:</strong> As $x \to 2^-$ (e.g., $x = 1.99$), the numerator is $3(1.99)+1 \approx +6.97 > 0$, but the denominator is $1.99 - 2 = -0.01 < 0$[cite: 2].
             </p>
             <p class="text-rose-300 font-bold">
-              $$\frac{\text{Positive}}{\text{Tiny Negative}} \implies -\infty$$
+              $$\frac{\text{Positive}}{\text{Tiny Negative}} \implies -\infty$$[cite: 2]
             </p>
           </div>
 
@@ -425,7 +428,7 @@
             <p class="text-emerald-300 font-bold">
               $$\frac{\text{Positive}}{\text{Tiny Positive}} \implies +\infty$$
             </p>
-            <p class="text-slate-400 text-[11px]">Because left is $-\infty$ and right is $+\infty$, the overall two-sided $\lim_{x\to 2} f(x)$ does not exist (DNE).</p>
+            <p class="text-slate-400 text-[11px]">Because left is $-\infty$ and right is $+\infty$, the overall two-sided $\lim_{x\to 2} f(x)$ does not exist (DNE)[cite: 2].</p>
           </div>
         </div>
       </section>
@@ -445,38 +448,38 @@
         <div>
           <h2 class="text-2xl md:text-3xl font-extrabold text-white">Limits at Infinity: End Behavior & Horizontal Asymptotes</h2>
           <p class="mt-2 text-slate-300 text-sm leading-relaxed">
-            Finding $\lim_{x \to \infty} f(x)$ or $\lim_{x \to -\infty} f(x)$ asks: <em>"What horizontal ceiling or floor does the curve flatten out against as $x$ heads forever right or left?"</em>
+            Finding $\lim_{x \to \infty} f(x)$ or $\lim_{x \to -\infty} f(x)$ asks: <em>"What horizontal ceiling or floor does the curve flatten out against as $x$ heads forever right or left?"</em>[cite: 3]
           </p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
           <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 space-y-2">
-            <div class="font-bold text-white text-sm">Case 1: Degree Num < Den</div>
+            <div class="font-bold text-white text-sm">Case 1: Degree Num &lt; Den</div>
             <div class="p-2 rounded bg-slate-950 font-mono text-indigo-300 text-[11px]">
-              $$\lim_{x \to \infty} \frac{4x^3}{x^4+1} = 0$$
+              $$\lim_{x \to \infty} \frac{4x^3}{x^4+1} = 0$$[cite: 3]
             </div>
-            <p class="text-slate-400">The denominator grows much faster, driving the fraction to 0. Horizontal asymptote at $y = 0$.</p>
+            <p class="text-slate-400">The denominator grows much faster, driving the fraction to 0[cite: 3]. Horizontal asymptote at $y = 0$[cite: 3].</p>
           </div>
 
           <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 space-y-2">
             <div class="font-bold text-white text-sm">Case 2: Degree Num = Den</div>
             <div class="p-2 rounded bg-slate-950 font-mono text-indigo-300 text-[11px]">
-              $$\lim_{x \to \infty} \frac{x^2-4x}{2x^2+9} = \frac{1}{2}$$
+              $$\lim_{x \to \infty} \frac{x^2-4x}{2x^2+9} = \frac{1}{2}$$[cite: 3]
             </div>
-            <p class="text-slate-400">The powers tie! The limit is the ratio of the leading coefficients ($\frac{1}{2}$). HA at $y = \frac{1}{2}$.</p>
+            <p class="text-slate-400">The powers tie! The limit is the ratio of the leading coefficients ($\frac{1}{2}$)[cite: 3]. HA at $y = \frac{1}{2}$[cite: 3].</p>
           </div>
 
           <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 space-y-2">
-            <div class="font-bold text-white text-sm">Case 3: Degree Num > Den</div>
+            <div class="font-bold text-white text-sm">Case 3: Degree Num &gt; Den</div>
             <div class="p-2 rounded bg-slate-950 font-mono text-indigo-300 text-[11px]">
-              $$\lim_{x \to \infty} \frac{x^3+4x}{x^2+1} = \text{DNE} \ (\infty)$$
+              $$\lim_{x \to \infty} \frac{x^3+4x}{x^2+1} = \text{DNE} \ (\infty)$$[cite: 3]
             </div>
-            <p class="text-slate-400">The numerator dominates. The curve blows up without bound, so no horizontal asymptote exists.</p>
+            <p class="text-slate-400">The numerator dominates[cite: 3]. The curve blows up without bound, so no horizontal asymptote exists[cite: 3].</p>
           </div>
         </div>
 
         <div class="p-3.5 rounded-xl bg-slate-800/50 border border-slate-700 text-xs text-slate-300">
-          <strong>Teacher's Grading Warning from Notebook:</strong> On tests, if asked for a <em>Horizontal Asymptote</em>, you can state the rule directly. But if asked to <em>evaluate the limit</em>, divide every term by the highest power of $x$ in the denominator to show complete work!
+          <strong>Teacher's Grading Warning from Notebook:</strong> On tests, if asked for a <em>Horizontal Asymptote</em>, you can state the rule directly[cite: 3]. But if asked to <em>evaluate the limit</em>, divide every term by the highest power of $x$ in the denominator to show complete work![cite: 3]
         </div>
       </section>
 
@@ -495,7 +498,7 @@
         <div>
           <h2 class="text-2xl md:text-3xl font-extrabold text-white">The Squeeze Theorem & Essential Trig Limits</h2>
           <p class="mt-2 text-slate-300 text-sm leading-relaxed">
-            If $h(x) \le f(x) \le g(x)$ and both bounding functions squeeze into the same value: $\lim h(x) = L$ and $\lim g(x) = L$, then the middle function $f(x)$ is forced to have that same limit $L$!
+            If $h(x) \le f(x) \le g(x)$ and both bounding functions squeeze into the same value: $\lim h(x) = L$ and $\lim g(x) = L$, then the middle function $f(x)$ is forced to have that same limit $L$![cite: 4]
           </p>
         </div>
 
@@ -503,19 +506,19 @@
           <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 space-y-3">
             <div class="font-bold text-white text-sm">Two Fundamental Trig Limits:</div>
             <div class="p-2.5 rounded bg-slate-950 font-mono text-emerald-400 font-bold space-y-1">
-              <div>$$\lim_{x \to 0} \frac{\sin x}{x} = 1$$</div>
-              <div>$$\lim_{x \to 0} \frac{1 - \cos x}{x} = 0$$</div>
+              <div>$$\lim_{x \to 0} \frac{\sin x}{x} = 1$$[cite: 4]</div>
+              <div>$$\lim_{x \to 0} \frac{1 - \cos x}{x} = 0$$[cite: 4]</div>
             </div>
-            <p class="text-slate-400">Derived directly from geometric squeeze theorems. Memorize these cold!</p>
+            <p class="text-slate-400">Derived directly from geometric squeeze theorems[cite: 4]. Memorize these cold!</p>
           </div>
 
           <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 space-y-3">
             <div class="font-bold text-white text-sm">The Scaling Trick $(\sin kx)$:</div>
-            <p class="text-slate-300">To evaluate $\lim_{x \to 0} \frac{\sin(3x)}{x}$, balance with $\frac{3}{3}$:</p>
+            <p class="text-slate-300">To evaluate $\lim_{x \to 0} \frac{\sin(3x)}{x}$, balance with $\frac{3}{3}$[cite: 4]:</p>
             <div class="p-2.5 rounded bg-slate-950 font-mono text-indigo-300">
-              $$\lim_{x \to 0} \left(3 \cdot \frac{\sin 3x}{3x}\right) = 3 \cdot (1) = 3$$
+              $$\lim_{x \to 0} \left(3 \cdot \frac{\sin 3x}{3x}\right) = 3 \cdot (1) = 3$$[cite: 4]
             </div>
-            <p class="text-slate-300">Similarly, $\lim_{x \to 0} \frac{\sin 5x \sin 4x}{x^2} = 5 \cdot 4 = 20$.</p>
+            <p class="text-slate-300">Similarly, $\lim_{x \to 0} \frac{\sin 5x \sin 4x}{x^2} = 5 \cdot 4 = 20$[cite: 4].</p>
           </div>
         </div>
       </section>
@@ -535,7 +538,7 @@
         <div>
           <h2 class="text-2xl md:text-3xl font-extrabold text-white">The Intermediate Value Theorem (IVT)</h2>
           <p class="mt-2 text-slate-300 text-sm leading-relaxed">
-            If $f$ is continuous on a closed interval $[a, b]$, it must take on every single $y$-value between $f(a)$ and $f(b)$ at least once!
+            If $f$ is continuous on a closed interval $[a, b]$, it must take on every single $y$-value between $f(a)$ and $f(b)$ at least once![cite: 5]
           </p>
         </div>
 
@@ -543,25 +546,25 @@
           <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 space-y-2">
             <div class="font-bold text-white text-sm">The 2 Non-Negotiable Conditions:</div>
             <ol class="list-decimal list-inside space-y-1.5 text-slate-300">
-              <li><strong>$f(x)$ is continuous</strong> on the closed interval $[a, b]$.</li>
-              <li><strong>$k$ is strictly between</strong> $f(a)$ and $f(b)$.</li>
+              <li><strong>$f(x)$ is continuous</strong> on the closed interval $[a, b]$[cite: 5].</li>
+              <li><strong>$k$ is strictly between</strong> $f(a)$ and $f(b)$[cite: 5].</li>
             </ol>
             <p class="text-emerald-300 mt-2">
-              <strong>Conclusion:</strong> There exists at least one $c \in (a, b)$ such that $f(c) = k$.
+              <strong>Conclusion:</strong> There exists at least one $c \in (a, b)$ such that $f(c) = k$[cite: 5].
             </p>
           </div>
 
           <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 space-y-2">
             <div class="font-bold text-white text-sm">Most Common AP Application: Proving Roots</div>
             <p class="text-slate-300">
-              If $f(a) < 0$ (negative) and $f(b) > 0$ (positive), because $0$ lies between a negative and a positive, $f(x) = 0$ must have at least one solution (root) in $(a, b)$!
+              If $f(a) < 0$ (negative) and $f(b) > 0$ (positive), because $0$ lies between a negative and a positive, $f(x) = 0$ must have at least one solution (root) in $(a, b)$![cite: 5]
             </p>
           </div>
         </div>
 
         <div class="p-4 rounded-xl bg-indigo-950/40 border border-indigo-800/50 flex items-center justify-between">
           <div class="text-xs text-indigo-200">
-            Ready to test your skills? Jump into the <strong>Practice Question Hub</strong> to work through problems from every section!
+            Ready to test your skills? Jump into the <strong>Practice Question Hub</strong> to work through open-ended problems from every section!
           </div>
           <button onclick="switchMainView('practice')" class="px-4 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs transition">
             Go to Practice Questions Hub →
@@ -571,16 +574,16 @@
 
     </div>
 
-    <!-- ==================== VIEW 2: PRACTICE QUESTIONS HUB ==================== -->
+    <!-- ==================== VIEW 2: OPEN-ENDED PRACTICE QUESTIONS HUB ==================== -->
     <div id="practiceView" class="hidden w-full space-y-6">
       
       <!-- Practice Hub Header & Stats -->
       <div class="glass-card rounded-2xl p-5 flex flex-wrap items-center justify-between gap-4">
         <div>
           <h2 class="text-xl font-bold text-white flex items-center gap-2">
-            <span>🎯 Limits & Continuity Practice Suite</span>
+            <span>🎯 Limits & Continuity Free-Response Suite</span>
           </h2>
-          <p class="text-xs text-slate-400 mt-0.5">32 targeted AP-style problems (4 per topic) with full teacher scratchwork & step-by-step solutions.</p>
+          <p class="text-xs text-slate-400 mt-0.5">32 open-ended AP problems with active syntax evaluation & step-by-step teacher scratchwork.</p>
         </div>
 
         <div class="flex items-center gap-4">
@@ -609,8 +612,48 @@
 
       <!-- Practice Question Cards Container -->
       <div id="practiceQuestionsContainer" class="space-y-4">
-        <!-- Dynamically rendered or pre-rendered questions -->
+        <!-- Dynamically rendered open-ended questions -->
       </div>
+    </div>
+
+    <!-- ==================== VIEW 3: AP PHYSICS 1 KINEMATICS TAB ==================== -->
+    <div id="physicsView" class="hidden w-full space-y-6">
+      
+      <!-- Physics Reference Banner -->
+      <div class="glass-card rounded-2xl p-6 border-l-4 border-l-amber-500 space-y-3">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <span class="px-3 py-1 rounded-full bg-amber-500/20 text-amber-300 text-xs font-bold border border-amber-500/30">AP Physics 1</span>
+            <span class="text-xs text-slate-400">Unit 1: 1D Kinematics (Equations of Motion)</span>
+          </div>
+          <button onclick="toggleAllPhysicsKeys()" class="px-3 py-1.5 rounded-lg bg-amber-600/30 hover:bg-amber-600/50 text-amber-300 border border-amber-500/40 text-xs font-bold transition">
+            🔑 Toggle All Answer Keys
+          </button>
+        </div>
+        <h2 class="text-xl md:text-2xl font-black text-white">Kinematic Equations of Motion ($a = \text{const}$)</h2>
+        <p class="text-xs md:text-sm text-slate-300 leading-relaxed">
+          Use the 4 constant-acceleration equations to solve each word problem. For free-fall, assume standard acceleration due to gravity $g = 9.8\text{ m/s}^2$ downward unless stated otherwise.
+        </p>
+
+        <!-- Kinematic Formula Box -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 pt-2 text-xs font-mono">
+          <div class="p-2.5 rounded-xl bg-slate-900/90 border border-slate-800 text-amber-300">
+            $$v = v_0 + at$$
+          </div>
+          <div class="p-2.5 rounded-xl bg-slate-900/90 border border-slate-800 text-amber-300">
+            $$\Delta x = v_0 t + \frac{1}{2}at^2$$
+          </div>
+          <div class="p-2.5 rounded-xl bg-slate-900/90 border border-slate-800 text-amber-300">
+            $$v^2 = v_0^2 + 2a\Delta x$$
+          </div>
+          <div class="p-2.5 rounded-xl bg-slate-900/90 border border-slate-800 text-amber-300">
+            $$\Delta x = \left(\frac{v_0 + v}{2}\right)t$$
+          </div>
+        </div>
+      </div>
+
+      <!-- 8 Word Problems Container -->
+      <div id="physicsQuestionsContainer" class="space-y-4"></div>
     </div>
 
   </main>
@@ -618,10 +661,10 @@
   <footer class="w-full px-6 py-3 glass-card border-t border-slate-800 text-center text-xs text-slate-400 flex flex-wrap items-center justify-between gap-2">
     <div class="flex items-center gap-2">
       <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-      <span>Calculus AP & College Board Aligned</span>
+      <span>Calculus AP & AP Physics 1 Companion</span>
     </div>
     <div class="hidden sm:block text-[11px] text-slate-500">
-      Click any question to check your work or reveal detailed scratchwork
+      Type answers into open input fields or review scoring rubrics for full proof credit
     </div>
     <div class="text-[11px] text-indigo-400 font-semibold cursor-pointer hover:underline" onclick="toggleAiDrawer()">
       Stuck on a problem? Ask AI Tutor 💬
@@ -636,8 +679,8 @@
           ✨
         </div>
         <div>
-          <h3 class="text-sm font-bold text-white">Calculus AI Companion</h3>
-          <p class="text-[10px] text-slate-400">Trained on all 8 limit & continuity units</p>
+          <h3 class="text-sm font-bold text-white">AP STEM AI Tutor</h3>
+          <p class="text-[10px] text-slate-400">Ready for Calculus limits & Physics kinematics</p>
         </div>
       </div>
       <button onclick="toggleAiDrawer()" class="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition">
@@ -653,8 +696,8 @@
       <button onclick="sendQuickPrompt('Walk me through doing sign analysis for an infinite limit like lim x->3- (-2x+4)/(x-3)')" class="px-2.5 py-1 rounded-full bg-slate-800 hover:bg-indigo-600 text-slate-300 hover:text-white transition">
         📈 Sign Analysis Guide
       </button>
-      <button onclick="sendQuickPrompt('Explain why lim x->0 sin(3x)/x is 3 using the fundamental trig limit')" class="px-2.5 py-1 rounded-full bg-slate-800 hover:bg-indigo-600 text-slate-300 hover:text-white transition">
-        🎯 Sin(kx)/x Trick
+      <button onclick="sendQuickPrompt('How do I choose the correct kinematic equation of motion in AP Physics 1?')" class="px-2.5 py-1 rounded-full bg-slate-800 hover:bg-amber-600 text-slate-300 hover:text-white transition">
+        🚀 Kinematic Equations Guide
       </button>
       <button onclick="sendQuickPrompt('How do I write an AP Calculus exam proof for the Intermediate Value Theorem?')" class="px-2.5 py-1 rounded-full bg-slate-800 hover:bg-indigo-600 text-slate-300 hover:text-white transition">
         ✍️ IVT Proof Template
@@ -666,7 +709,7 @@
       <div class="flex items-start gap-2.5">
         <div class="w-6 h-6 rounded-full bg-purple-600 flex-shrink-0 flex items-center justify-center text-[10px] font-bold text-white">AI</div>
         <div class="p-3 rounded-2xl bg-slate-800/90 text-slate-200 border border-slate-700/80 leading-relaxed">
-          Hello! I'm your Calculus limits tutor. Ask me about any practice problem, how to factor polynomials, how to rationalize with conjugates, one-sided limits, vertical asymptotes, horizontal asymptotes, the Squeeze Theorem, or the Intermediate Value Theorem!
+          Hello! I'm your AP STEM tutor. Ask me about any Calculus limit problems, indeterminate forms, continuity, vertical asymptotes, horizontal asymptotes, the Squeeze Theorem, or kinematic word problems in AP Physics 1!
         </div>
       </div>
     </div>
@@ -674,12 +717,12 @@
     <!-- Input Box -->
     <div class="p-3 border-t border-slate-800 bg-slate-950/80">
       <form id="aiChatForm" onsubmit="handleAiSubmit(event)" class="flex gap-2">
-        <input id="aiInput" type="text" placeholder="Ask a question about limits or a practice problem..." class="flex-1 px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-700 focus:border-indigo-500 focus:outline-none text-xs text-white placeholder-slate-500">
+        <input id="aiInput" type="text" placeholder="Ask a question about limits or kinematics..." class="flex-1 px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-700 focus:border-indigo-500 focus:outline-none text-xs text-white placeholder-slate-500">
         <button id="aiSendBtn" type="submit" class="px-3.5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold transition text-xs flex items-center justify-center shadow-lg shadow-indigo-600/30">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
         </button>
       </form>
-      <div class="text-[10px] text-slate-500 mt-1.5 text-center">Powered by Gemini AI • Format LaTeX with $...$</div>
+      <div class="text-[10px] text-slate-500 mt-1.5 text-center">Format LaTeX with $...$</div>
     </div>
   </aside>
 
@@ -728,7 +771,7 @@
                 📨 Option 2: Launch Email Draft with Notes Summary
               </div>
               <p class="text-[11px] text-slate-400 mt-1">
-                Opens your default email client with a pre-written study summary of all 8 limits topics ready to send to a study group or instructor.
+                Opens your default email client with a pre-written study summary of Calculus limits and Physics kinematics.
               </p>
             </div>
             <button onclick="openEmailDraft()" class="flex-shrink-0 px-3 py-2 rounded-lg bg-purple-600 hover:bg-purple-500 text-white font-bold text-xs transition shadow flex items-center gap-1.5">
@@ -767,8 +810,7 @@
 
   <script>
     // ==========================================
-    // 32 Targeted Practice Questions Database
-    // 4 for each of the 8 sections
+    // 32 Targeted OPEN-ENDED Calculus Questions
     // ==========================================
     const practiceQuestions = [
       // SECTION 1: WHAT IS A LIMIT & DNE
@@ -776,57 +818,37 @@
         id: 'intro-1',
         topic: 'sec-intro',
         topicName: '1. What is a Limit & DNE',
-        question: 'What is the fundamental difference between $f(c)$ and $\\lim_{x \\to c} f(x)$?',
-        options: [
-          { id: 'A', text: 'They are always the exact same mathematical value by definition.' },
-          { id: 'B', text: '$f(c)$ is the actual function value at $x = c$, while $\\lim_{x \\to c} f(x)$ is the height the curve intends to reach as $x$ approaches $c$.', correct: true },
-          { id: 'C', text: 'Limits only apply to polynomials, whereas $f(c)$ applies to rational equations.' },
-          { id: 'D', text: 'If $f(c)$ is undefined, the limit $\\lim_{x \\to c} f(x)$ can never exist.' }
-        ],
-        hint: 'Think about a road with a missing bridge tile or a pothole!',
-        solution: '<strong>Explanation:</strong><br>• $f(c)$ is the actual $y$-value at $x = c$ (the point plotted on the graph).<br>• $\\lim_{x \\to c} f(x)$ describes what value $y$ approaches as $x$ gets arbitrarily close to $c$ from both sides.<br>A function can have a hole at $x = c$ (meaning $f(c)$ is undefined), yet the limit can still exist perfectly!'
+        isRubric: true,
+        question: 'State the precise difference between $f(c)$ and $\\lim_{x \\to c} f(x)$. Explain how it is possible for a limit to exist at $x = c$ while $f(c)$ is completely undefined.',
+        hint: 'Think about a road with a pothole: does the road aim toward a spot even if the bridge tile is missing?',
+        solution: '<strong>AP Scoring Rubric & Conceptual Explanation:</strong><br>• <strong>$f(c)$:</strong> The actual height / output of the function at the single exact point $x = c$.<br>• <strong>$\\lim_{x \\to c} f(x)$:</strong> The intended height that $f(x)$ approaches as $x$ gets arbitrarily close to $c$ from both the left and right.<br>• <strong>Key Takeaway:</strong> A limit depends strictly on the neighborhood around $c$, never on the point $x = c$ itself. A removable hole has $\\lim_{x \\to c} f(x) = L$ while $f(c)$ is undefined!'
       },
       {
         id: 'intro-2',
         topic: 'sec-intro',
         topicName: '1. What is a Limit & DNE',
-        question: 'Why does $\\lim_{x \\to 0} \\frac{|x|}{x}$ not exist (DNE)?',
-        options: [
-          { id: 'A', text: 'Because $\\frac{|0|}{0} = 0$, which is impossible.' },
-          { id: 'B', text: 'Because the left-hand limit is $-1$ and the right-hand limit is $+1$, so they do not agree.', correct: true },
-          { id: 'C', text: 'Because absolute values cannot be plotted in calculus.' },
-          { id: 'D', text: 'Because the function oscillates between $-\\infty$ and $+\\infty$.' }
-        ],
-        hint: 'Break $|x|$ into its piecewise definition: $-x$ when $x < 0$ and $+x$ when $x > 0$.',
-        solution: '<strong>Step-by-step Solution:</strong><br>1. When $x < 0$, $|x| = -x$, so $\\lim_{x \\to 0^-} \\frac{-x}{x} = -1$.<br>2. When $x > 0$, $|x| = x$, so $\\lim_{x \\to 0^+} \\frac{x}{x} = +1$.<br>3. Since $\\lim_{x \\to 0^-} f(x) = -1 \\ne +1 = \\lim_{x \\to 0^+} f(x)$, the two-sided limit <strong>Does Not Exist (DNE)</strong>.'
+        question: 'Consider the piecewise function $f(x) = \\begin{cases} 3 - x, & x < 2 \\\\ 5, & x = 2 \\\\ x^2 - 1, & x > 2 \\end{cases}$. Evaluate $\\lim_{x \\to 2} f(x)$. If the limit does not exist, type <code>DNE</code>.',
+        accepted: ['dne', 'does not exist'],
+        hint: 'Evaluate the one-sided limits: $\\lim_{x \\to 2^-}(3-x)$ and $\\lim_{x \\to 2^+}(x^2-1)$. Do they agree?',
+        solution: '<strong>Step-by-step Solution:</strong><br>1. Left limit: $\\lim_{x \\to 2^-} (3 - x) = 3 - 2 = 1$<br>2. Right limit: $\\lim_{x \\to 2^+} (x^2 - 1) = 2^2 - 1 = 3$<br>3. Because $\\lim_{x \\to 2^-} f(x) \\ne \\lim_{x \\to 2^+} f(x)$, the two-sided limit <strong>Does Not Exist (DNE)</strong>.'
       },
       {
         id: 'intro-3',
         topic: 'sec-intro',
         topicName: '1. What is a Limit & DNE',
-        question: 'Which of the following functions exhibits <em>oscillating behavior</em> that causes the limit as $x \\to 0$ to not exist?',
-        options: [
-          { id: 'A', text: '$f(x) = \\frac{1}{x^2}$' },
-          { id: 'B', text: '$f(x) = x^2 \\sin(x)$' },
-          { id: 'C', text: '$f(x) = \\sin\\left(\\frac{1}{x}\\right)$', correct: true },
-          { id: 'D', text: '$f(x) = \\frac{x-1}{x+1}$' }
-        ],
-        hint: 'As $x \\to 0$, what happens to the argument inside the sine function?',
-        solution: '<strong>Explanation:</strong><br>In your notebook notes under "Common Types of Behavior":<br>As $x \\to 0$, the input $\\frac{1}{x}$ approaches $\\pm\\infty$. This forces $\\sin(1/x)$ to bounce infinitely fast between $-1$ and $+1$ within any tiny interval around $0$. It never settles onto one number, so the limit DNE.'
+        question: 'Evaluate the left-hand limit: $\\lim_{x \\to 0^-} \\frac{|x|}{x}$.',
+        accepted: ['-1'],
+        hint: 'When $x < 0$, what does $|x|$ simplify to algebraically?',
+        solution: '<strong>Step-by-step Solution:</strong><br>For $x < 0$, $|x| = -x$.<br>$$\\lim_{x \\to 0^-} \\frac{|x|}{x} = \\lim_{x \\to 0^-} \\frac{-x}{x} = \\lim_{x \\to 0^-} (-1) = \\mathbf{-1}$$'
       },
       {
         id: 'intro-4',
         topic: 'sec-intro',
         topicName: '1. What is a Limit & DNE',
-        question: 'Suppose a table of values shows: as $x$ takes values $0.9, 0.99, 0.999$, $f(x)$ takes $3.8, 3.98, 3.998$, and as $x$ takes $1.1, 1.01, 1.001$, $f(x)$ takes $4.2, 4.02, 4.002$. What is the estimated $\\lim_{x \\to 1} f(x)$?',
-        options: [
-          { id: 'A', text: '$3.99$' },
-          { id: 'B', text: '$4$', correct: true },
-          { id: 'C', text: '$1$' },
-          { id: 'D', text: 'Does Not Exist' }
-        ],
-        hint: 'What whole number are both sides converging toward?',
-        solution: '<strong>Numerical Estimation:</strong><br>• From the left ($x \\to 1^-$): $f(x) \\to 4.0$<br>• From the right ($x \\to 1^+$): $f(x) \\to 4.0$<br>Both sides converge to $4$, so $\\lim_{x \\to 1} f(x) = 4$.'
+        isRubric: true,
+        question: 'Explain why $\\lim_{x \\to 0} \\sin\\left(\\frac{1}{x}\\right)$ does not exist as a finite real number.',
+        hint: 'What happens to the angle $1/x$ as $x \\to 0$?',
+        solution: '<strong>AP Scoring Rubric & Explanation:</strong><br>• As $x \\to 0$, the argument $\\frac{1}{x} \\to \\pm\\infty$.<br>• The function $\\sin(1/x)$ oscillates between $-1$ and $+1$ an infinite number of times in any interval around $x = 0$.<br>• Because the values never settle onto a single finite number $L$, the limit <strong>Does Not Exist (oscillating behavior)</strong>.'
       },
 
       // SECTION 2: LIMIT PROPERTIES & DIRECT SUBSTITUTION
@@ -834,57 +856,37 @@
         id: 'props-1',
         topic: 'sec-props',
         topicName: '2. Limit Properties',
-        question: 'Evaluate $\\lim_{x \\to 2} (4x^2 + 3)$ using the limit properties.',
-        options: [
-          { id: 'A', text: '$11$' },
-          { id: 'B', text: '$19$', correct: true },
-          { id: 'C', text: '$35$' },
-          { id: 'D', text: '$16$' }
-        ],
-        hint: 'Direct substitution works for any polynomial! Just plug in $x = 2$.',
-        solution: '<strong>Step-by-step Solution:</strong><br>Using limit properties:<br>$$\\lim_{x \\to 2} (4x^2 + 3) = 4 \\cdot (\\lim_{x \\to 2} x)^2 + \\lim_{x \\to 2} 3$$<br>$$= 4(2)^2 + 3 = 4(4) + 3 = 16 + 3 = 19$$'
+        question: 'Evaluate the limit analytically using direct substitution: $\\lim_{x \\to 2} (4x^2 + 3)$.',
+        accepted: ['19'],
+        hint: 'Polynomials are continuous everywhere. Substitute $x = 2$ directly.',
+        solution: '<strong>Step-by-step Solution:</strong><br>$$\\lim_{x \\to 2} (4x^2 + 3) = 4(2)^2 + 3 = 4(4) + 3 = 16 + 3 = \\mathbf{19}$$'
       },
       {
         id: 'props-2',
         topic: 'sec-props',
         topicName: '2. Limit Properties',
-        question: 'Given $\\lim_{x \\to c} f(x) = 3$ and $\\lim_{x \\to c} g(x) = -2$, find $\\lim_{x \\to c} [f(x)^2 - 4g(x)]$.',
-        options: [
-          { id: 'A', text: '$9 - 8 = 1$' },
-          { id: 'B', text: '$9 + 8 = 17$', correct: true },
-          { id: 'C', text: '$6 - (-8) = 14$' },
-          { id: 'D', text: '$-17$' }
-        ],
-        hint: 'Distribute the limit to each function: $[\\lim f(x)]^2 - 4[\\lim g(x)]$.',
-        solution: '<strong>Step-by-step Solution:</strong><br>$$\\lim_{x \\to c} [f(x)^2 - 4g(x)] = [\\lim_{x \\to c} f(x)]^2 - 4[\\lim_{x \\to c} g(x)]$$<br>$$= (3)^2 - 4(-2) = 9 - (-8) = 9 + 8 = 17$$'
+        question: 'Given $\\lim_{x \\to c} f(x) = 3$ and $\\lim_{x \\to c} g(x) = -2$, evaluate $\\lim_{x \\to c} \\left([f(x)]^2 - 4g(x)\\right)$.',
+        accepted: ['17'],
+        hint: 'Apply limit power and scalar laws: $[\\lim f(x)]^2 - 4[\\lim g(x)]$.',
+        solution: '<strong>Step-by-step Solution:</strong><br>$$\\lim_{x \\to c} [f(x)^2 - 4g(x)] = (3)^2 - 4(-2) = 9 - (-8) = 9 + 8 = \\mathbf{17}$$'
       },
       {
         id: 'props-3',
         topic: 'sec-props',
         topicName: '2. Limit Properties',
-        question: 'Evaluate the trigonometric limit: $\\lim_{x \\to \\pi/2} (x \\sin x)$.',
-        options: [
-          { id: 'A', text: '$0$' },
-          { id: 'B', text: '$\\pi$', correct: false },
-          { id: 'C', text: '$\\frac{\\pi}{2}$', correct: true },
-          { id: 'D', text: '$1$' }
-        ],
-        hint: 'Use the product rule: $\\lim x \\cdot \\lim \\sin x$. What is $\\sin(\\pi/2)$?',
-        solution: '<strong>Step-by-step Solution:</strong><br>Notebook Example 5:<br>$$\\lim_{x \\to \\pi/2} (x \\sin x) = \\left(\\lim_{x \\to \\pi/2} x\\right) \\cdot \\left(\\lim_{x \\to \\pi/2} \\sin x\\right)$$<br>$$= \\frac{\\pi}{2} \\cdot \\sin\\left(\\frac{\\pi}{2}\\right) = \\frac{\\pi}{2} \\cdot 1 = \\frac{\\pi}{2}$$'
+        question: 'Evaluate $\\lim_{x \\to \\pi/2} (x \\sin x)$. (Type your answer in terms of pi, e.g. <code>pi/2</code>).',
+        accepted: ['pi/2', '\\pi/2', '0.5pi', '1.57', '1.5707', '1.571'],
+        hint: 'Product property: $\\lim x \\cdot \\lim \\sin x$. What is $\\sin(\\pi/2)$?',
+        solution: '<strong>Step-by-step Solution:</strong><br>$$\\lim_{x \\to \\pi/2} (x \\sin x) = \\left(\\frac{\\pi}{2}\\right) \\cdot \\sin\\left(\\frac{\\pi}{2}\\right) = \\frac{\\pi}{2} \\cdot 1 = \\mathbf{\\frac{\\pi}{2}}$$'
       },
       {
         id: 'props-4',
         topic: 'sec-props',
         topicName: '2. Limit Properties',
         question: 'Evaluate $\\lim_{x \\to 1} \\frac{x^4 + 3}{x^2 - 2}$ by direct substitution.',
-        options: [
-          { id: 'A', text: '$-4$', correct: true },
-          { id: 'B', text: '$4$' },
-          { id: 'C', text: '$-5$' },
-          { id: 'D', text: '$\\text{DNE}$' }
-        ],
-        hint: 'Plug in $x = 1$: $\\frac{1^4 + 3}{1^2 - 2}$.',
-        solution: '<strong>Step-by-step Solution:</strong><br>From Page 2 of your properties notebook:<br>$$\\lim_{x \\to 1} \\frac{x^4 + 3}{x^2 - 2} = \\frac{(1)^4 + 3}{(1)^2 - 2} = \\frac{1 + 3}{1 - 2} = \\frac{4}{-1} = -4$$'
+        accepted: ['-4'],
+        hint: 'Direct substitution: numerator is $1^4 + 3$, denominator is $1^2 - 2$.',
+        solution: '<strong>Step-by-step Solution:</strong><br>$$\\lim_{x \\to 1} \\frac{x^4 + 3}{x^2 - 2} = \\frac{(1)^4 + 3}{(1)^2 - 2} = \\frac{1 + 3}{1 - 2} = \\frac{4}{-1} = \\mathbf{-4}$$'
       },
 
       // SECTION 3: INDETERMINATE FORMS (0/0)
@@ -892,57 +894,37 @@
         id: 'indet-1',
         topic: 'sec-indet',
         topicName: '3. 0/0 Indeterminate',
-        question: 'Evaluate $\\lim_{x \\to 2} \\frac{x^2 - 5x + 6}{x^2 + 3x - 10}$.',
-        options: [
-          { id: 'A', text: '$-\\frac{1}{7}$', correct: true },
-          { id: 'B', text: '$\\frac{0}{0}$' },
-          { id: 'C', text: '$\\frac{1}{7}$' },
-          { id: 'D', text: '$-1$' }
-        ],
-        hint: 'Direct substitution yields $\\frac{0}{0}$. Factor both quadratic expressions and cancel $(x-2)$!',
-        solution: '<strong>Step-by-step Solution:</strong><br>1. Factor numerator: $x^2-5x+6 = (x-2)(x-3)$<br>2. Factor denominator: $x^2+3x-10 = (x-2)(x+5)$<br>3. Cancel $(x-2)$:<br>$$\\lim_{x \\to 2} \\frac{x-3}{x+5} = \\frac{2-3}{2+5} = -\\frac{1}{7}$$'
+        question: 'Evaluate $\\lim_{x \\to 2} \\frac{x^2 - 5x + 6}{x^2 + 3x - 10}$. (Enter as a fraction, e.g. <code>-1/7</code>).',
+        accepted: ['-1/7', '-0.1428', '-0.143'],
+        hint: 'Direct substitution gives 0/0. Factor $(x-2)$ from both the numerator and denominator.',
+        solution: '<strong>Step-by-step Solution:</strong><br>1. Factor: $\\frac{(x-2)(x-3)}{(x-2)(x+5)}$<br>2. Cancel $(x-2)$ for $x \\ne 2$: $\\lim_{x \\to 2} \\frac{x-3}{x+5} = \\frac{2-3}{2+5} = \\mathbf{-\\frac{1}{7}}$'
       },
       {
         id: 'indet-2',
         topic: 'sec-indet',
         topicName: '3. 0/0 Indeterminate',
-        question: 'Evaluate $\\lim_{x \\to 9} \\frac{\\sqrt{x} - 3}{x - 9}$ using rationalization.',
-        options: [
-          { id: 'A', text: '$\\frac{1}{3}$' },
-          { id: 'B', text: '$\\frac{1}{6}$', correct: true },
-          { id: 'C', text: '$0$' },
-          { id: 'D', text: '$6$' }
-        ],
-        hint: 'Multiply numerator and denominator by the conjugate $(\\sqrt{x} + 3)$.',
-        solution: '<strong>Step-by-step Solution:</strong><br>$$\\lim_{x \\to 9} \\frac{\\sqrt{x}-3}{x-9} \\cdot \\frac{\\sqrt{x}+3}{\\sqrt{x}+3} = \\lim_{x \\to 9} \\frac{x - 9}{(x - 9)(\\sqrt{x}+3)}$$<br>$$= \\lim_{x \\to 9} \\frac{1}{\\sqrt{x}+3} = \\frac{1}{\\sqrt{9}+3} = \\frac{1}{3+3} = \\frac{1}{6}$$'
+        question: 'Evaluate the warm-up limit from your notebook: $\\lim_{x \\to 4} \\frac{\\sqrt{x-2} - \\sqrt{2}}{x - 4}$. (Type as <code>sqrt(2)/4</code> or <code>1/(2sqrt(2))</code>).',
+        accepted: ['sqrt(2)/4', '1/(2sqrt(2))', '1/(2*sqrt(2))', '0.3535', '0.354'],
+        hint: 'Multiply numerator and denominator by conjugate $(\\sqrt{x-2} + \\sqrt{2})$.',
+        solution: '<strong>Step-by-step Solution:</strong><br>$$\\lim_{x \\to 4} \\frac{\\sqrt{x-2}-\\sqrt{2}}{x-4} \\cdot \\frac{\\sqrt{x-2}+\\sqrt{2}}{\\sqrt{x-2}+\\sqrt{2}} = \\lim_{x \\to 4} \\frac{(x-2)-2}{(x-4)(\\sqrt{x-2}+\\sqrt{2})}$$<br>$$= \\lim_{x \\to 4} \\frac{x-4}{(x-4)(\\sqrt{x-2}+\\sqrt{2})} = \\lim_{x \\to 4} \\frac{1}{\\sqrt{x-2}+\\sqrt{2}} = \\frac{1}{\\sqrt{2}+\\sqrt{2}} = \\mathbf{\\frac{1}{2\\sqrt{2}}} = \\mathbf{\\frac{\\sqrt{2}}{4}}$$'
       },
       {
         id: 'indet-3',
         topic: 'sec-indet',
         topicName: '3. 0/0 Indeterminate',
-        question: 'Evaluate $\\lim_{x \\to -3} \\frac{\\frac{1}{x} + \\frac{1}{3}}{x + 3}$.',
-        options: [
-          { id: 'A', text: '$\\frac{1}{9}$' },
-          { id: 'B', text: '$-\\frac{1}{9}$', correct: true },
-          { id: 'C', text: '$-\\frac{1}{3}$' },
-          { id: 'D', text: '$0$' }
-        ],
-        hint: 'Multiply the top and bottom fractions by $3x$.',
-        solution: '<strong>Step-by-step Solution:</strong><br>Notebook Example 5:<br>$$\\lim_{x \\to -3} \\frac{\\frac{1}{x} + \\frac{1}{3}}{x+3} \\left(\\frac{3x}{3x}\\right) = \\lim_{x \\to -3} \\frac{3 + x}{(x+3)(3x)}$$<br>Cancel $(x+3)$:<br>$$= \\lim_{x \\to -3} \\frac{1}{3x} = \\frac{1}{3(-3)} = -\\frac{1}{9}$$'
+        question: 'Evaluate $\\lim_{x \\to -3} \\frac{\\frac{1}{x} + \\frac{1}{3}}{x + 3}$. (Enter as a fraction, e.g. <code>-1/9</code>).',
+        accepted: ['-1/9', '-0.111'],
+        hint: 'Clear the compound fraction by multiplying top and bottom by $3x$.',
+        solution: '<strong>Step-by-step Solution:</strong><br>$$\\lim_{x \\to -3} \\frac{\\frac{1}{x}+\\frac{1}{3}}{x+3} \\left(\\frac{3x}{3x}\\right) = \\lim_{x \\to -3} \\frac{3+x}{3x(x+3)} = \\lim_{x \\to -3} \\frac{1}{3x} = \\frac{1}{3(-3)} = \\mathbf{-\\frac{1}{9}}$$'
       },
       {
         id: 'indet-4',
         topic: 'sec-indet',
         topicName: '3. 0/0 Indeterminate',
         question: 'Evaluate $\\lim_{x \\to 0} \\frac{\\sin x + \\sin 2x}{\\sin x}$.',
-        options: [
-          { id: 'A', text: '$1$' },
-          { id: 'B', text: '$2$' },
-          { id: 'C', text: '$3$', correct: true },
-          { id: 'D', text: '$\\text{DNE}$' }
-        ],
-        hint: 'Recall the double-angle identity: $\\sin(2x) = 2\\sin x \\cos x$. Factor out $\\sin x$!',
-        solution: '<strong>Step-by-step Solution:</strong><br>Notebook Page 1 Example 2:<br>1. Rewrite $\\sin 2x$ as $2 \\sin x \\cos x$:<br>$$\\lim_{x \\to 0} \\frac{\\sin x + 2 \\sin x \\cos x}{\\sin x}$$<br>2. Factor out $\\sin x$ from the numerator:<br>$$= \\lim_{x \\to 0} \\frac{\\sin x (1 + 2 \\cos x)}{\\sin x} = \\lim_{x \\to 0} (1 + 2 \\cos x)$$<br>3. Plug in $x = 0$:<br>$$= 1 + 2 \\cos(0) = 1 + 2(1) = 3$$'
+        accepted: ['3'],
+        hint: 'Recall $\\sin 2x = 2\\sin x \\cos x$. Factor out $\\sin x$ from the numerator!',
+        solution: '<strong>Step-by-step Solution:</strong><br>$$\\lim_{x \\to 0} \\frac{\\sin x(1 + 2\\cos x)}{\\sin x} = \\lim_{x \\to 0} (1 + 2\\cos x) = 1 + 2\\cos(0) = 1 + 2(1) = \\mathbf{3}$$'
       },
 
       // SECTION 4: CONTINUITY & ONE-SIDED LIMITS
@@ -950,57 +932,37 @@
         id: 'cont-1',
         topic: 'sec-cont',
         topicName: '4. Continuity & 1-Sided',
-        question: 'Let $f(x) = \\begin{cases} x, & x \\ne 3 \\\\ 5, & x = 3 \\end{cases}$. Why is $f(x)$ discontinuous at $x = 3$?',
-        options: [
-          { id: 'A', text: 'Condition 1 fails: $f(3)$ does not exist.' },
-          { id: 'B', text: 'Condition 2 fails: $\\lim_{x \\to 3} f(x)$ does not exist.' },
-          { id: 'C', text: 'Condition 3 fails: $\\lim_{x \\to 3} f(x) = 3 \\ne f(3) = 5$.', correct: true },
-          { id: 'D', text: 'It is continuous because 3 and 5 are real numbers.' }
-        ],
-        hint: 'Check each of the 3 continuity conditions in order!',
-        solution: '<strong>Step-by-step Checklist:</strong><br>1. $f(3) = 5$ exists. (Condition 1 passes)<br>2. $\\lim_{x \\to 3} f(x) = 3$ exists. (Condition 2 passes)<br>3. $\\lim_{x \\to 3} f(x) = 3 \\ne 5 = f(3)$.<br>Since the limit value does not equal the function value, <strong>Condition 3 is violated</strong>.'
+        isRubric: true,
+        question: 'Let $f(x) = \\begin{cases} x, & x \\ne 3 \\\\ 5, & x = 3 \\end{cases}$. Using the 3-part definition of continuity, explain exactly why $f(x)$ is discontinuous at $x = 3$.',
+        hint: 'Test Condition 1 ($f(c)$ exists), Condition 2 (limit exists), and Condition 3 (limit equals function value).',
+        solution: '<strong>AP Scoring Rubric & Verification:</strong><br>1. <strong>Condition 1:</strong> $f(3) = 5$ (exists).<br>2. <strong>Condition 2:</strong> $\\lim_{x \\to 3} f(x) = 3$ (exists).<br>3. <strong>Condition 3 Fails:</strong> $\\lim_{x \\to 3} f(x) \\ne f(3)$ because $3 \\ne 5$.<br>Therefore, $f$ has a <strong>removable discontinuity</strong> at $x = 3$.'
       },
       {
         id: 'cont-2',
         topic: 'sec-cont',
         topicName: '4. Continuity & 1-Sided',
-        question: 'For $f(x) = \\frac{x^2+6x+8}{x^2-x-20}$, classify the discontinuities at $x = -4$ and $x = 5$.',
-        options: [
-          { id: 'A', text: 'Holes at both $x = -4$ and $x = 5$.' },
-          { id: 'B', text: 'Removable discontinuity (hole) at $x = -4$; non-removable infinite discontinuity (vertical asymptote) at $x = 5$.', correct: true },
-          { id: 'C', text: 'Jump discontinuity at $x = -4$; asymptote at $x = 5$.' },
-          { id: 'D', text: 'Continuous everywhere on $\\mathbb{R}$.' }
-        ],
-        hint: 'Factor numerator and denominator: $\\frac{(x+4)(x+2)}{(x-5)(x+4)}$. Which factor cancels?',
-        solution: '<strong>Step-by-step Solution:</strong><br>$$f(x) = \\frac{(x+4)(x+2)}{(x-5)(x+4)}$$<br>• The factor $(x+4)$ cancels out $\\implies$ <strong>Removable Discontinuity (Hole)</strong> at $x = -4$.<br>• The factor $(x-5)$ remains in the denominator $\\implies$ <strong>Non-Removable Infinite Discontinuity (Vertical Asymptote)</strong> at $x = 5$.'
+        question: 'Find the constant $c$ that makes $g(x) = \\begin{cases} \\sqrt{2x-c}, & x < 0 \\\\ 3x^2 + 1, & x \\ge 0 \\end{cases}$ continuous everywhere.',
+        accepted: ['-1', 'c = -1', 'c=-1'],
+        hint: 'Set the left limit $\\lim_{x \\to 0^-} \\sqrt{2x-c} = \\sqrt{-c}$ equal to $g(0) = 3(0)^2+1 = 1$.',
+        solution: '<strong>Step-by-step Solution:</strong><br>Equate the left and right behaviors at $x = 0$:<br>$$\\sqrt{-c} = 1 \\implies -c = 1^2 \\implies \\mathbf{c = -1}$$'
       },
       {
         id: 'cont-3',
         topic: 'sec-cont',
         topicName: '4. Continuity & 1-Sided',
-        question: 'Find the value of $c$ that makes $g(x) = \\begin{cases} \\sqrt{2x-c}, & x < 0 \\\\ 3x^2+1, & x \\ge 0 \\end{cases}$ continuous everywhere.',
-        options: [
-          { id: 'A', text: '$c = 1$' },
-          { id: 'B', text: '$c = -1$', correct: true },
-          { id: 'C', text: '$c = 0$' },
-          { id: 'D', text: '$c = -4$' }
-        ],
-        hint: 'Set $\\lim_{x \\to 0^-} \\sqrt{2(0)-c} = \\lim_{x \\to 0^+} (3(0)^2+1)$.',
-        solution: '<strong>Step-by-step Solution:</strong><br>Notebook Page 2 Bottom Example:<br>1. Evaluate right-hand limit: $\\lim_{x \\to 0^+} (3x^2+1) = 3(0)^2+1 = 1$.<br>2. Evaluate left-hand limit: $\\lim_{x \\to 0^-} \\sqrt{2x - c} = \\sqrt{-c}$.<br>3. For continuity, set them equal:<br>$$\\sqrt{-c} = 1 \\implies -c = 1^2 \\implies c = -1$$'
+        question: 'For $f(x) = \\frac{x^2+6x+8}{x^2-x-20}$, at which $x$-value does a removable discontinuity (hole) occur?',
+        accepted: ['-4', 'x = -4', 'x=-4'],
+        hint: 'Factor numerator and denominator: $\\frac{(x+4)(x+2)}{(x-5)(x+4)}$. Which factor cancels out?',
+        solution: '<strong>Step-by-step Solution:</strong><br>$$f(x) = \\frac{(x+4)(x+2)}{(x-5)(x+4)}$$<br>Because the factor $(x+4)$ cancels out, there is a <strong>removable discontinuity (hole) at $x = -4$</strong>.<br>(The remaining factor $(x-5)$ creates a vertical asymptote at $x = 5$).'
       },
       {
         id: 'cont-4',
         topic: 'sec-cont',
         topicName: '4. Continuity & 1-Sided',
-        question: 'What is the technical definition of continuity on a closed interval $[a, b]$?',
-        options: [
-          { id: 'A', text: 'Continuous on $(a, b)$ only.' },
-          { id: 'B', text: 'Continuous on open $(a, b)$, with $\\lim_{x \\to a^+} f(x) = f(a)$ and $\\lim_{x \\to b^-} f(x) = f(b)$.', correct: true },
-          { id: 'C', text: 'The derivative must exist at every point on $[a, b]$.' },
-          { id: 'D', text: '$f(a) = f(b)$ must hold true.' }
-        ],
-        hint: 'Look at the endpoint limits: you can only approach $a$ from the right and $b$ from the left!',
-        solution: '<strong>Definition from Notebook Page 2:</strong><br>A function is continuous on $[a, b]$ if and only if:<br>1. It is continuous on the open interval $(a, b)$<br>2. $\\lim_{x \\to a^+} f(x) = f(a)$ (one-sided continuous from right at $a$)<br>3. $\\lim_{x \\to b^-} f(x) = f(b)$ (one-sided continuous from left at $b$)'
+        isRubric: true,
+        question: 'State the formal calculus definition of continuity on a closed interval $[a, b]$.',
+        hint: 'What must be true on the interior $(a, b)$, and how do you approach the endpoints $a$ and $b$?',
+        solution: '<strong>AP Scoring Definition:</strong><br>A function $f(x)$ is continuous on the closed interval $[a, b]$ if and only if:<br>1. It is continuous on the open interval $(a, b)$.<br>2. $\\lim_{x \\to a^+} f(x) = f(a)$ (continuous from the right at $a$).<br>3. $\\lim_{x \\to b^-} f(x) = f(b)$ (continuous from the left at $b$).'
       },
 
       // SECTION 5: INFINITE LIMITS & VERTICAL ASYMPTOTES
@@ -1008,57 +970,37 @@
         id: 'inf-1',
         topic: 'sec-inf-lim',
         topicName: '5. Infinite Limits & VA',
-        question: 'Evaluate $\\lim_{x \\to 2^-} \\frac{3x+1}{x-2}$.',
-        options: [
-          { id: 'A', text: '$+\\infty$' },
-          { id: 'B', text: '$-\\infty$', correct: true },
-          { id: 'C', text: '$7$' },
-          { id: 'D', text: '$0$' }
-        ],
-        hint: 'Test a number slightly less than $2$, such as $x = 1.99$. Check the signs!',
-        solution: '<strong>Step-by-step Sign Analysis:</strong><br>Notebook Example 2:<br>• Numerator: $3(2) + 1 = 7 > 0$ (Positive)<br>• Denominator as $x \\to 2^-$: $1.99 - 2 = -0.01 < 0$ (Tiny Negative)<br>$$\\frac{\\text{Positive}}{\\text{Negative 0}} = -\\infty$$'
+        question: 'Evaluate $\\lim_{x \\to 2^-} \\frac{3x+1}{x-2}$. (Type <code>-infinity</code> or <code>infinity</code>).',
+        accepted: ['-infinity', '-inf', '-\\infty'],
+        hint: 'Direct substitution gives 7/0. Test $x = 1.99$ to determine the sign of the zero.',
+        solution: '<strong>Step-by-step Solution:</strong><br>• Numerator at $x = 2$: $3(2)+1 = 7 > 0$ (positive)<br>• Denominator as $x \\to 2^-$: $(1.99 - 2) < 0$ (tiny negative)<br>$$\\frac{\\text{Positive}}{\\text{Negative 0}} = \\mathbf{-\\infty}$$'
       },
       {
         id: 'inf-2',
         topic: 'sec-inf-lim',
         topicName: '5. Infinite Limits & VA',
-        question: 'Evaluate $\\lim_{x \\to 3^+} \\frac{-2x+4}{x-3}$.',
-        options: [
-          { id: 'A', text: '$-\\infty$', correct: true },
-          { id: 'B', text: '$+\\infty$' },
-          { id: 'C', text: '$-2$' },
-          { id: 'D', text: '$\\text{DNE}$' }
-        ],
-        hint: 'Plug in $x = 3.01$: is the numerator positive or negative? What about the denominator?',
-        solution: '<strong>Step-by-step Sign Analysis:</strong><br>Notebook Example 3:<br>• Numerator: $-2(3) + 4 = -2 < 0$ (Negative)<br>• Denominator as $x \\to 3^+$: $3.01 - 3 = +0.01 > 0$ (Tiny Positive)<br>$$\\frac{\\text{Negative}}{\\text{Positive 0}} = -\\infty$$'
+        question: 'Evaluate $\\lim_{x \\to 3^+} \\frac{-2x+4}{x-3}$. (Type <code>-infinity</code> or <code>infinity</code>).',
+        accepted: ['-infinity', '-inf', '-\\infty'],
+        hint: 'Substitution yields $-2/0$. Test $x = 3.01$.',
+        solution: '<strong>Step-by-step Solution:</strong><br>• Numerator: $-2(3)+4 = -2 < 0$ (negative)<br>• Denominator as $x \\to 3^+$: $3.01 - 3 > 0$ (tiny positive)<br>$$\\frac{\\text{Negative}}{\\text{Positive 0}} = \\mathbf{-\\infty}$$'
       },
       {
         id: 'inf-3',
         topic: 'sec-inf-lim',
         topicName: '5. Infinite Limits & VA',
-        question: 'What are the vertical asymptotes of $f(x) = \\frac{x^2 - 4x + 3}{x^2 - 5x + 4}$?',
-        options: [
-          { id: 'A', text: '$x = 1$ and $x = 4$' },
-          { id: 'B', text: 'Only $x = 4$', correct: true },
-          { id: 'C', text: 'Only $x = 1$' },
-          { id: 'D', text: '$x = 3$' }
-        ],
-        hint: 'Factor first! $(x-1)(x-3)$ over $(x-1)(x-4)$. Does $x = 1$ cancel?',
-        solution: '<strong>Step-by-step Solution:</strong><br>$$f(x) = \\frac{(x-1)(x-3)}{(x-1)(x-4)}$$<br>• The factor $(x-1)$ cancels $\\implies$ removable hole at $x = 1$.<br>• The factor $(x-4)$ remains $\\implies$ <strong>Vertical Asymptote at $x = 4$</strong>.'
+        question: 'Find the single vertical asymptote of $f(x) = \\frac{x^2 - 4x + 3}{x^2 - 5x + 4}$. (Type in the form <code>x = 4</code> or <code>4</code>).',
+        accepted: ['4', 'x = 4', 'x=4'],
+        hint: 'Factor first: $\\frac{(x-3)(x-1)}{(x-4)(x-1)}$. Remember $x = 1$ is a removable hole!',
+        solution: '<strong>Step-by-step Solution:</strong><br>Canceling $(x-1)$ leaves $\\frac{x-3}{x-4}$. Setting the remaining denominator to zero gives the vertical asymptote: $\\mathbf{x = 4}$.'
       },
       {
         id: 'inf-4',
         topic: 'sec-inf-lim',
         topicName: '5. Infinite Limits & VA',
-        question: 'If $\\lim_{x \\to a^-} f(x) = -\\infty$ and $\\lim_{x \\to a^+} f(x) = +\\infty$, what can be said about the two-sided limit $\\lim_{x \\to a} f(x)$ and the line $x = a$?',
-        options: [
-          { id: 'A', text: 'The limit is $\\pm\\infty$ and $x = a$ is a horizontal asymptote.' },
-          { id: 'B', text: 'The limit does not exist (DNE), and the line $x = a$ is a vertical asymptote.', correct: true },
-          { id: 'C', text: 'The limit is $0$ because the infinities cancel.' },
-          { id: 'D', text: 'The function has a removable discontinuity at $x = a$.' }
-        ],
-        hint: 'Vertical asymptotes are vertical lines $x = a$. Two opposing infinite directions means no single limit exists.',
-        solution: '<strong>Explanation:</strong><br>By definition, if either one-sided limit is $\\pm\\infty$, the line $x = a$ is a <strong>Vertical Asymptote</strong>. Because one side goes down to $-\\infty$ and the other goes up to $+\\infty$, the overall two-sided limit DNE.'
+        question: 'If $\\lim_{x \\to 4^-} g(x) = -\\infty$ and $\\lim_{x \\to 4^+} g(x) = +\\infty$, evaluate $\\lim_{x \\to 4} g(x)$. (Type <code>DNE</code>).',
+        accepted: ['dne', 'does not exist'],
+        hint: 'Can a two-sided limit exist if the two one-sided limits go to opposite infinities?',
+        solution: '<strong>Step-by-step Solution:</strong><br>Because the left limit $(-\\infty)$ and right limit $(+\\infty)$ do not approach the same infinite direction, the two-sided limit <strong>Does Not Exist (DNE)</strong>.'
       },
 
       // SECTION 6: LIMITS AT INFINITY & HORIZONTAL ASYMPTOTES
@@ -1066,57 +1008,37 @@
         id: 'lim-inf-1',
         topic: 'sec-lim-inf',
         topicName: '6. Limits at Infinity',
-        question: 'Evaluate $\\lim_{x \\to \\infty} \\frac{x^2 - 4x}{2x^2 + 9}$.',
-        options: [
-          { id: 'A', text: '$0$' },
-          { id: 'B', text: '$\\frac{1}{2}$', correct: true },
-          { id: 'C', text: '$\\infty$' },
-          { id: 'D', text: '$-\\frac{4}{9}$' }
-        ],
-        hint: 'Compare the highest degrees of the numerator and denominator: both are $x^2$.',
-        solution: '<strong>Step-by-step Solution:</strong><br>Notebook Example 1:<br>Divide numerator and denominator by $x^2$:<br>$$\\lim_{x \\to \\infty} \\frac{\\frac{x^2}{x^2} - \\frac{4x}{x^2}}{\\frac{2x^2}{x^2} + \\frac{9}{x^2}} = \\lim_{x \\to \\infty} \\frac{1 - \\frac{4}{x}}{2 + \\frac{9}{x^2}} = \\frac{1 - 0}{2 + 0} = \\frac{1}{2}$$<br>Horizontal Asymptote: $y = \\frac{1}{2}$.'
+        question: 'Evaluate $\\lim_{x \\to \\infty} \\frac{x^2 - 4x}{2x^2 + 9}$. (Type as a fraction, e.g. <code>1/2</code>).',
+        accepted: ['1/2', '0.5'],
+        hint: 'Divide every term by $x^2$, or compare the coefficients of the matching highest powers.',
+        solution: '<strong>Step-by-step Solution:</strong><br>$$\\lim_{x \\to \\infty} \\frac{1 - 4/x}{2 + 9/x^2} = \\frac{1 - 0}{2 + 0} = \\mathbf{\\frac{1}{2}}$$'
       },
       {
         id: 'lim-inf-2',
         topic: 'sec-lim-inf',
         topicName: '6. Limits at Infinity',
         question: 'Evaluate $\\lim_{x \\to \\infty} \\frac{4x^3}{x^4 + 1}$.',
-        options: [
-          { id: 'A', text: '$4$' },
-          { id: 'B', text: '$0$', correct: true },
-          { id: 'C', text: '$\\infty$' },
-          { id: 'D', text: '$1$' }
-        ],
-        hint: 'The degree of the numerator (3) is less than the degree of the denominator (4).',
-        solution: '<strong>Step-by-step Solution:</strong><br>Notebook Example 2:<br>Divide by $x^4$ (highest denominator power):<br>$$\\lim_{x \\to \\infty} \\frac{\\frac{4x^3}{x^4}}{\\frac{x^4}{x^4} + \\frac{1}{x^4}} = \\lim_{x \\to \\infty} \\frac{\\frac{4}{x}}{1 + \\frac{1}{x^4}} = \\frac{0}{1 + 0} = 0$$'
+        accepted: ['0'],
+        hint: 'Degree of the numerator (3) is less than the degree of the denominator (4).',
+        solution: '<strong>Step-by-step Solution:</strong><br>Dividing by $x^4$: $\\lim_{x \\to \\infty} \\frac{4/x}{1 + 1/x^4} = \\frac{0}{1+0} = \\mathbf{0}$'
       },
       {
         id: 'lim-inf-3',
         topic: 'sec-lim-inf',
         topicName: '6. Limits at Infinity',
-        question: 'Evaluate $\\lim_{x \\to \\infty} \\frac{x^3 + 4x}{x^2 + 1}$.',
-        options: [
-          { id: 'A', text: '$1$' },
-          { id: 'B', text: '$0$' },
-          { id: 'C', text: 'Does Not Exist ($+\\infty$)', correct: true },
-          { id: 'D', text: '$4$' }
-        ],
-        hint: 'The degree of numerator (3) is strictly greater than denominator (2).',
-        solution: '<strong>Step-by-step Solution:</strong><br>Notebook Example 3 & Guidelines #3:<br>When degree of numerator > degree of denominator, the rational function grows without bound.<br>$$\\lim_{x \\to \\infty} \\frac{x^3+4x}{x^2+1} = \\lim_{x \\to \\infty} \\frac{x + \\frac{4}{x}}{1 + \\frac{1}{x^2}} = \\frac{\\infty + 0}{1 + 0} = +\\infty \\quad (\\text{DNE})$$'
+        question: 'Evaluate $\\lim_{x \\to \\infty} \\frac{x^3 + 4x}{x^2 + 1}$. (Type <code>infinity</code> or <code>DNE</code>).',
+        accepted: ['infinity', 'inf', 'dne'],
+        hint: 'The degree of the numerator (3) is greater than the denominator (2).',
+        solution: '<strong>Step-by-step Solution:</strong><br>$$\\lim_{x \\to \\infty} \\frac{x + 4/x}{1 + 1/x^2} = \\frac{\\infty + 0}{1 + 0} = \\mathbf{+\\infty} \\quad (\\text{DNE})$$'
       },
       {
         id: 'lim-inf-4',
         topic: 'sec-lim-inf',
         topicName: '6. Limits at Infinity',
-        question: 'How many distinct horizontal asymptotes can a rational function have at most?',
-        options: [
-          { id: 'A', text: 'At most $1$ for standard rational functions, but up to $2$ for general functions (e.g. involving radicals).', correct: true },
-          { id: 'B', text: 'Infinitely many.' },
-          { id: 'C', text: 'Always exactly 2.' },
-          { id: 'D', text: 'None.' }
-        ],
-        hint: 'A graph can have one horizontal asymptote as $x \\to +\\infty$ and a different one as $x \\to -\\infty$ (especially with $\\sqrt{x^2}$).',
-        solution: '<strong>Explanation:</strong><br>From Notebook Page 1: "How many HA can a graph have?"<br>A function can approach one horizontal line as $x \\to +\\infty$ and another line as $x \\to -\\infty$, allowing for at most <strong>2 horizontal asymptotes</strong>.'
+        question: 'What is the maximum number of distinct horizontal asymptotes that any function can have?',
+        accepted: ['2', 'two'],
+        hint: 'Think about end behavior: one as $x \\to +\\infty$ and one as $x \\to -\\infty$.',
+        solution: '<strong>Explanation:</strong><br>A function can approach one horizontal asymptote as $x \\to +\\infty$ and another as $x \\to -\\infty$, meaning a function can have at most <strong>2 horizontal asymptotes</strong>.'
       },
 
       // SECTION 7: SQUEEZE THEOREM & SPECIAL TRIG LIMITS
@@ -1125,56 +1047,36 @@
         topic: 'sec-squeeze',
         topicName: '7. Squeeze Theorem',
         question: 'Evaluate $\\lim_{x \\to 0} \\frac{\\sin 3x}{x}$.',
-        options: [
-          { id: 'A', text: '$1$' },
-          { id: 'B', text: '$3$', correct: true },
-          { id: 'C', text: '$\\frac{1}{3}$' },
-          { id: 'D', text: '$0$' }
-        ],
-        hint: 'Multiply top and bottom by 3 to create $\\frac{\\sin(3x)}{3x}$.',
-        solution: '<strong>Step-by-step Solution:</strong><br>Notebook Example 2:<br>$$\\lim_{x \\to 0} \\frac{\\sin 3x}{x} = \\lim_{x \\to 0} \\left(3 \\cdot \\frac{\\sin 3x}{3x}\\right)$$<br>Since $\\lim_{u \\to 0} \\frac{\\sin u}{u} = 1$:<br>$$= 3 \\cdot (1) = 3$$'
+        accepted: ['3'],
+        hint: 'Multiply top and bottom by 3 to use the standard limit $\\lim_{\\theta \\to 0} \\frac{\\sin \\theta}{\\theta} = 1$.',
+        solution: '<strong>Step-by-step Solution:</strong><br>$$\\lim_{x \\to 0} \\left(3 \\cdot \\frac{\\sin 3x}{3x}\\right) = 3 \\cdot (1) = \\mathbf{3}$$'
       },
       {
         id: 'sq-2',
         topic: 'sec-squeeze',
         topicName: '7. Squeeze Theorem',
         question: 'Evaluate $\\lim_{x \\to 0} \\frac{\\sin 5x \\sin 4x}{x^2}$.',
-        options: [
-          { id: 'A', text: '$9$' },
-          { id: 'B', text: '$20$', correct: true },
-          { id: 'C', text: '$1$' },
-          { id: 'D', text: '$0$' }
-        ],
-        hint: 'Split the fraction into $\\left(\\frac{\\sin 5x}{x}\\right) \\cdot \\left(\\frac{\\sin 4x}{x}\\right)$.',
-        solution: '<strong>Step-by-step Solution:</strong><br>Notebook Example 5:<br>$$\\lim_{x \\to 0} \\left(\\frac{\\sin 5x}{x}\\right) \\left(\\frac{\\sin 4x}{x}\\right) = \\lim_{x \\to 0} \\left(5 \\frac{\\sin 5x}{5x}\\right) \\left(4 \\frac{\\sin 4x}{4x}\\right)$$<br>$$= (5 \\cdot 1) \\cdot (4 \\cdot 1) = 20$$'
+        accepted: ['20'],
+        hint: 'Split into $\\left(5 \\frac{\\sin 5x}{5x}\\right) \\cdot \\left(4 \\frac{\\sin 4x}{4x}\\right)$.',
+        solution: '<strong>Step-by-step Solution:</strong><br>$$\\lim_{x \\to 0} \\left(5 \\cdot 1\\right) \\cdot \\left(4 \\cdot 1\\right) = \\mathbf{20}$$'
       },
       {
         id: 'sq-3',
         topic: 'sec-squeeze',
         topicName: '7. Squeeze Theorem',
         question: 'Evaluate $\\lim_{x \\to 0} \\frac{1 - \\cos^2 x}{x}$.',
-        options: [
-          { id: 'A', text: '$1$' },
-          { id: 'B', text: '$0$', correct: true },
-          { id: 'C', text: '$\\text{DNE}$' },
-          { id: 'D', text: '$2$' }
-        ],
-        hint: 'Use the Pythagorean identity: $1 - \\cos^2 x = \\sin^2 x$. Then split $\\sin x \\cdot \\frac{\\sin x}{x}$.',
-        solution: '<strong>Step-by-step Solution:</strong><br>Notebook Example 3:<br>1. Replace $1 - \\cos^2 x$ with $\\sin^2 x$:<br>$$\\lim_{x \\to 0} \\frac{\\sin^2 x}{x} = \\lim_{x \\to 0} \\left(\\sin x \\cdot \\frac{\\sin x}{x}\\right)$$<br>2. Evaluate limits:<br>$$= \\lim_{x \\to 0} (\\sin x) \\cdot \\lim_{x \\to 0} \\left(\\frac{\\sin x}{x}\\right) = 0 \\cdot 1 = 0$$'
+        accepted: ['0'],
+        hint: 'Use $1 - \\cos^2 x = \\sin^2 x$. Then split $\\sin x \\cdot \\frac{\\sin x}{x}$.',
+        solution: '<strong>Step-by-step Solution:</strong><br>$$\\lim_{x \\to 0} \\frac{\\sin^2 x}{x} = \\lim_{x \\to 0} \\left(\\sin x \\cdot \\frac{\\sin x}{x}\\right) = 0 \\cdot 1 = \\mathbf{0}$$'
       },
       {
         id: 'sq-4',
         topic: 'sec-squeeze',
         topicName: '7. Squeeze Theorem',
-        question: 'If $4 - x^2 \\le h(x) \\le 4 + x^2$ for all $x \\ne 0$, what is $\\lim_{x \\to 0} h(x)$ by the Squeeze Theorem?',
-        options: [
-          { id: 'A', text: '$0$' },
-          { id: 'B', text: '$4$', correct: true },
-          { id: 'C', text: 'Cannot be determined' },
-          { id: 'D', text: '$8$' }
-        ],
-        hint: 'Evaluate the limit of the lower function $4 - x^2$ and upper function $4 + x^2$ as $x \\to 0$.',
-        solution: '<strong>Step-by-step Solution:</strong><br>Notebook Example 1:<br>1. Lower limit: $\\lim_{x \\to 0} (4 - x^2) = 4 - 0 = 4$<br>2. Upper limit: $\\lim_{x \\to 0} (4 + x^2) = 4 + 0 = 4$<br>3. Since both outer functions approach $4$, by the Squeeze Theorem, $\\lim_{x \\to 0} h(x) = 4$.'
+        question: 'If $4 - x^2 \\le h(x) \\le 4 + x^2$ for all $x \\ne 0$, find $\\lim_{x \\to 0} h(x)$ by the Squeeze Theorem.',
+        accepted: ['4'],
+        hint: 'Evaluate the limits of $4 - x^2$ and $4 + x^2$ as $x \\to 0$.',
+        solution: '<strong>Step-by-step Solution:</strong><br>Because $\\lim_{x \\to 0}(4 - x^2) = 4$ and $\\lim_{x \\to 0}(4 + x^2) = 4$, by the Squeeze Theorem: $\\lim_{x \\to 0} h(x) = \\mathbf{4}$.'
       },
 
       // SECTION 8: INTERMEDIATE VALUE THEOREM (IVT)
@@ -1182,57 +1084,115 @@
         id: 'ivt-1',
         topic: 'sec-ivt',
         topicName: '8. Intermediate Value (IVT)',
-        question: 'Show that $f(x) = x^3 - x^2 - 2x$ has at least one real zero in the closed interval $[1, 3]$.',
-        options: [
-          { id: 'A', text: '$f(1) = -2 < 0$ and $f(3) = 12 > 0$. Since $f$ is a polynomial (continuous) and $0$ lies between $-2$ and $12$, IVT guarantees a zero.', correct: true },
-          { id: 'B', text: 'Because $x^3$ is always increasing on all real numbers.' },
-          { id: 'C', text: 'IVT does not apply because the interval is too wide.' },
-          { id: 'D', text: 'Because $f(0) = 0$ is guaranteed.' }
-        ],
-        hint: 'Evaluate $f(1)$ and $f(3)$. Do their signs differ?',
-        solution: '<strong>Step-by-step Solution:</strong><br>Notebook Example 1:<br>1. Check continuity: $f(x)$ is a polynomial, so continuous on $[1, 3]$.<br>2. $f(1) = 1^3 - 1^2 - 2(1) = -2$<br>3. $f(3) = 3^3 - 3^2 - 2(3) = 27 - 9 - 6 = 12$<br>4. Since $-2 < 0 < 12$, by IVT there exists at least one $c \\in (1, 3)$ where $f(c) = 0$.<br>(Factoring: $x(x-2)(x+1) = 0 \\implies c = 2 \\in [1, 3]$).'
+        question: 'For $f(x) = x^3 - x^2 - 2x$ on $[1, 3]$, find the exact value of the root $c \\in (1, 3)$ guaranteed by IVT where $f(c) = 0$.',
+        accepted: ['2', 'c = 2', 'c=2'],
+        hint: 'Factor $x(x-2)(x+1) = 0$. Which zero lies strictly between 1 and 3?',
+        solution: '<strong>Step-by-step Solution:</strong><br>1. $f(1) = -2 < 0$ and $f(3) = 12 > 0$. By IVT, a zero exists.<br>2. Factor: $x(x-2)(x+1) = 0 \\implies x = 0, 2, -1$.<br>3. The only root in $(1, 3)$ is $\\mathbf{c = 2}$.'
       },
       {
         id: 'ivt-2',
         topic: 'sec-ivt',
         topicName: '8. Intermediate Value (IVT)',
-        question: 'For $h(x) = \\frac{x^2+x}{x-1}$ on $[5/2, 4]$, find the value of $c$ guaranteed by IVT such that $h(c) = 6$.',
-        options: [
-          { id: 'A', text: '$c = 2$' },
-          { id: 'B', text: '$c = 3$', correct: true },
-          { id: 'C', text: '$c = 6$' },
-          { id: 'D', text: '$c = 5/2$' }
-        ],
-        hint: 'Set $\\frac{x^2+x}{x-1} = 6$ and solve the quadratic. Remember $c$ must be inside $[5/2, 4]$!',
-        solution: '<strong>Step-by-step Solution:</strong><br>Notebook Example 2:<br>1. $h(5/2) = \\frac{35/4}{3/2} = \\frac{35}{6} \\approx 5.83$<br>2. $h(4) = \\frac{16+4}{4-1} = \\frac{20}{3} \\approx 6.67$<br>3. Since $5.83 \\le 6 \\le 6.67$, IVT applies.<br>4. Solve for $c$:<br>$$\\frac{c^2+c}{c-1} = 6 \\implies c^2 + c = 6c - 6 \\implies c^2 - 5c + 6 = 0$$<br>$$(c-3)(c-2) = 0 \\implies c = 3 \\text{ or } c = 2$$<br>Since only $c = 3$ is inside the interval $[5/2, 4]$, the guaranteed value is $\\mathbf{c = 3}$.'
+        question: 'For $h(x) = \\frac{x^2+x}{x-1}$ on $[5/2, 4]$, find the value of $c$ where $h(c) = 6$.',
+        accepted: ['3', 'c = 3', 'c=3'],
+        hint: 'Solve $\\frac{c^2+c}{c-1} = 6 \\implies c^2 - 5c + 6 = 0$. Remember $c \\in [5/2, 4]$!',
+        solution: '<strong>Step-by-step Solution:</strong><br>$$c^2 + c = 6c - 6 \\implies c^2 - 5c + 6 = 0 \\implies (c-3)(c-2) = 0$$<br>Since $2 \\notin [5/2, 4]$ and $3 \\in [5/2, 4]$, the guaranteed value is $\\mathbf{c = 3}$.'
       },
       {
         id: 'ivt-3',
         topic: 'sec-ivt',
         topicName: '8. Intermediate Value (IVT)',
-        question: 'If $f$ is continuous on $[2, 6]$ with $f(2) = 20$ and $f(6) = 10$, which of the following MUST be true by IVT?<br>I. $f(x) = 25$ has no solution on $[2, 6]$<br>II. $f(x) = 17$ has a solution on $[2, 6]$<br>III. $f(x) = 0$ has a solution on $[2, 6]$',
-        options: [
-          { id: 'A', text: 'I only' },
-          { id: 'B', text: 'II only', correct: true },
-          { id: 'C', text: 'III only' },
-          { id: 'D', text: 'I and II only' }
-        ],
-        hint: 'IVT only guarantees values that are strictly BETWEEN $f(2)=20$ and $f(6)=10$.',
-        solution: '<strong>Explanation:</strong><br>Notebook Example 4:<br>• The range of values guaranteed by IVT is between $10$ and $20$.<br>• $17$ is between $10$ and $20$, so statement II <strong>must be true</strong>.<br>• Statement I might be false (the graph could rise above 20 and dip back down).<br>• Statement III is not guaranteed because 0 is not between 10 and 20.'
+        isRubric: true,
+        question: 'If $f$ is continuous on $[2, 6]$ with $f(2) = 20$ and $f(6) = 10$, explain why $f(x) = 17$ must have a solution on $[2, 6]$, while $f(x) = 0$ is not guaranteed to have a solution.',
+        hint: 'What range of values does the Intermediate Value Theorem guarantee?',
+        solution: '<strong>AP Scoring Rubric & Explanation:</strong><br>• IVT guarantees that the function takes on <em>every value strictly between</em> $f(2) = 20$ and $f(6) = 10$.<br>• Because $10 < 17 < 20$, $f(x) = 17$ <strong>must</strong> have a solution in $(2, 6)$.<br>• Because $0$ is not between $10$ and $20$, $f(x) = 0$ is <strong>not guaranteed</strong>.'
       },
       {
         id: 'ivt-4',
         topic: 'sec-ivt',
         topicName: '8. Intermediate Value (IVT)',
-        question: 'Why does the Intermediate Value Theorem FAIL to guarantee a solution to $f(x) = 0$ for $f(x) = \\frac{1}{x}$ on $[-1, 1]$, even though $f(-1) = -1 < 0$ and $f(1) = 1 > 0$?',
-        options: [
-          { id: 'A', text: 'Because $0$ is not a real number.' },
-          { id: 'B', text: 'Because $f(x)$ is not continuous on $[-1, 1]$ due to a vertical asymptote at $x = 0$.', correct: true },
-          { id: 'C', text: 'Because $-1$ and $1$ have the same magnitude.' },
-          { id: 'D', text: 'IVT does not fail; $1/x = 0$ has a solution at $x = 0$.' }
-        ],
-        hint: 'What is the very first hypothesis of IVT? Does $f(x) = 1/x$ satisfy it on $[-1, 1]$?',
-        solution: '<strong>Crucial AP Concept:</strong><br>The first requirement of IVT is that $f(x)$ must be <strong>continuous on the entire closed interval $[a, b]$</strong>.<br>For $f(x) = \\frac{1}{x}$, the function has an infinite discontinuity (vertical asymptote) at $x = 0 \\in [-1, 1]$. Because continuity is violated, IVT does not apply and $\\frac{1}{x} = 0$ has no solution!'
+        isRubric: true,
+        question: 'Why does IVT fail to guarantee a solution to $f(x) = 0$ for $f(x) = \\frac{1}{x}$ on $[-1, 1]$, even though $f(-1) = -1 < 0$ and $f(1) = 1 > 0$?',
+        hint: 'What is the required hypothesis regarding continuity for IVT to apply?',
+        solution: '<strong>AP Scoring Rubric & Explanation:</strong><br>• The Intermediate Value Theorem requires that $f(x)$ be <strong>continuous on the entire closed interval $[a, b]$</strong>.<br>• $f(x) = \\frac{1}{x}$ has a vertical asymptote (infinite discontinuity) at $x = 0 \\in [-1, 1]$.<br>• Because the continuity hypothesis fails, IVT does not apply!'
+      }
+    ];
+
+    // ==========================================
+    // AP Physics 1 Kinematics 8 Word Problems
+    // ==========================================
+    const physicsQuestions = [
+      {
+        id: 'phys-1',
+        title: 'Problem 1: Braking Distance on a Highway',
+        prompt: 'A car is traveling along a straight road at a constant speed of $v_0 = 25\\text{ m/s}$. The driver suddenly sees an obstruction ahead and slams on the brakes, producing a constant deceleration of magnitude $a = 5.0\\text{ m/s}^2$ until coming to a complete stop ($v = 0$). Calculate the stopping distance $\\Delta x$ of the car in meters.',
+        accepted: ['62.5', '62.5m', '63'],
+        hint: 'You know $v_0 = 25$, $v = 0$, and $a = -5.0\\text{ m/s}^2$. Notice that time $t$ is neither given nor requested. Which kinematic equation doesn\'t need time?',
+        eqUsed: 'v^2 = v_0^2 + 2a\\Delta x',
+        solution: '$$v^2 = v_0^2 + 2a\\Delta x \\implies 0^2 = 25^2 + 2(-5.0)\\Delta x \\implies 10\\Delta x = 625 \\implies \\mathbf{\\Delta x = 62.5\\text{ m}}$$'
+      },
+      {
+        id: 'phys-2',
+        title: 'Problem 2: Vertical Rock Toss Apex',
+        prompt: 'A student standing on level ground throws a small rock straight up into the air with an initial velocity of $v_0 = 19.6\\text{ m/s}$. Assuming air resistance is negligible and acceleration due to gravity is $g = 9.8\\text{ m/s}^2$ downward, what is the maximum height $y_{\\text{max}}$ above the release point reached by the rock?',
+        accepted: ['19.6', '19.6m', '20'],
+        hint: 'At the apex of vertical flight, what is the instantaneous vertical velocity $v_y$?',
+        eqUsed: 'v_y^2 = v_{0y}^2 + 2a_y\\Delta y',
+        solution: '$$0 = (19.6)^2 + 2(-9.8)\\Delta y \\implies 19.6\\Delta y = 384.16 \\implies \\mathbf{\\Delta y = 19.6\\text{ m}}$$'
+      },
+      {
+        id: 'phys-3',
+        title: 'Problem 3: Aircraft Carrier Catapult Launch',
+        prompt: 'A fighter jet accelerates from rest ($v_0 = 0$) down a runway of length $\\Delta x = 90\\text{ m}$ on an aircraft carrier. If the jet leaves the deck with a takeoff speed of $v = 60\\text{ m/s}$, calculate the constant acceleration $a$ provided by the catapult in $\\text{m/s}^2$.',
+        accepted: ['20', '20m/s^2', '20 m/s^2'],
+        hint: 'Use $v^2 = v_0^2 + 2a\\Delta x$ with $v_0 = 0$.',
+        eqUsed: 'v^2 = v_0^2 + 2a\\Delta x',
+        solution: '$$(60)^2 = 0^2 + 2a(90) \\implies 3600 = 180a \\implies \\mathbf{a = 20\\text{ m/s}^2}$$'
+      },
+      {
+        id: 'phys-4',
+        title: 'Problem 4: Total Flight Time of an Arrow',
+        prompt: 'An archer shoots an arrow straight upwards from ground level at an initial speed of $v_0 = 29.4\\text{ m/s}$. How many seconds ($t$) will elapse before the arrow returns to the ground? (Use $g = 9.8\\text{ m/s}^2$).',
+        accepted: ['6', '6s', '6.0', '6.0s'],
+        hint: 'When the arrow lands back on the ground, net displacement is $\\Delta y = 0$.',
+        eqUsed: '\\Delta y = v_{0y}t + \\frac{1}{2}a_y t^2',
+        solution: '$$0 = 29.4t - 4.9t^2 \\implies t(29.4 - 4.9t) = 0 \\implies t = \\frac{29.4}{4.9} = \\mathbf{6.0\\text{ s}}$$'
+      },
+      {
+        id: 'phys-5',
+        title: 'Problem 5: Police Pursuit Interception',
+        prompt: 'A speeder passes a parked police car at a constant speed of $v_{\\text{car}} = 30\\text{ m/s}$. Exactly as the speeder passes, the police officer starts from rest ($v_0 = 0$) and accelerates at a constant rate of $a = 3.0\\text{ m/s}^2$. How many seconds ($t$) does it take for the police officer to overtake the speeder?',
+        accepted: ['20', '20s', '20.0'],
+        hint: 'Set the displacements equal: $\\Delta x_{\\text{speeder}} = \\Delta x_{\\text{police}}$.',
+        eqUsed: 'v t = \\frac{1}{2}at^2',
+        solution: '$$30t = \\frac{1}{2}(3.0)t^2 \\implies 1.5t = 30 \\implies \\mathbf{t = 20\\text{ s}}$$'
+      },
+      {
+        id: 'phys-6',
+        title: 'Problem 6: Cliff Diver Drop Distance',
+        prompt: 'A cliff diver steps off a high platform from rest ($v_0 = 0$) and hits the ocean below after falling for $t = 2.5\\text{ s}$. Ignoring air resistance and taking $g = 9.8\\text{ m/s}^2$, what is the vertical height of the platform in meters?',
+        accepted: ['30.625', '30.6', '31'],
+        hint: 'Use $\\Delta y = v_0 t + \\frac{1}{2}gt^2$ with $v_0 = 0$.',
+        eqUsed: '\\Delta y = \\frac{1}{2}gt^2',
+        solution: '$$\\Delta y = \\frac{1}{2}(9.8)(2.5)^2 = 4.9(6.25) = \\mathbf{30.625\\text{ m}}$$'
+      },
+      {
+        id: 'phys-7',
+        title: 'Problem 7: Train Entering a Station',
+        prompt: 'A commuter train enters a passenger platform moving at $v_0 = 20\\text{ m/s}$ and decelerates uniformly to a stop ($v = 0$) over a distance of $\\Delta x = 100\\text{ m}$. How many seconds ($t$) did it take for the train to stop?',
+        accepted: ['10', '10s', '10.0'],
+        hint: 'Use the average velocity relation $\\Delta x = \\left(\\frac{v_0 + v}{2}\\right)t$.',
+        eqUsed: '\\Delta x = \\left(\\frac{v_0 + v}{2}\\right)t',
+        solution: '$$100 = \\left(\\frac{20 + 0}{2}\\right)t = 10t \\implies \\mathbf{t = 10\\text{ s}}$$'
+      },
+      {
+        id: 'phys-8',
+        title: 'Problem 8: Bullet Penetrating a Wooden Block',
+        prompt: 'A rifle bullet strikes a block of wood with a velocity of $v_0 = 350\\text{ m/s}$ and penetrates a depth of $\\Delta x = 0.14\\text{ m}$ ($14\\text{ cm}$) before coming to rest ($v = 0$). Calculate the magnitude of the average deceleration of the bullet in $\\text{m/s}^2$.',
+        accepted: ['437500', '4.375e5', '4.38e5', '438000'],
+        hint: 'Use $v^2 = v_0^2 + 2a\\Delta x$ and solve for the magnitude $|a|$.',
+        eqUsed: 'v^2 = v_0^2 + 2a\\Delta x',
+        solution: '$$0 = (350)^2 + 2a(0.14) \\implies 0.28a = -122500 \\implies |a| = \\mathbf{437,500\\text{ m/s}^2}$$'
       }
     ];
 
@@ -1256,7 +1216,6 @@
       document.getElementById('prevBtn').disabled = (currentSlide === 0);
       document.getElementById('nextBtn').disabled = (currentSlide === totalSlides - 1);
 
-      // Update pill buttons
       document.querySelectorAll('.slide-nav-pill').forEach(pill => {
         if (parseInt(pill.getAttribute('data-slide')) === currentSlide) {
           pill.className = "slide-nav-pill px-2.5 py-1 rounded-full bg-indigo-600 text-white whitespace-nowrap font-medium transition shadow";
@@ -1297,26 +1256,35 @@
     function switchMainView(view) {
       const lessonsView = document.getElementById('lessonsView');
       const practiceView = document.getElementById('practiceView');
+      const physicsView = document.getElementById('physicsView');
       const slideControls = document.getElementById('slideControls');
-      const viewLessonsBtn = document.getElementById('viewLessonsBtn');
-      const viewPracticeBtn = document.getElementById('viewPracticeBtn');
+
+      const btnLessons = document.getElementById('viewLessonsBtn');
+      const btnPractice = document.getElementById('viewPracticeBtn');
+      const btnPhysics = document.getElementById('viewPhysicsBtn');
+
+      [btnLessons, btnPractice, btnPhysics].forEach(b => {
+        if (b) b.className = "px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 text-slate-400 hover:text-white";
+      });
+
+      lessonsView.classList.add('hidden');
+      practiceView.classList.add('hidden');
+      if (physicsView) physicsView.classList.add('hidden');
+      slideControls.classList.add('hidden');
 
       if (view === 'lessons') {
         lessonsView.classList.remove('hidden');
-        practiceView.classList.add('hidden');
         slideControls.classList.remove('hidden');
-
-        viewLessonsBtn.className = "px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 bg-indigo-600 text-white shadow";
-        viewPracticeBtn.className = "px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 text-slate-400 hover:text-white";
+        btnLessons.className = "px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 bg-indigo-600 text-white shadow";
         updateSlideDisplay();
-      } else {
-        lessonsView.classList.add('hidden');
+      } else if (view === 'practice') {
         practiceView.classList.remove('hidden');
-        slideControls.classList.add('hidden');
-
-        viewLessonsBtn.className = "px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 text-slate-400 hover:text-white";
-        viewPracticeBtn.className = "px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 bg-indigo-600 text-white shadow";
+        btnPractice.className = "px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 bg-indigo-600 text-white shadow";
         renderPracticeQuestions();
+      } else if (view === 'physics') {
+        if (physicsView) physicsView.classList.remove('hidden');
+        if (btnPhysics) btnPhysics.className = "px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 bg-amber-600 text-white shadow";
+        renderPhysicsQuestions();
       }
     }
 
@@ -1326,7 +1294,7 @@
     }
 
     // ==========================================
-    // Practice Questions Rendering & Logic
+    // Open-Ended Practice Questions Rendering
     // ==========================================
     function filterPracticeTopic(topic) {
       currentPracticeFilter = topic;
@@ -1354,7 +1322,7 @@
               <span class="text-xs text-slate-400 font-semibold">${q.topicName}</span>
             </div>
             <span id="q-badge-${q.id}" class="text-[10px] px-2 py-0.5 rounded font-bold ${solvedQuestions.has(q.id) ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30' : 'bg-slate-800 text-slate-400'}">
-              ${solvedQuestions.has(q.id) ? 'Solved ✓' : 'Unsolved'}
+              ${solvedQuestions.has(q.id) ? 'Solved ✓' : (q.isRubric ? 'Self-Check' : 'Unsolved')}
             </span>
           </div>
 
@@ -1362,17 +1330,23 @@
             ${q.question}
           </div>
 
-          <!-- Options Grid -->
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-2 text-xs mb-3">
-            ${q.options.map(opt => `
-              <button onclick="handleOptionSelect('${q.id}', '${opt.id}')" id="btn-${q.id}-${opt.id}" class="opt-btn-${q.id} p-3 rounded-lg bg-slate-900/90 border border-slate-800 text-left hover:border-indigo-500/70 transition flex items-start gap-2.5">
-                <span class="w-5 h-5 rounded-md bg-slate-800 flex-shrink-0 flex items-center justify-center font-mono font-bold text-[11px] text-slate-300">${opt.id}</span>
-                <span class="text-slate-200 mt-0.5">${opt.text}</span>
+          ${q.isRubric ? `
+            <div class="mb-3">
+              <button onclick="toggleSolution('${q.id}')" class="px-3.5 py-2 rounded-lg bg-indigo-600/30 hover:bg-indigo-600/50 text-indigo-300 border border-indigo-500/40 text-xs font-bold transition flex items-center gap-1.5">
+                <span>📋 Formulate Explanation & Reveal AP Scoring Rubric</span>
               </button>
-            `).join('')}
-          </div>
+            </div>
+          ` : `
+            <div class="flex flex-wrap items-center gap-2.5 mb-3">
+              <input id="input-${q.id}" type="text" placeholder="Type your answer (e.g. 3, -1/7, DNE, infinity)" 
+                     onkeydown="if(event.key==='Enter') checkOpenAnswer('${q.id}')"
+                     class="flex-1 min-w-[240px] px-3.5 py-2 rounded-lg bg-slate-900 border border-slate-700 focus:border-indigo-500 focus:outline-none text-xs text-white placeholder-slate-500">
+              <button onclick="checkOpenAnswer('${q.id}')" class="px-4 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs transition shadow flex items-center gap-1.5">
+                <span>Submit Answer</span>
+              </button>
+            </div>
+          `}
 
-          <!-- Feedback & Toggles -->
           <div id="feedback-${q.id}" class="hidden p-3 rounded-lg text-xs font-medium mb-3"></div>
 
           <div class="flex items-center justify-between pt-2 border-t border-slate-800/80 text-xs">
@@ -1384,12 +1358,10 @@
             </button>
           </div>
 
-          <!-- Collapsible Hint -->
           <div id="hint-${q.id}" class="hidden mt-2 p-2.5 rounded bg-amber-950/30 border border-amber-500/30 text-xs text-amber-200">
             <strong>Hint:</strong> ${q.hint}
           </div>
 
-          <!-- Collapsible Full Solution -->
           <div id="sol-${q.id}" class="hidden mt-2 p-3 rounded-xl bg-slate-950 border border-slate-800 text-xs text-slate-300 space-y-1.5">
             ${q.solution}
           </div>
@@ -1405,39 +1377,139 @@
       });
     }
 
-    function handleOptionSelect(qId, selectedOptId) {
+    function checkOpenAnswer(qId) {
       const q = practiceQuestions.find(item => item.id === qId);
-      if (!q) return;
-
-      const chosen = q.options.find(o => o.id === selectedOptId);
+      const input = document.getElementById(`input-${qId}`);
       const feedback = document.getElementById(`feedback-${qId}`);
       const badge = document.getElementById(`q-badge-${qId}`);
-      const allBtns = document.querySelectorAll(`.opt-btn-${qId}`);
+      if (!q || !input) return;
 
-      allBtns.forEach(btn => {
-        btn.classList.remove('border-emerald-500', 'bg-emerald-950/40', 'border-rose-500', 'bg-rose-950/40');
-      });
+      const userVal = input.value.trim().toLowerCase().replace(/\s+/g, '');
+      if (!userVal) {
+        feedback.classList.remove('hidden');
+        feedback.className = "p-3 rounded-lg text-xs font-semibold bg-amber-950/40 border border-amber-500/40 text-amber-300";
+        feedback.innerHTML = "Please enter an answer before submitting.";
+        return;
+      }
 
-      const selectedBtn = document.getElementById(`btn-${qId}-${selectedOptId}`);
+      const isCorrect = q.accepted && q.accepted.some(acc => userVal === acc.toLowerCase().replace(/\s+/g, ''));
       feedback.classList.remove('hidden');
 
-      if (chosen.correct) {
-        selectedBtn.classList.add('border-emerald-500', 'bg-emerald-950/40');
+      if (isCorrect) {
         feedback.className = "p-3 rounded-lg text-xs font-semibold bg-emerald-950/40 border border-emerald-500/40 text-emerald-300";
-        feedback.innerHTML = `🎉 <strong>Correct!</strong> That is the right calculus reasoning.`;
-        
+        feedback.innerHTML = `🎉 <strong>Correct!</strong> That is the exact mathematical answer.`;
         solvedQuestions.add(qId);
         badge.innerText = "Solved ✓";
         badge.className = "text-[10px] px-2 py-0.5 rounded font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30";
       } else {
-        selectedBtn.classList.add('border-rose-500', 'bg-rose-950/40');
         feedback.className = "p-3 rounded-lg text-xs font-semibold bg-rose-950/40 border border-rose-500/40 text-rose-300";
-        feedback.innerHTML = `❌ <strong>Not quite.</strong> Review the hint below or open the full scratchwork to see the algebra!`;
+        feedback.innerHTML = `❌ <strong>Not quite.</strong> Check your sign, fraction simplification, or click '💡 Hint' and 'Teacher Scratchwork' to inspect the derivation.`;
       }
 
       document.getElementById('solvedCount').innerText = solvedQuestions.size;
 
       renderMathInElement(feedback, {
+        delimiters: [
+          { left: '$$', right: '$$', display: true },
+          { left: '$', right: '$', display: false }
+        ],
+        throwOnError: false
+      });
+    }
+
+    // ==========================================
+    // Render & Check Physics Questions
+    // ==========================================
+    function renderPhysicsQuestions() {
+      const container = document.getElementById('physicsQuestionsContainer');
+      if (!container) return;
+      container.innerHTML = physicsQuestions.map((q, idx) => `
+        <div id="card-${q.id}" class="glass-card rounded-xl p-5 border border-slate-800 transition hover:border-amber-500/50">
+          <div class="flex items-center justify-between gap-2 mb-2">
+            <div class="flex items-center gap-2">
+              <span class="px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 text-[10px] font-mono font-bold">Problem ${idx + 1}</span>
+              <span class="text-xs text-slate-300 font-bold">${q.title}</span>
+            </div>
+            <span id="badge-${q.id}" class="text-[10px] px-2 py-0.5 rounded font-bold bg-slate-800 text-slate-400">Unsolved</span>
+          </div>
+          <p class="text-xs md:text-sm text-slate-200 mb-3 leading-relaxed">${q.prompt}</p>
+          <div class="flex flex-wrap items-center gap-2.5 mb-3">
+            <input id="input-${q.id}" type="text" placeholder="Type numerical answer..." 
+                   onkeydown="if(event.key==='Enter') checkPhysicsAnswer('${q.id}')"
+                   class="flex-1 min-w-[200px] px-3.5 py-2 rounded-lg bg-slate-900 border border-slate-700 text-xs text-white focus:outline-none focus:border-amber-500">
+            <button onclick="checkPhysicsAnswer('${q.id}')" class="px-4 py-2 rounded-lg bg-amber-600 hover:bg-amber-500 text-white font-bold text-xs transition shadow">
+              Submit Answer
+            </button>
+            <button onclick="toggleElement('hint-${q.id}')" class="px-3 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs">
+              💡 Hint
+            </button>
+            <button onclick="toggleElement('key-${q.id}')" class="px-3 py-2 rounded-lg bg-amber-950/40 hover:bg-amber-900/50 border border-amber-500/40 text-amber-300 text-xs font-bold">
+              🔑 Answer Key & Derivation ▾
+            </button>
+          </div>
+          <div id="feedback-${q.id}" class="hidden p-3 rounded-lg text-xs font-medium mb-3"></div>
+          <div id="hint-${q.id}" class="hidden p-3 rounded-lg bg-amber-950/30 border border-amber-500/30 text-xs text-amber-200 mb-2">
+            <strong>Kinematics Hint:</strong> ${q.hint}
+          </div>
+          <div id="key-${q.id}" class="hidden p-4 rounded-xl bg-slate-950 border border-slate-800 text-xs text-slate-300 space-y-2">
+            <div class="text-amber-400 font-bold">Primary Equation: <code>$${q.eqUsed}$</code></div>
+            <div>${q.solution}</div>
+          </div>
+        </div>
+      `).join('');
+
+      renderMathInElement(container, {
+        delimiters: [
+          { left: '$$', right: '$$', display: true },
+          { left: '$', right: '$', display: false }
+        ],
+        throwOnError: false
+      });
+    }
+
+    function checkPhysicsAnswer(id) {
+      const q = physicsQuestions.find(item => item.id === id);
+      const input = document.getElementById(`input-${id}`);
+      const feedback = document.getElementById(`feedback-${id}`);
+      const badge = document.getElementById(`badge-${id}`);
+      if (!q || !input) return;
+
+      const userVal = input.value.trim().toLowerCase().replace(/[^0-9.e-]/g, '');
+      const isCorrect = q.accepted.some(acc => {
+        const cleanAcc = acc.toLowerCase().replace(/[^0-9.e-]/g, '');
+        return Math.abs(parseFloat(userVal) - parseFloat(cleanAcc)) < 0.5;
+      });
+
+      feedback.classList.remove('hidden');
+      if (isCorrect) {
+        feedback.className = "p-3 rounded-lg text-xs font-semibold bg-emerald-950/40 border border-emerald-500/40 text-emerald-300";
+        feedback.innerHTML = "🎉 <strong>Correct!</strong> That matches the kinematic calculation.";
+        badge.innerText = "Solved ✓";
+        badge.className = "text-[10px] px-2 py-0.5 rounded font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30";
+      } else {
+        feedback.className = "p-3 rounded-lg text-xs font-semibold bg-rose-950/40 border border-rose-500/40 text-rose-300";
+        feedback.innerHTML = "❌ <strong>Check your numbers.</strong> Inspect signs or open the 'Answer Key & Derivation' to verify your algebra.";
+      }
+    }
+
+    function toggleAllPhysicsKeys() {
+      physicsQuestions.forEach(q => {
+        const el = document.getElementById(`key-${q.id}`);
+        if (el) el.classList.toggle('hidden');
+      });
+      renderMathInElement(document.getElementById('physicsQuestionsContainer'), {
+        delimiters: [
+          { left: '$$', right: '$$', display: true },
+          { left: '$', right: '$', display: false }
+        ],
+        throwOnError: false
+      });
+    }
+
+    function toggleElement(id) {
+      const el = document.getElementById(id);
+      if (el) el.classList.toggle('hidden');
+      renderMathInElement(document.body, {
         delimiters: [
           { left: '$$', right: '$$', display: true },
           { left: '$', right: '$', display: false }
@@ -1485,7 +1557,7 @@
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
-      a.download = 'AP_Calculus_Limits_Continuity_Masterclass.html';
+      a.download = 'AP_STEM_Calculus_Physics_Masterclass.html';
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
@@ -1502,34 +1574,35 @@
     }
 
     function openEmailDraft() {
-      const subject = encodeURIComponent("AP Calculus: Limits & Continuity Complete Unit Notes & Practice");
+      const subject = encodeURIComponent("AP STEM: Calculus Limits & Physics 1 Kinematics Hub");
       const body = encodeURIComponent(
         "Hi!\n\n" +
-        "Here is the study guide and practice problem suite for AP Calculus Limits & Continuity:\n\n" +
-        "COVERED TOPICS:\n" +
-        "1. What is a Limit & DNE (Left != Right, Unbounded infinity, Oscillating)\n" +
-        "2. Limit Properties & Direct Substitution (Plug and chug)\n" +
-        "3. Indeterminate Forms (0/0: Factoring, Conjugate rationalizing, Complex fractions)\n" +
+        "Here is the comprehensive study guide and practice problem suite for AP Calculus Limits and AP Physics 1 Kinematics:\n\n" +
+        "CALCULUS TOPICS:\n" +
+        "1. What is a Limit & DNE (Left != Right, Unbounded, Oscillating)\n" +
+        "2. Limit Properties & Direct Substitution\n" +
+        "3. Indeterminate Forms (0/0: Factoring, Conjugates, Complex Fractions)\n" +
         "4. Continuity & One-Sided Limits (The 3-Part Checklist)\n" +
-        "5. Infinite Limits & Vertical Asymptotes (Sign testing nonzero/0)\n" +
-        "6. Limits at Infinity & Horizontal Asymptotes (Degrees comparison)\n" +
-        "7. The Squeeze Theorem & Special Trig Limits (sin(x)/x = 1)\n" +
-        "8. Intermediate Value Theorem (IVT roots and intermediate heights)\n\n" +
-        "Includes 32 interactive AP practice problems with step-by-step solutions!\n\n" +
-        "(Note: Download and attach the .html file from the web tool to view the interactive slide deck and AI Tutor offline in any browser.)"
+        "5. Infinite Limits & Vertical Asymptotes\n" +
+        "6. Limits at Infinity & Horizontal Asymptotes\n" +
+        "7. The Squeeze Theorem & Special Trig Limits\n" +
+        "8. Intermediate Value Theorem (IVT)\n\n" +
+        "PHYSICS TOPICS:\n" +
+        "• 1D Kinematic Equations of Motion ($v = v_0 + at$, $\\Delta x = v_0 t + 1/2 a t^2$, $v^2 = v_0^2 + 2a\\Delta x$, etc.)\n" +
+        "• 8 Multi-Step Word Problems with Full Answer Keys\n\n" +
+        "(Download and attach the .html file to view everything interactively offline!)"
       );
       window.location.href = `mailto:?subject=${subject}&body=${body}`;
     }
 
     function copySummaryText() {
       const summaryText = 
-        "AP Calculus Limits & Continuity Masterclass Summary:\n" +
-        "• 3-Part Continuity Test: f(c) exists, lim f(x) exists, lim f(x) = f(c)\n" +
-        "• 0/0 Indeterminate: Factor & cancel, multiply conjugates, or clear complex denominators\n" +
+        "AP Calculus & Physics Study Summary:\n" +
+        "• Continuity Test: f(c) exists, lim f(x) exists, lim f(x) = f(c)\n" +
+        "• 0/0 Indeterminate: Factor, multiply conjugate, or clear fractions\n" +
         "• Nonzero/0: Vertical asymptote (test signs: +inf or -inf)\n" +
         "• Limits at Infinity: Compare degrees (Bottom heavy = 0, Equal = ratio of leading coeffs, Top heavy = DNE)\n" +
-        "• Squeeze Theorem: h(x) <= f(x) <= g(x) and lim h = lim g = L -> lim f = L\n" +
-        "• IVT: Continuous on [a,b] takes on every value between f(a) and f(b)";
+        "• Physics Kinematics: v = v0 + at, Δx = v0*t + 1/2*a*t^2, v^2 = v0^2 + 2*a*Δx, Δx = ((v0+v)/2)*t";
 
       const tempTextArea = document.createElement("textarea");
       tempTextArea.value = summaryText;
@@ -1545,7 +1618,7 @@
 
     // Keyboard slide flipping
     window.addEventListener('keydown', (e) => {
-      if (document.activeElement && document.activeElement.id === 'aiInput') return;
+      if (document.activeElement && (document.activeElement.id === 'aiInput' || document.activeElement.tagName === 'INPUT')) return;
       const lessonsView = document.getElementById('lessonsView');
       if (lessonsView && !lessonsView.classList.contains('hidden')) {
         if (e.key === 'ArrowRight' || e.key === ' ') nextSlide();
@@ -1554,23 +1627,8 @@
     });
 
     // ==========================================
-    // AI Tutor Gemini API Integration
+    // AI Tutor Logic
     // ==========================================
-    const systemPrompt = `You are a patient, encouraging AP Calculus teacher helping a student master limits and continuity based on their exact class notebook files:
-Topics covered:
-1. What is a Limit: intended height vs actual height f(c). 3 behaviors for DNE: different left/right, unbounded (shoot to infinity), oscillating sin(1/x).
-2. Limit Properties: direct substitution (plug and chug) for polynomials, sum, difference, product, quotient, power, scalar, and trig functions (tan, sin, etc.).
-3. Indeterminate Form (0/0): factoring & dividing out, conjugate rationalization (e.g. (sqrt(x-2)-sqrt(2))/(x-4)), simplifying complex fractions (e.g. (1/x + 1/3)/(x+3)).
-4. Continuity & One-Sided Limits: left limit x->c^-, right limit x->c^+, 3 continuity conditions (f(c) exists, lim exists, lim = f(c)). Removable (hole) vs non-removable (jump or vertical asymptote). Solving for c in piecewise functions.
-5. Infinite Limits & Vertical Asymptotes: direct substitution giving nonzero/0, sign analysis with test values near asymptote (e.g. 1.99 or 2.01).
-6. Limits at Infinity & Horizontal Asymptotes: end behavior as x->infty. Degree of numerator < denominator -> 0; degree numerator = denominator -> ratio of leading coeffs; degree numerator > denominator -> DNE (infinity). Dividing by highest denominator power.
-7. Squeeze Theorem: h(x) <= f(x) <= g(x). Deriving lim x->0 sin(x)/x = 1 and lim x->0 (1-cos x)/x = 0. Solving lim sin(kx)/x = k.
-8. Intermediate Value Theorem (IVT): continuous on closed [a, b], guarantees every value between f(a) and f(b), proving existence of roots/zeros.
-
-Always format mathematical equations clearly with LaTeX ($...$ for inline and $$...$$ for standalone blocks). Break down algebra step-by-step with supportive tone.`;
-
-    let chatHistory = [];
-
     function toggleAiDrawer() {
       const drawer = document.getElementById('aiDrawer');
       drawer.classList.toggle('translate-x-full');
@@ -1579,375 +1637,66 @@ Always format mathematical equations clearly with LaTeX ($...$ for inline and $$
       }
     }
 
-    function toggleKeySettings() {
-      const banner = document.getElementById('keySettingsBanner');
-      banner.classList.toggle('hidden');
-    }
-
-    function saveUserApiKey() {
-      const val = document.getElementById('userApiKeyInput').value.trim();
-      if (val) {
-        localStorage.setItem('gemini_user_key', val);
-      } else {
-        localStorage.removeItem('gemini_user_key');
-      }
-      document.getElementById('keySettingsBanner').classList.add('hidden');
-      const badge = document.getElementById('aiModeBadge');
-      badge.innerText = val ? "Gemini Live" : "Auto-Ready";
-      badge.className = "text-[9px] px-1.5 py-0.5 rounded bg-purple-500/20 text-purple-300 border border-purple-500/30";
-    }
-
     function sendQuickPrompt(promptText) {
       document.getElementById('aiInput').value = promptText;
       document.getElementById('aiChatForm').dispatchEvent(new Event('submit'));
     }
 
-    // ========================================================
-    // Intelligent Offline / Fallback Calculus Tutor Knowledge
-    // Ensures answers are always available even without internet or key
-    // ========================================================
-    let currentQuizProblem = null;
-    let lastDiscussedTopic = 'continuity';
-
     function parseMarkdownToHtml(markdown) {
       if (!markdown) return "";
       let html = markdown
-        // Escape bare HTML tags except what we generate
         .replace(/&/g, '&amp;')
         .replace(/</g, '&lt;')
         .replace(/>/g, '&gt;');
 
-      // Headers
       html = html.replace(/^### (.*$)/gim, '<h4 class="text-sm font-bold text-indigo-300 mt-2 mb-1">$1</h4>');
       html = html.replace(/^## (.*$)/gim, '<h3 class="text-base font-extrabold text-white mt-2.5 mb-1">$1</h3>');
       html = html.replace(/^# (.*$)/gim, '<h2 class="text-lg font-black text-white mt-3 mb-1.5">$1</h2>');
 
-      // Bold & Italic
       html = html.replace(/\*\*(.*?)\*\*/g, '<strong class="text-white font-bold">$1</strong>');
       html = html.replace(/\*(.*?)\*/g, '<em class="text-indigo-200">$1</em>');
-
-      // Horizontal rule
       html = html.replace(/^---$/gim, '<hr class="my-2 border-slate-700/60">');
-
-      // Bullet points
       html = html.replace(/^\s*[-•]\s+(.*$)/gim, '<li class="ml-3 list-disc text-slate-300 my-0.5">$1</li>');
-      // Numbered lists
       html = html.replace(/^\s*(\d+)\.\s+(.*$)/gim, '<li class="ml-4 list-decimal text-slate-300 my-0.5"><span class="font-medium">$2</span></li>');
 
-      // Paragraph newlines
       html = html.replace(/\n\n/g, '<div class="h-2"></div>');
       html = html.replace(/\n/g, '<br>');
 
       return html;
     }
 
-    const quizProblemsBank = {
-      continuity: [
-        {
-          id: 'c1',
-          question: 'Find the value of $k$ that makes $f(x)$ continuous everywhere:\n$$f(x) = \\begin{cases} kx^2 - 3, & x < 2 \\\\ 2x + 5, & x \\ge 2 \\end{cases}$$',
-          options: [
-            'A) $k = 2$',
-            'B) $k = 3$',
-            'C) $k = 4$',
-            'D) $k = 1$'
-          ],
-          correct: 'B',
-          solution: 'Set the left limit equal to the right limit at the boundary $x = 2$:\n$$\\lim_{x \\to 2^-} (k(2)^2 - 3) = \\lim_{x \\to 2^+} (2(2) + 5)$$\n$$4k - 3 = 4 + 5 = 9$$\n$$4k = 12 \\implies \\mathbf{k = 3}$$'
-        },
-        {
-          id: 'c2',
-          question: 'Let $g(x) = \\begin{cases} \\frac{x^2 - 16}{x - 4}, & x \\ne 4 \\\\ c, & x = 4 \\end{cases}$. What value of $c$ removes the discontinuity at $x = 4$?',
-          options: [
-            'A) $c = 4$',
-            'B) $c = 0$',
-            'C) $c = 8$',
-            'D) $c = 16$'
-          ],
-          correct: 'C',
-          solution: 'By Condition 3 of continuity, we must have $c = \\lim_{x \\to 4} g(x)$:\n$$\\lim_{x \\to 4} \\frac{x^2 - 16}{x - 4} = \\lim_{x \\to 4} \\frac{(x-4)(x+4)}{x-4} = 4 + 4 = 8$$\nTherefore, $\\mathbf{c = 8}$.'
-        }
-      ],
-      indet: [
-        {
-          id: 'i1',
-          question: 'Evaluate the limit:\n$$\\lim_{x \\to 0} \\frac{\\sqrt{4 + x} - 2}{x}$$',
-          options: [
-            'A) $\\frac{1}{2}$',
-            'B) $\\frac{1}{4}$',
-            'C) $0$',
-            'D) DNE'
-          ],
-          correct: 'B',
-          solution: 'Rationalize with the conjugate $(\\sqrt{4+x}+2)$:\n$$\\lim_{x \\to 0} \\frac{(\\sqrt{4+x}-2)(\\sqrt{4+x}+2)}{x(\\sqrt{4+x}+2)} = \\lim_{x \\to 0} \\frac{(4+x)-4}{x(\\sqrt{4+x}+2)} = \\frac{1}{\\sqrt{4}+2} = \\mathbf{\\frac{1}{4}}$$'
-        }
-      ],
-      infinite: [
-        {
-          id: 'inf1',
-          question: 'Evaluate the one-sided infinite limit:\n$$\\lim_{x \\to 3^-} \\frac{x + 1}{x - 3}$$',
-          options: [
-            'A) $+\\infty$',
-            'B) $-\\infty$',
-            'C) $0$',
-            'D) $-4$'
-          ],
-          correct: 'B',
-          solution: 'Sign analysis:\n• Numerator at $x = 3$: $3 + 1 = 4 > 0$ (positive)\n• Denominator as $x \\to 3^-$ (test $x = 2.99$): $2.99 - 3 = -0.01 < 0$ (tiny negative)\n$$\\frac{\\text{Positive}}{\\text{Negative 0}} = -\\infty$$'
-        }
-      ]
-    };
-
-    function getCalculusKnowledgeResponse(query) {
+    function getSTEMKnowledgeResponse(query) {
       const q = query.toLowerCase().trim().replace(/[^a-z0-9 ]/g, ' ');
 
-      // Check if user is answering an active quiz problem
-      if (currentQuizProblem) {
-        const p = currentQuizProblem;
-        const normalized = query.trim().toUpperCase();
-        const isLetterMatch = normalized === p.correct || normalized.startsWith(p.correct + ')') || normalized.startsWith(p.correct + ' ');
-        const isTextMatch = normalized.includes(p.correct);
+      if (q.includes('kinematic') || q.includes('physics') || q.includes('motion') || q.includes('velocity') || q.includes('acceleration')) {
+        return `### 🚀 AP Physics 1: How to Pick the Right Kinematic Equation
 
-        if (isLetterMatch || isTextMatch) {
-          const solved = p;
-          currentQuizProblem = null;
-          return `### 🎉 Bingo! Option ${solved.correct} is Correct!
+List your 5 variables: $v_0$ (initial velocity), $v$ (final velocity), $a$ (acceleration), $\\Delta x$ or $\\Delta y$ (displacement), and $t$ (time).
 
-Here is the exact scratchwork:
-${solved.solution}
-
----
-Would you like **another problem**, or should we review another concept (like *IVT*, *Squeeze Theorem*, or *Limits at Infinity*)?`;
-        } else if (['A', 'B', 'C', 'D'].some(letter => normalized.startsWith(letter))) {
-          return `### ❌ Not quite Option ${normalized.charAt(0)}.
-
-**Hint:** Double-check your signs when substituting into the left and right sides!
-
-Try again, or reply **"show answer"** if you'd like me to walk through the step-by-step algebra!`;
-        } else if (q.includes('show answer') || q.includes('solution') || q.includes('give up') || q.includes('what is the answer')) {
-          const solved = p;
-          currentQuizProblem = null;
-          return `### 📝 Full Solution for that Problem:
-
-The correct answer was **Option ${solved.correct}**.
-
-${solved.solution}
-
-Ready for another one? Just say **"give me another problem"**!`;
-        }
+1. **If time ($t$) is missing:** Use $v^2 = v_0^2 + 2a\\Delta x$.
+2. **If final velocity ($v$) is missing:** Use $\\Delta x = v_0 t + \\frac{1}{2}at^2$.
+3. **If acceleration ($a$) is missing:** Use $\\Delta x = \\left(\\frac{v_0 + v}{2}\\right)t$.
+4. **If displacement ($\\Delta x$) is missing:** Use $v = v_0 + at$.`;
       }
 
-      // Check if user is asking for a problem or quiz
-      if (
-        q.includes('give me a problem') || 
-        q.includes('quiz me') || 
-        q.includes('practice problem') || 
-        q.includes('give me an example') || 
-        q.includes('another problem') || 
-        q.includes('test me') ||
-        (q.includes('problem') && (q.includes('yes') || q.includes('sure') || q.includes('ok') || q.includes('ready') || q.includes('one')))
-      ) {
-        let bank = quizProblemsBank[lastDiscussedTopic] || quizProblemsBank['continuity'];
-        let picked = bank[Math.floor(Math.random() * bank.length)];
-        currentQuizProblem = picked;
-
-        return `### 🎯 AP Practice Challenge: ${lastDiscussedTopic.toUpperCase()}
-
-Here is a targeted problem to test your understanding:
-
-${picked.question}
-
-${picked.options.join('\n\n')}
-
----
-**What is your answer (A, B, C, or D)?** Reply with your choice and I'll verify your scratchwork!`;
-      }
-
-      // CONTINUITY & ONE-SIDED LIMITS
       if (q.includes('contin') || q.includes('contu') || q.includes('piecewise') || q.includes('hole') || q.includes('jump')) {
-        lastDiscussedTopic = 'continuity';
-        return `### 🎯 Complete Breakdown: Continuity at a Point $x = c$
-
-Don't worry, continuity is one of the most common stumbling blocks in Unit 1! Let's make it super intuitive.
-
-#### 🚗 The "Road and Pothole" Analogy
-Imagine you are driving down a road:
-- **The Limit** $\\lim_{x \\to c} f(x)$ is the spot the road is *aiming* toward from both the left and right.
-- **The Function Value** $f(c)$ is whether the asphalt is actually physically there, or if someone dug a pothole or moved the bridge tile somewhere else!
-
----
-
-#### 📋 The 3-Part Continuity Checklist (Must Memorize for AP!)
-A function $f(x)$ is continuous at $x = c$ **if and only if all three of these pass**:
-
-1. **Condition 1: $f(c)$ exists**
-   - The point is actually defined on the graph (it is not $\\frac{\\text{number}}{0}$ and there is no missing dot).
-2. **Condition 2: $\\lim_{x \\to c} f(x)$ exists**
-   - The left-hand limit equals the right-hand limit:
-     $$\\lim_{x \\to c^-} f(x) = \\lim_{x \\to c^+} f(x) = L$$
-3. **Condition 3: The limit equals the point!**
-   - $$\\lim_{x \\to c} f(x) = f(c)$$
-   - The asphalt connects smoothly without any holes or jumps.
-
----
-
-#### 🔍 The 3 Types of Discontinuities (From Notebook Page 2):
-1. **Removable Discontinuity (Hole)**:
-   - The limit exists, but $f(c)$ is either undefined or plotted somewhere else.
-   - *Algebraic cue:* In rational functions, a common factor cancels:
-     $$f(x) = \\frac{(x-2)(x-3)}{(x-2)(x+5)} \\implies \\text{Hole at } x = 2$$
-2. **Jump Discontinuity**:
-   - The curve arrives at different heights from the left and right:
-     $$\\lim_{x \\to c^-} f(x) \\ne \\lim_{x \\to c^+} f(x)$$
-   - Often happens in piecewise functions or functions with absolute values like $\\frac{|x|}{x}$.
-3. **Infinite Discontinuity (Vertical Asymptote)**:
-   - Direct substitution yields $\\frac{\\text{non-zero}}{0}$.
-   - The curve shoots up to $+\\infty$ or down to $-\\infty$.
-
----
-
-#### 💡 How to Solve Piecewise Problems (Finding $c$):
-In your notebook, you have:
-$$g(x) = \\begin{cases} \\sqrt{2x-c}, & x < 0 \\\\ 3x^2+1, & x \\ge 0 \\end{cases}$$
-To make it continuous at $x = 0$, set the left-hand rule equal to the right-hand rule at $x = 0$:
-$$\\lim_{x \\to 0^-} \\sqrt{2(0)-c} = \\lim_{x \\to 0^+} (3(0)^2+1)$$
-$$\\sqrt{-c} = 1 \\implies -c = 1 \\implies \\mathbf{c = -1}$$
-
-Would you like to try a practice problem on continuity? Just say **"yes give me a problem"**!`;
+        return `### 🎯 Continuity at a Point $x = c$[cite: 1, 6]
+1. **$f(c)$ exists** (defined point)[cite: 1, 6].
+2. **$\\lim_{x \\to c} f(x)$ exists** (left limit = right limit)[cite: 1, 6].
+3. **$\\lim_{x \\to c} f(x) = f(c)$** (curve matches point)[cite: 1, 6].`;
       }
 
-      // 0/0 INDETERMINATE FORMS
-      if (q.includes('indetermin') || q.includes('0/0') || q.includes('factor') || q.includes('conjugat') || q.includes('rationaliz')) {
-        lastDiscussedTopic = 'indet';
-        return `### ⚡ Indeterminate Form $\\frac{0}{0}$: The 3 Big Fixes
-
-When you plug in $x = c$ and get $\\frac{0}{0}$, this does **NOT** mean undefined, nor does it mean $0$ or $1$. It means there is a hidden hole, and you must use algebra to reveal the limit!
-
-1. **Factoring & Canceling:**
-   $$\\lim_{x \\to 2} \\frac{x^2-5x+6}{x^2+3x-10} = \\lim_{x \\to 2} \\frac{(x-2)(x-3)}{(x-2)(x+5)} = \\frac{2-3}{2+5} = -\\frac{1}{7}$$
-2. **Conjugate Multiplication (Radicals):**
-   Multiply top and bottom by the conjugate $(\\sqrt{x-2}+\\sqrt{2})$:
-   $$\\lim_{x \\to 4} \\frac{\\sqrt{x-2}-\\sqrt{2}}{x-4} \\cdot \\frac{\\sqrt{x-2}+\\sqrt{2}}{\\sqrt{x-2}+\\sqrt{2}} = \\lim_{x \\to 4} \\frac{(x-2)-2}{(x-4)(\\sqrt{x-2}+\\sqrt{2})} = \\frac{1}{2\\sqrt{2}} = \\frac{\\sqrt{2}}{4}$$
-3. **Complex Fractions:**
-   Multiply top and bottom by the common denominator $3x$:
-   $$\\lim_{x \\to -3} \\frac{\\frac{1}{x} + \\frac{1}{3}}{x+3} \\left(\\frac{3x}{3x}\\right) = \\lim_{x \\to -3} \\frac{3+x}{(x+3)(3x)} = \\lim_{x \\to -3} \\frac{1}{3x} = -\\frac{1}{9}$$
-
-Ready to test this with a problem? Say **"give me a problem"**!`;
+      if (q.includes('infinite') || q.includes('asymptote') || q.includes('sign') || q.includes('va')) {
+        return `### 📈 Vertical Asymptotes & Infinite Limits[cite: 2]
+When direct substitution yields $\\frac{\\text{non-zero}}{0}$, the curve approaches a vertical asymptote[cite: 2]. Test a number slightly left or right of $c$ to determine if it shoots to $+\\infty$ or $-\\infty$[cite: 2]!`;
       }
 
-      // INFINITE LIMITS & VERTICAL ASYMPTOTES
-      if (q.includes('infinite') || q.includes('asymptote') || q.includes('sign') || q.includes('nonzero') || q.includes('va')) {
-        lastDiscussedTopic = 'infinite';
-        return `### 📈 Infinite Limits & Sign Analysis $\\left(\\frac{\\text{Non-Zero}}{0}\\right)$
-
-When substitution gives a non-zero number divided by $0$, the answer is **always** either $+\\infty$, $-\\infty$, or $\\text{DNE}$.
-
-#### Example from Notebook:
-Evaluate $\\lim_{x \\to 2^-} \\frac{3x+1}{x-2}$:
-1. **Numerator:** Plug in $x=2$: $3(2)+1 = 7$ (strictly **positive**).
-2. **Denominator:** As $x \\to 2^-$ (test $x = 1.99$):
-   $$1.99 - 2 = -0.01 \\quad (\\text{tiny negative})$$
-3. **Sign Ratio:**
-   $$\\frac{\\text{Positive}}{\\text{Tiny Negative}} = -\\infty$$
-
-If we tested $x \\to 2^+$, the denominator would be $+0.01$ (tiny positive), giving $+\\infty$. Because $-\\infty \\ne +\\infty$, the two-sided limit $\\lim_{x \\to 2} f(x) = \\text{DNE}$.
-
-Would you like to try one? Say **"give me a problem"**!`;
-      }
-
-      // SQUEEZE THEOREM & TRIG
-      if (q.includes('squeeze') || q.includes('sandwich') || q.includes('sin') || q.includes('cos') || q.includes('trig')) {
-        return `### 🥪 The Squeeze Theorem & Special Trig Limits
-
-If $h(x) \\le f(x) \\le g(x)$ and:
-$$\\lim_{x \\to c} h(x) = L \\quad \\text{and} \\quad \\lim_{x \\to c} g(x) = L$$
-then the middle function is trapped and forced to have $\\lim_{x \\to c} f(x) = L$!
-
-#### 2 Fundamental Limits to Memorize:
-1. $$\\lim_{x \\to 0} \\frac{\\sin x}{x} = 1$$
-2. $$\\lim_{x \\to 0} \\frac{1 - \\cos x}{x} = 0$$
-
-#### The Scaling Trick:
-To solve $\\lim_{x \\to 0} \\frac{\\sin(3x)}{x}$, balance with $\\frac{3}{3}$:
-$$\\lim_{x \\to 0} 3 \\cdot \\frac{\\sin(3x)}{3x} = 3 \\cdot (1) = 3$$`;
-      }
-
-      // INTERMEDIATE VALUE THEOREM
-      if (q.includes('ivt') || q.includes('intermediate') || q.includes('root') || q.includes('zero')) {
-        return `### 🌉 The Intermediate Value Theorem (IVT)
-
-#### Formal Statement:
-If $f$ is **continuous** on the closed interval $[a, b]$, then $f$ takes on every value between $f(a)$ and $f(b)$ at least once!
-
-#### AP Exam Proof Recipe:
-1. State: "$f(x)$ is continuous on $[a, b]$ because it is a polynomial (or continuous function)."
-2. Calculate endpoints: find $f(a)$ and $f(b)$.
-3. Show the target value $k$ is between them: $f(a) < k < f(b)$ (or $f(b) < k < f(a)$).
-4. Conclude: "Therefore, by IVT, there exists at least one $c \\in (a, b)$ such that $f(c) = k$."`;
-      }
-
-      // DEFAULT COMPREHENSIVE RESPONSE
-      return `### 💡 Limits & Continuity Study Companion
-
-Here is the master strategy for any limit problem in AP Calculus:
-
-1. **Step 1: Always try direct substitution first! ("Plug and chug")**
-   - If you get a finite real number, you are finished!
-2. **Step 2: If you get $\\frac{0}{0}$ (Indeterminate)**:
-   - Factor and cancel terms $(x - c)$.
-   - Multiply by the conjugate if radicals exist.
-   - Clear complex fractions with common denominators.
-3. **Step 3: If you get $\\frac{\\text{non-zero}}{0}$ (Vertical Asymptote)**:
-   - Perform sign analysis: test $x$ slightly to the left and right of $c$ to find $\\pm\\infty$.
-4. **Step 4: Check Continuity**:
-   - Verify $f(c)$ is defined, $\\lim_{x \\to c} f(x)$ exists, and $\\lim_{x \\to c} f(x) = f(c)$.
-
-Ask me about any specific problem, or say **"give me a problem"** to test your knowledge!`;
+      return `### 💡 AP STEM Companion
+• For **Calculus**: Always try direct substitution first[cite: 8]. If you get $\\frac{0}{0}$, factor or rationalize[cite: 7].
+• For **Physics**: Write down what you know ($v_0, v, a, t, \\Delta x$) and choose the kinematic formula that excludes your unknown!`;
     }
 
-    async function callGeminiApi(userMessage) {
-      // Check conversational problem cues first for immediate zero-latency quiz generation
-      const lower = userMessage.toLowerCase().trim();
-      if (currentQuizProblem || lower.includes('problem') || lower.includes('quiz') || lower.includes('test me')) {
-        const localReply = getCalculusKnowledgeResponse(userMessage);
-        chatHistory.push({ role: "model", parts: [{ text: localReply }] });
-        return localReply;
-      }
-
-      const storedKey = localStorage.getItem('gemini_user_key') || "";
-      const apiKey = storedKey;
-      const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${apiKey}`;
-
-      chatHistory.push({ role: "user", parts: [{ text: userMessage }] });
-
-      const payload = {
-        contents: chatHistory,
-        systemInstruction: { parts: [{ text: systemPrompt }] }
-      };
-
-      try {
-        const response = await fetch(apiUrl, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
-        });
-        if (!response.ok) throw new Error(`HTTP error ${response.status}`);
-        const result = await response.json();
-        const text = result?.candidates?.[0]?.content?.parts?.[0]?.text;
-        if (text) {
-          chatHistory.push({ role: "model", parts: [{ text: text }] });
-          return text;
-        }
-        throw new Error("No response text");
-      } catch (err) {
-        // Graceful intelligent local fallback:
-        const fallbackText = getCalculusKnowledgeResponse(userMessage);
-        chatHistory.push({ role: "model", parts: [{ text: fallbackText }] });
-        return fallbackText;
-      }
-    }
-
-    async function handleAiSubmit(e) {
+    function handleAiSubmit(e) {
       e.preventDefault();
       const input = document.getElementById('aiInput');
       const text = input.value.trim();
@@ -1955,7 +1704,6 @@ Ask me about any specific problem, or say **"give me a problem"** to test your k
 
       const chatContainer = document.getElementById('aiChatMessages');
       
-      // User message
       const userDiv = document.createElement('div');
       userDiv.className = "flex items-start gap-2.5 justify-end";
       userDiv.innerHTML = `<div class="p-3 rounded-2xl bg-indigo-600 text-white leading-relaxed max-w-[85%]">${escapeHtml(text)}</div>`;
@@ -1963,50 +1711,32 @@ Ask me about any specific problem, or say **"give me a problem"** to test your k
       input.value = "";
       chatContainer.scrollTop = chatContainer.scrollHeight;
 
-      // Loading bubble
-      const loadingDiv = document.createElement('div');
-      loadingDiv.className = "flex items-start gap-2.5";
-      loadingDiv.innerHTML = `
-        <div class="w-6 h-6 rounded-full bg-purple-600 flex-shrink-0 flex items-center justify-center text-[10px] font-bold text-white">AI</div>
-        <div class="p-3 rounded-2xl bg-slate-800 text-slate-400 border border-slate-700/80 flex items-center gap-2">
-          <span class="w-2 h-2 rounded-full bg-indigo-400 animate-ping"></span>
-          <span>Analyzing notebook concepts & formatting steps...</span>
-        </div>
-      `;
-      chatContainer.appendChild(loadingDiv);
-      chatContainer.scrollTop = chatContainer.scrollHeight;
-
-      const reply = await callGeminiApi(text);
-      if (loadingDiv.parentNode) {
-        chatContainer.removeChild(loadingDiv);
-      }
-
-      const aiDiv = document.createElement('div');
-      aiDiv.className = "flex items-start gap-2.5";
-      aiDiv.innerHTML = `
-        <div class="w-6 h-6 rounded-full bg-purple-600 flex-shrink-0 flex items-center justify-center text-[10px] font-bold text-white">AI</div>
-        <div class="p-3 rounded-2xl bg-slate-800/90 text-slate-200 border border-slate-700/80 leading-relaxed max-w-[90%] space-y-2">
-          ${parseMarkdownToHtml(reply)}
-        </div>
-      `;
-      chatContainer.appendChild(aiDiv);
-
-      renderMathInElement(aiDiv, {
-        delimiters: [
-          { left: '$$', right: '$$', display: true },
-          { left: '$', right: '$', display: false }
-        ],
-        throwOnError: false
-      });
-
-      chatContainer.scrollTop = chatContainer.scrollHeight;
+      setTimeout(() => {
+        const reply = getSTEMKnowledgeResponse(text);
+        const aiDiv = document.createElement('div');
+        aiDiv.className = "flex items-start gap-2.5";
+        aiDiv.innerHTML = `
+          <div class="w-6 h-6 rounded-full bg-purple-600 flex-shrink-0 flex items-center justify-center text-[10px] font-bold text-white">AI</div>
+          <div class="p-3 rounded-2xl bg-slate-800/90 text-slate-200 border border-slate-700/80 leading-relaxed max-w-[90%] space-y-2">
+            ${parseMarkdownToHtml(reply)}
+          </div>
+        `;
+        chatContainer.appendChild(aiDiv);
+        renderMathInElement(aiDiv, {
+          delimiters: [
+            { left: '$$', right: '$$', display: true },
+            { left: '$', right: '$', display: false }
+          ],
+          throwOnError: false
+        });
+        chatContainer.scrollTop = chatContainer.scrollHeight;
+      }, 300);
     }
 
     function escapeHtml(str) {
       return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
     }
 
-    // Initialize application on load
     window.onload = function() {
       updateSlideDisplay();
       renderPracticeQuestions();
